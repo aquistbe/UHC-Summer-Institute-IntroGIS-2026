@@ -120,10 +120,10 @@ This course website is built with [Quarto](https://quarto.org/) and can be deplo
    This generates the HTML files in the `docs/` folder.
 
 4. **Deploy to GitHub Pages:**
-   - Create a GitHub repository (e.g., `intro-gis-ph`)
+   - Your GitHub repository: `UHC-Summer-Institute-IntroGIS-2026`
    - Push the `course-website/` folder contents to the repository
    - In the repository Settings > Pages, set the source to the `docs/` folder on the `main` branch
-   - The site will be available at `https://[username].github.io/intro-gis-ph/`
+   - The site will be available at `https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/`
 
 5. **Update the site:** Edit `.qmd` files, re-render, commit, and push.
 

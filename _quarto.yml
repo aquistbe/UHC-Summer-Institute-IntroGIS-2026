@@ -6,8 +6,8 @@ website:
   title: "Introduction to GIS for Public Health"
   description: "Urban Health Summer Institute | Drexel University Dornsife School of Public Health"
   # favicon: "images/favicon.png"  # uncomment after adding a favicon image
-  site-url: https://aquistberg.github.io/intro-gis-ph/  # update with your actual GitHub Pages URL
-  repo-url: https://github.com/aquistberg/intro-gis-ph  # update with your actual repo URL
+  site-url: https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/
+  repo-url: https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026
   repo-actions: [issue]
 
   navbar:
