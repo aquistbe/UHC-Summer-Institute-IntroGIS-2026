@@ -1,0 +1,130 @@
+---
+title: "Software Setup"
+---
+
+Please install your preferred GIS software **before the first class session**. If you run into trouble, reach out to the instructors beforehand --- we will also set aside time on Day 1 to help with any remaining installation issues.
+
+## Option 1: ArcGIS Pro (Primary)
+
+ArcGIS Pro is the primary software used in this course. It runs on **Windows only** --- Mac users will need to use a virtual machine (see below).
+
+### System Requirements
+
+- 2-core CPU minimum (4-core recommended)
+- 8 GB RAM minimum (16 GB recommended)
+- 32 GB free disk space
+- Windows 10 or Windows 11
+
+Full requirements: [ArcGIS Pro System Requirements](https://pro.arcgis.com/en/pro-app/latest/get-started/arcgis-pro-system-requirements.htm)
+
+### Installation
+
+1. You will receive an email from Esri inviting you to set up your ArcGIS Online organizational account. Follow the instructions in that email.
+2. Download ArcGIS Pro from [pro.arcgis.com](https://pro.arcgis.com/en/pro-app/latest/get-started/download-arcgis-pro.htm)
+3. Install and sign in with your organizational account credentials
+4. Verify the installation by opening ArcGIS Pro and creating a new Map project
+
+::: {.callout-note}
+## Temporary License
+If needed, a temporary Esri license will be provided for the duration of the course. However, if your institution has a site license, we recommend using that for uninterrupted access after the course ends.
+:::
+
+### Mac Users
+
+ArcGIS Pro requires Windows. Mac users have several options:
+
+**Parallels Desktop (recommended for Apple Silicon Macs):**
+
+- Parallels is the best option for M1/M2/M3/M4 Macs and works well with Intel Macs too
+- Costs about $50/year for an academic license, or $99 standard
+- Install Windows 11 (ARM for Apple Silicon) within Parallels, then install ArcGIS Pro
+- [parallels.com](https://www.parallels.com/)
+
+**VMware Fusion:**
+
+- Free and paid versions available for both Intel and Apple Silicon Macs
+- [vmware.com/products/fusion](https://www.vmware.com/products/fusion.html)
+
+**Boot Camp (Intel Macs only):**
+
+- Partition your Mac to dual-boot into Windows
+- Free but requires restarting to switch between macOS and Windows
+- Not available for Apple Silicon Macs
+
+**Virtual Remote Desktop:**
+
+- If none of the above options work, contact the instructors --- we can provide temporary access to a virtual desktop with ArcGIS Pro pre-installed
+
+::: {.callout-important}
+## Philadelphia City Employees
+Based on prior experience, Philadelphia city employees may need IT approval to install ArcGIS Pro on work computers. This can take a day or more, so please submit your IT request well before the course starts.
+:::
+
+## Option 2: QGIS (Open-Source Alternative)
+
+QGIS is a free, open-source GIS that runs on **Windows, Mac, and Linux**. All course lab exercises are available in QGIS versions. While QGIS does not have every feature found in ArcGIS Pro, it handles the core GIS operations covered in this course.
+
+### Installation
+
+1. Go to [qgis.org/download](https://qgis.org/en/site/forusers/download.html)
+2. Download the **Long-Term Release (LTR)** for your operating system
+3. Install using the default settings
+4. Verify the installation by opening QGIS and creating a new project
+
+QGIS is a good choice if:
+
+- You use a Mac and do not want to set up a virtual machine
+- Your institution does not have an Esri license
+- You want a free tool you can continue using after the course
+
+## Additional Software (Optional)
+
+These tools are not required but may be demonstrated or referenced during the course:
+
+- **[GeoDa](https://geodacenter.github.io/)** --- Free software for exploratory spatial data analysis. Particularly useful for Moran's I, LISA cluster maps, and spatial regression. Available for Windows, Mac, and Linux.
+- **[GRASS GIS](https://grass.osgeo.org/)** --- Another open-source GIS with advanced raster analysis capabilities. Available for Windows, Mac, and Linux.
+
+## Verifying Your Installation
+
+Before Day 1, confirm that you can:
+
+1. Open ArcGIS Pro (or QGIS)
+2. Create a new project
+3. Add a basemap layer
+4. Pan and zoom around the map
+
+If any of these steps fail, contact the instructors at [daq26@drexel.edu](mailto:daq26@drexel.edu).
+
+## Downloading Lab Data
+
+Lab data for each day will be available on the course website ([learn.dcollege.net](https://learn.dcollege.net/)) before each session. Download the data to a local folder on your computer --- do not work directly from a USB drive, cloud drive, or network drive, as this can cause performance issues with ArcGIS Pro.
+
+---
+
+## Deploying This Course Website (Instructor Notes)
+
+This course website is built with [Quarto](https://quarto.org/) and can be deployed to GitHub Pages:
+
+1. **Install Quarto** from [quarto.org/docs/get-started](https://quarto.org/docs/get-started/)
+
+2. **Preview locally:**
+   ```bash
+   cd course-website
+   quarto preview
+   ```
+
+3. **Render the site:**
+   ```bash
+   quarto render
+   ```
+   This generates the HTML files in the `docs/` folder.
+
+4. **Deploy to GitHub Pages:**
+   - Create a GitHub repository (e.g., `intro-gis-ph`)
+   - Push the `course-website/` folder contents to the repository
+   - In the repository Settings > Pages, set the source to the `docs/` folder on the `main` branch
+   - The site will be available at `https://[username].github.io/intro-gis-ph/`
+
+5. **Update the site:** Edit `.qmd` files, re-render, commit, and push.
+
+For more details, see the [Quarto GitHub Pages documentation](https://quarto.org/docs/publishing/github-pages.html).

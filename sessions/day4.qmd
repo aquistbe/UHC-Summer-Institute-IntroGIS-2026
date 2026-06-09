@@ -1,0 +1,164 @@
+---
+title: "Day 4: Network Analysis, Geocoding & Raster"
+subtitle: "Routing, Address Matching, and Raster Spatial Analysis"
+---
+
+::: {.session-header}
+## Day 4 — Thursday
+[9:00 AM -- 12:00 PM EDT]{.session-meta} | [Lecture + Lab]{.session-meta}
+:::
+
+## Lecture Topics
+
+### Network Analysis
+
+Network analysis uses the topology of connected line features (roads, transit routes, walking paths) to answer questions about accessibility and routing. This is directly relevant to healthcare access analysis and emergency response planning.
+
+Key operations:
+
+- **Shortest route** --- find the optimal path between two locations along a road or transit network
+- **Closest facility** --- determine which facility (hospital, clinic, fire station) is nearest to a set of demand points
+- **Service area / isochrone** --- define the area reachable within a given travel time or distance from a facility (e.g., the 15-minute driving catchment of an FQHC)
+- **Allocation** --- assign demand points to their nearest or most appropriate facility
+
+**Public health applications:** Identifying populations with poor healthcare access, optimizing facility placement, evaluating transit equity, modeling emergency response times.
+
+### Geocoding
+
+Geocoding is the process of converting street addresses into geographic coordinates (latitude, longitude). It is one of the most common GIS operations in public health, used whenever individual-level data includes addresses (disease reports, death certificates, crash reports, patient records).
+
+Key concepts:
+
+- **Address components:** street number, street name, city, state, ZIP code
+- **Match quality:** exact match vs. interpolated (placed along a street segment based on address range). Interpolated geocodes can be off by tens of meters, which matters for small-buffer analyses.
+- **Match rate:** the percentage of addresses successfully geocoded. Always report this.
+- **Reference data quality:** the accuracy of the geocoder's underlying address database
+
+::: {.callout-important}
+## Geocoding and Privacy (PHI)
+
+When geocoding health data with personally identifiable information (PHI), you must consider:
+
+- **Which geocoder to use:** The [U.S. Census Geocoder](https://geocoding.geo.gov/geocoder/) is free and does not retain submitted addresses. Cloud-based commercial geocoders (Esri, Google) may store queries --- check your IRB protocol and data use agreement.
+- **Address suppression:** Never publish maps at the address level for health data. Aggregate to census tract or higher.
+- **Cell suppression:** Suppress counts fewer than 5 (or per your agency's policy) to prevent re-identification.
+- **The analyst's working copy vs. the published map:** You may geocode to rooftop precision for analysis but must aggregate before sharing results.
+:::
+
+### Raster Spatial Analysis
+
+Raster analysis works with gridded data --- continuous surfaces where each cell holds a value. In public health, raster data is used for environmental exposures (air quality, temperature, vegetation), terrain, and density surfaces.
+
+Key operations:
+
+- **Reclassify** --- assign new values to raster cells based on ranges (e.g., reclassify land surface temperature into "high," "medium," "low" heat categories)
+- **Map algebra** --- cell-by-cell arithmetic on rasters (add, subtract, multiply, divide layers)
+- **Zonal statistics** --- summarize raster values within polygon boundaries (e.g., mean PM2.5 concentration by census tract, mean NDVI by ZCTA). This is the single most useful raster operation for public health.
+- **Kernel density estimation** --- create a continuous density surface from point data (e.g., crash density, disease case density). Controls: bandwidth (search radius) and cell size.
+
+## Lab Exercises
+
+::: {.lab-exercise}
+
+#### Lab 4a: Network Analysis
+
+**What you will learn:**
+
+- Set up and use network analysis tools in ArcGIS Pro
+- Generate shortest routes along a road network
+- Find the closest facility to a set of locations
+- Create service areas (isochrones) showing areas reachable within a specified travel time or distance
+
+**What you will produce:**
+
+- Shortest route maps between specified locations
+- Closest facility analysis results
+- Service area maps showing travel-time catchments
+
+**Skills practiced:**
+
+- Configuring network analysis layers
+- Setting impedance (time or distance)
+- Interpreting network analysis results for accessibility assessment
+
+:::
+
+::: {.lab-exercise}
+
+#### Lab 4b: Geocoding
+
+**What you will learn:**
+
+- Prepare address data for geocoding (standardization, formatting)
+- Geocode addresses using ArcGIS Pro or the Census Geocoder
+- Evaluate geocoding results: match rate, match quality, unmatched addresses
+- Rematching and manual correction of failed matches
+
+**What you will produce:**
+
+- A geocoded point layer from an address table
+- A summary of match rates and quality assessment
+
+**Skills practiced:**
+
+- Address table preparation and cleaning
+- Batch geocoding
+- Interpreting match scores
+- Understanding geocode accuracy and its implications for spatial analysis
+
+:::
+
+::: {.lab-exercise}
+
+#### Lab 4c: Raster Analysis
+
+**What you will learn:**
+
+- Add and display raster data
+- Reclassify raster values into categories
+- Perform raster calculations (map algebra)
+- Extract raster values to points or zones
+
+**What you will produce:**
+
+- A reclassified land cover map
+- Results of raster-based spatial analysis
+
+**Data:** Raster datasets including elevation, land cover, and derived surfaces
+
+**Skills practiced:**
+
+- Raster symbology and display
+- Reclassification
+- Raster calculator / map algebra
+- Zonal statistics
+
+:::
+
+::: {.callout-tip}
+## QGIS Alternative for Network Analysis
+
+QGIS does not include a full network analysis toolset equivalent to ArcGIS Network Analyst out of the box, but the **QGIS Network Analysis** plugin and built-in shortest-path tools provide basic routing and service area capabilities. A separate QGIS lab guide is provided for Day 4 network and geocoding exercises.
+:::
+
+## Readings
+
+**Required:**
+
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 10: Raster Analysis
+- Network Analysis tutorial (provided on course website)
+
+**Supplemental:**
+
+- Ribeiro et al., "Tools for Address Georeferencing in Public Health" (*PLoS ONE*)
+- ArcGIS Pro Geocoding Tutorial (provided on course website)
+
+## Key Takeaways
+
+After Day 4, you should be able to:
+
+- Perform basic network analysis to assess spatial accessibility
+- Geocode address data and evaluate match quality
+- Apply appropriate privacy protections when geocoding health data
+- Perform raster reclassification and zonal statistics
+- Understand when kernel density is appropriate for public health hot-spot analysis

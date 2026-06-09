@@ -1,0 +1,136 @@
+---
+title: "Schedule"
+---
+
+All sessions run **9:00 AM -- 12:00 PM EDT** via Zoom. Each day includes a lecture portion and a hands-on lab. Office hours are **12:00--12:30 PM** daily after class.
+
+Lecture slides and lab materials will be posted on the course website before each session. Lecture recordings will be posted after each class.
+
+---
+
+::: {.day-card}
+
+[Day 1 — Monday]{.day-label}
+
+### Introduction to GIS
+
+**Lecture Topics**
+
+- What is cartography and why it matters for public health
+- Geographic Information Systems: components, capabilities, and applications
+- Data models and representation: vector (points, lines, polygons) vs. raster (grids, images)
+- Attribute data types: nominal, ordinal, interval, ratio — with public health examples
+- The public health data hierarchy: address, block, block group, tract, ZCTA, county
+
+**Lab Exercise**
+
+- **Lab 1: Introduction to ArcGIS Pro** --- Orientation to ArcGIS Pro through Philadelphia public health data. Create three maps: green water infrastructure near flood zones, heat vulnerability index by census tract, and cooling centers in relation to heat vulnerability. Practice adding data layers, changing symbology, creating layouts, and exporting PDFs.
+
+**Readings:** Bolstad Ch. 1 (Introduction); Dent Ch. 1 (Cartography)
+
+[Go to Day 1 session &rarr;](sessions/day1.qmd)
+
+:::
+
+::: {.day-card}
+
+[Day 2 — Tuesday]{.day-label}
+
+### Projections & Data Entry
+
+**Lecture Topics**
+
+- Geodesy: the shape of the Earth and why it complicates mapping
+- Map projections: types of distortion, projection families, and how to choose
+- Coordinate systems: geographic (lat/lon) vs. projected (meters/feet)
+- Practical CRS decisions for public health work (State Plane, UTM, WGS84)
+- Data entry and editing: on-screen digitizing, GPS data, and field data collection
+
+**Lab Exercises**
+
+- **Lab 2a: Projecting Geographic Data** --- Work with map projections in ArcGIS Pro. Compare the same geographic features displayed in different projections, observe how area and distance measurements change, and practice reprojecting data between coordinate systems.
+- **Lab 2b: Digitizing Data** --- Create new spatial features through on-screen digitizing. Create point, line, and polygon features and attach attribute information.
+
+**Readings:** Bolstad Ch. 3 (Projections); Monmonier Ch. 2 (Projections)
+
+[Go to Day 2 session &rarr;](sessions/day2.qmd)
+
+:::
+
+::: {.day-card}
+
+[Day 3 — Wednesday]{.day-label}
+
+### Data Management & Spatial Analysis
+
+**Lecture Topics**
+
+- Data management and processing: file formats, geodatabases, data sources
+- Key public health data sources: Census/ACS, CDC PLACES, SVI, EPA, OpenDataPhilly, PASDA
+- Attribute table operations: queries, joins, relates, field calculator
+- SQL and Boolean expressions for data selection
+- Vector spatial analysis: buffers, overlay operations (intersect, clip, union, erase)
+- Modifiable Areal Unit Problem (MAUP) and ecological fallacy
+
+**Lab Exercises**
+
+- **Lab 3a: Digital Data and Table Operations** --- Work with common digital data sources. Practice downloading and adding data from national repositories, performing table joins, running queries, and calculating new fields.
+- **Lab 3b: Spatial Analysis — Buffering and Overlay** --- Apply buffering and overlay operations. Create fixed-distance and variable-distance buffers, perform overlay operations to identify areas meeting multiple spatial criteria.
+
+**Readings:** Bolstad Ch. 7 (Digital Data); Ch. 9 (Spatial Analysis)
+
+[Go to Day 3 session &rarr;](sessions/day3.qmd)
+
+:::
+
+::: {.day-card}
+
+[Day 4 — Thursday]{.day-label}
+
+### Network Analysis, Geocoding & Raster
+
+**Lecture Topics**
+
+- Network analysis: routing, service areas, closest facility, allocation
+- Geocoding: converting addresses to coordinates, match quality, and privacy considerations
+- Geocoding and PHI: Census geocoder, address suppression, cell suppression for published maps
+- Raster spatial analysis: reclassification, map algebra, zonal statistics
+- Kernel density estimation for hot-spot mapping
+
+**Lab Exercises**
+
+- **Lab 4a: Network Analysis** --- Perform network-based analyses including shortest route, closest facility, and service area generation.
+- **Lab 4b: Geocoding** --- Geocode address data and evaluate match quality. Discuss privacy and PHI considerations when mapping individual-level health data.
+- **Lab 4c: Raster Analysis** --- Work with raster data: reclassify land cover, perform zonal statistics to summarize raster values within polygon boundaries.
+
+**Readings:** Bolstad Ch. 10 (Raster Analysis); Network Analysis tutorial (provided)
+
+[Go to Day 4 session &rarr;](sessions/day4.qmd)
+
+:::
+
+::: {.day-card}
+
+[Day 5 — Friday]{.day-label}
+
+### Spatial Estimation & Map Design
+
+**Lecture Topics**
+
+- Spatial estimation and interpolation: nearest neighbor, IDW, kriging
+- Spatial autocorrelation: Moran's I, LISA, Getis-Ord Gi*
+- GIS data visualization and map design: classification methods, color theory, layout principles
+- Choropleth mapping: equal interval, quantile, natural breaks, standard deviation
+- Map design for public health communication
+- Public health GIS applications: case studies and real-world examples
+
+**Lab Exercises**
+
+- **Lab 5a: Interpolation** --- Apply interpolation methods (IDW, kriging) to create continuous surfaces from point data. Compare methods and assess output quality.
+- **Lab 5b: Cartographic Modeling** --- Build a multi-criteria spatial model combining several data layers. Design a professional map layout communicating the results.
+
+**Readings:** Bolstad Ch. 12 (Interpolation); Brewer Ch. 4 (Color Basics)
+
+[Go to Day 5 session &rarr;](sessions/day5.qmd)
+
+:::

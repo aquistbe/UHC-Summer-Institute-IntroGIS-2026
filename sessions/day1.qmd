@@ -1,0 +1,123 @@
+---
+title: "Day 1: Introduction to GIS"
+subtitle: "Cartography, GIS Fundamentals, and Data Models"
+---
+
+::: {.session-header}
+## Day 1 — Monday
+[9:00 AM -- 12:00 PM EDT]{.session-meta} | [Lecture + Lab]{.session-meta}
+:::
+
+## Lecture Topics
+
+### Introduction to Cartography
+
+Maps are among the oldest forms of communication, and cartography --- the art and science of mapmaking --- underpins everything we do in GIS. This opening section covers what makes a map effective, how maps encode spatial information, and how cartographic principles apply to public health communication.
+
+Key concepts:
+
+- Map elements: title, legend, scale bar, north arrow, data source, projection information
+- Reference maps vs. thematic maps
+- Map scale: large-scale (detailed, small area) vs. small-scale (less detailed, large area)
+- Generalization: how and why we simplify spatial information for display
+
+### Geographic Information Systems
+
+A GIS is a system for capturing, storing, analyzing, managing, and presenting spatial data. This section introduces the components of a GIS and why spatial analysis matters for public health.
+
+Key concepts:
+
+- The five components of a GIS: hardware, software, data, people, methods
+- Spatial questions GIS can answer: Where is it? What is nearby? What patterns exist? How has it changed?
+- Public health applications: disease surveillance, environmental exposure assessment, healthcare access analysis, injury mapping, health equity assessment
+
+### Data Models and Representation
+
+GIS data comes in two fundamental forms: vector and raster. Understanding when to use each is essential for choosing the right approach to a public health question.
+
+Key concepts:
+
+- **Vector data:** points (e.g., clinic locations, crash sites), lines (e.g., road networks, transit routes), polygons (e.g., census tracts, park boundaries)
+- **Raster data:** continuous grids (e.g., land surface temperature, air pollution surfaces, satellite imagery, elevation)
+- **Attribute data types:** nominal (race/ethnicity categories), ordinal (SVI quartile), interval (calendar year), ratio (age-adjusted mortality rate)
+- Common file formats: shapefile, geodatabase, GeoJSON, GeoTIFF, CSV with coordinates
+
+### The Public Health Data Hierarchy
+
+Public health data exists at many geographic scales. Understanding the hierarchy is critical for choosing appropriate units of analysis and avoiding common pitfalls.
+
+- **Individual address** --- highest resolution; privacy/HIPAA concerns
+- **Census block** --- smallest Census unit (~600--3,000 people in urban areas)
+- **Block group** --- cluster of blocks (~600--3,000 people); ACS data available here
+- **Census tract** --- designed to be socioeconomically homogeneous (~1,200--8,000 people); most common unit for health data (CDC PLACES, SVI)
+- **ZCTA** --- ZIP Code Tabulation Area (not the same as ZIP codes); used by some CDC products
+- **County** --- vital statistics, mortality data, BRFSS
+
+## Lab Exercise
+
+::: {.lab-exercise}
+
+#### Lab 1: Introduction to ArcGIS Pro
+
+**What you will learn:**
+
+- Start ArcGIS Pro and create a new project
+- Add data layers from local files
+- Pan, zoom, and navigate the map
+- Change data symbology (single symbol, graduated colors, categories)
+- Create map layouts with legends, titles, north arrows, and scale bars
+- Export maps to PDF
+
+**What you will produce:** Three maps of Philadelphia:
+
+1. **Green infrastructure and flood zones** --- Green water infrastructure projects overlaid on FEMA 100-year flood zones, with census tract boundaries as a base layer
+2. **Heat vulnerability index** --- Census tract-level heat vulnerability scores displayed as a graduated color choropleth with an inset map of a high-vulnerability area
+3. **Cooling centers and heat vulnerability** --- Side-by-side comparison of heat vulnerability and the locations of public swimming pools and spraygrounds as cooling resources
+
+**Data:**
+
+- `Philadelphia_census_tracts.shp` --- Census tract boundaries
+- `GSI_public_projects.shp` --- Green stormwater infrastructure projects
+- `100_yr_flood.shp` --- FEMA 100-year flood zone boundaries
+- `heat_vulnerability_ct.shp` --- Heat vulnerability index by census tract
+- `PPR_spraygrounds.shp` --- Philadelphia Parks & Recreation spraygrounds
+- `PPR_Swimming_Pools.shp` --- Philadelphia Parks & Recreation public pools
+
+**Skills practiced:**
+
+- Software orientation and navigation
+- Adding and ordering data layers
+- Symbology: single symbol, graduated colors (equal interval, quantile)
+- Layout creation and element placement
+- Inset map creation
+- Distance measurement tools
+- Exporting to PDF
+
+:::
+
+::: {.callout-tip}
+## ArcGIS Pro and QGIS
+
+All labs are available for both ArcGIS Pro and QGIS. If you are using QGIS, the equivalent operations are: Add Vector Layer, Properties > Symbology > Graduated, and Print Layout for map export.
+:::
+
+## Readings
+
+**Required:**
+
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 1: An Introduction to GIS
+
+**Supplemental:**
+
+- Dent, *Cartography: Thematic Map Design*, Chapter 1: Introduction to Thematic Mapping
+- Monmonier, *How to Lie with Maps*, Chapters 1 and 3
+
+## Preparation
+
+Before Day 1, make sure you have:
+
+1. ArcGIS Pro installed and working (or QGIS as an alternative)
+2. Downloaded the Day 1 lab data from the course website
+3. Tested that you can launch ArcGIS Pro and create a new project
+
+See the [Setup](../setup.qmd) page for detailed installation instructions.

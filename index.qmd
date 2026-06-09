@@ -1,0 +1,102 @@
+---
+title: "Introduction to GIS for Public Health"
+toc: false
+page-layout: full
+---
+
+::: {.hero-banner}
+
+# Introduction to GIS for Public Health
+
+[Urban Health Summer Institute 2026 | Drexel University]{.subtitle}
+
+[A five-day intensive course on Geographic Information Systems for public health professionals]{.tagline}
+
+:::
+
+## Course Overview
+
+This course introduces the fundamental concepts and techniques of Geographic Information Systems (GIS) with a public health focus. Over five days, you will learn to acquire, manage, analyze, and visualize spatial data using ArcGIS Pro and QGIS, with datasets drawn from Philadelphia and national public health sources.
+
+The course is designed for working public health professionals with no prior GIS experience. All lectures and hands-on exercises are completed during class sessions.
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-4}
+::: {.info-card}
+
+### Instructor
+
+**Alex Quistberg, PhD, MPH**\
+Associate Research Professor\
+Director, Urban Health MPH Program\
+Urban Health Collaborative\
+Dept of Environmental & Occupational Health\
+Dornsife School of Public Health\
+Drexel University\
+[daq26@drexel.edu](mailto:daq26@drexel.edu)
+
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.info-card}
+
+### Schedule
+
+**Dates:** June 2026 (Mon--Fri)\
+**Time:** 9:00 AM -- 12:00 PM EDT\
+**Format:** Via Zoom\
+**Office Hours:** 12:00--12:30 PM daily\
+
+**Course Website:**\
+[Blackboard (learn.dcollege.net)](https://learn.dcollege.net/)\
+**Credit:** 1.5 CEU or 15 CPH
+
+:::
+:::
+
+::: {.g-col-12 .g-col-md-4}
+::: {.info-card}
+
+### Software
+
+[ArcGIS Pro]{.software-badge .badge-arcgis} Primary platform\
+Windows required (Parallels for Mac)
+
+[QGIS]{.software-badge .badge-qgis} Open-source alternative\
+Works on Windows, Mac, and Linux
+
+See [Setup](setup.qmd) for installation instructions.
+
+**Textbook:** *GIS Fundamentals* (7th ed) by Bolstad & Manson
+
+:::
+:::
+
+:::
+
+## What You Will Learn
+
+By the end of this course, you will be able to:
+
+1. **Understand GIS fundamentals** --- core concepts, data models, and spatial thinking applied to public health problems
+2. **Acquire public health spatial data** --- work with Census/ACS demographics, CDC PLACES health estimates, Social Vulnerability Index, EPA environmental data, and local sources like OpenDataPhilly
+3. **Manage spatial data** --- handle coordinate systems and projections, join tabular health data to geographic boundaries, and maintain data quality
+4. **Perform spatial analysis** --- apply buffering, overlay, network analysis, geocoding, and raster operations to answer public health research questions
+5. **Create professional maps** --- design thematic maps (choropleths, proportional symbols, kernel density) for public health communication
+6. **Think critically about spatial data** --- recognize issues like the modifiable areal unit problem, ecological fallacy, small-number instability in rates, and privacy considerations when mapping health data
+
+## Course at a Glance
+
+| Day | Lecture Topics | Lab Exercises |
+|:---:|----------------|---------------|
+| **1** | Cartography; GIS fundamentals; Data models | ArcGIS Pro orientation with Philadelphia health data (green infrastructure, flood zones, heat vulnerability) |
+| **2** | Geodesy, projections & coordinate systems; Data entry and editing | Projecting geographic data; Digitizing |
+| **3** | Data management & processing; Vector spatial analysis | Digital data & table operations; Buffering and overlay |
+| **4** | Network analysis; Geocoding; Raster spatial analysis | Network analysis; Geocoding; Raster analysis |
+| **5** | Spatial estimation (interpolation); Map design & visualization; PH applications | Interpolation; Cartographic modeling; Capstone map |
+
+: {.striped .hover}
+
+See the full [Schedule](schedule.qmd) for detailed session descriptions, or jump directly to any [Session](sessions/day1.qmd) page for lecture topics, lab instructions, and readings.

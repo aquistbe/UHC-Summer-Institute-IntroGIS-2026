@@ -1,0 +1,32 @@
+{
+  "readings.qmd": {
+    "readings.html": "6be0b491"
+  },
+  "index.qmd": {
+    "index.html": "366bb363"
+  },
+  "sessions/day4.qmd": {
+    "day4.html": "e366b4f8"
+  },
+  "sessions/day5.qmd": {
+    "day5.html": "4b0e5508"
+  },
+  "sessions/day2.qmd": {
+    "day2.html": "756e5dfb"
+  },
+  "sessions/day3.qmd": {
+    "day3.html": "61bb7806"
+  },
+  "sessions/day1.qmd": {
+    "day1.html": "b7e9048f"
+  },
+  "setup.qmd": {
+    "setup.html": "9d12f49b"
+  },
+  "resources.qmd": {
+    "resources.html": "042c86a3"
+  },
+  "schedule.qmd": {
+    "schedule.html": "7b100a33"
+  }
+}

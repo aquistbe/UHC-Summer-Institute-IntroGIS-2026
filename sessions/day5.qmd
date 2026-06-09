@@ -1,0 +1,147 @@
+---
+title: "Day 5: Spatial Estimation & Map Design"
+subtitle: "Interpolation, Spatial Autocorrelation, and Cartographic Design"
+---
+
+::: {.session-header}
+## Day 5 — Friday
+[9:00 AM -- 12:00 PM EDT]{.session-meta} | [Lecture + Lab]{.session-meta}
+:::
+
+## Lecture Topics
+
+### Spatial Estimation and Interpolation
+
+Interpolation creates a continuous surface from a set of sample points. In public health, this is used to estimate environmental exposures (e.g., air pollution, temperature) at locations where no direct measurement exists.
+
+**Common methods:**
+
+- **Nearest Neighbor (Thiessen/Voronoi polygons)** --- assigns the value of the closest sample point. Simple but creates abrupt boundaries.
+- **Inverse Distance Weighting (IDW)** --- weighted average of nearby points, with closer points given more weight. Sensitive to clustering of sample points.
+- **Spline** --- fits a smooth surface through sample points. Good for gently varying surfaces; can produce unrealistic values between sparse points.
+- **Kriging** --- statistically optimal interpolation that models spatial autocorrelation (the tendency for nearby values to be similar). Provides prediction uncertainty estimates. The gold standard for environmental surfaces, but requires stationarity and enough sample points.
+
+**Practical guidance for public health:** For most public health applications involving environmental surfaces (PM2.5, temperature, noise), kriging or IDW with appropriate validation is sufficient. For rate stabilization and hot-spot analysis, kernel density or empirical Bayes smoothing (available in GeoDa) is more appropriate than traditional interpolation.
+
+### Spatial Autocorrelation
+
+Spatial autocorrelation is the tendency for nearby locations to have similar values --- "everything is related to everything else, but near things are more related than distant things" (Tobler's First Law of Geography). Measuring it is fundamental to spatial epidemiology.
+
+Key concepts:
+
+- **Moran's I (Global)** --- a single statistic summarizing the degree of spatial clustering across the entire study area. Ranges from -1 (perfect dispersion) to +1 (perfect clustering). Values near 0 indicate spatial randomness.
+- **Local Indicators of Spatial Association (LISA)** --- identifies *where* clusters are located. Produces a cluster map showing:
+  - **High-High** --- locations with high values surrounded by high values (hot spots)
+  - **Low-Low** --- locations with low values surrounded by low values (cold spots)
+  - **High-Low** and **Low-High** --- spatial outliers
+- **Getis-Ord Gi*** --- identifies statistically significant hot spots and cold spots based on the concentration of high or low values in a neighborhood
+
+**Public health applications:** Identifying disease clusters, mapping persistent crash hot spots, detecting spatial patterns in health disparities, evaluating whether a health outcome is spatially random or clustered.
+
+### GIS Data Visualization and Map Design
+
+The final step in any GIS analysis is communicating results through effective maps. This section covers the principles of cartographic design that make maps clear, accurate, and appropriate for their audience.
+
+**Classification methods for choropleth maps:**
+
+- **Equal interval** --- divides the data range into equal-width classes. Simple but can be misleading if data is skewed.
+- **Quantile** --- equal number of features in each class. Good for comparing relative rank but can put very different values in the same class.
+- **Natural breaks (Jenks)** --- minimizes within-class variance. Often the best default for exploratory mapping.
+- **Standard deviation** --- classes based on distance from the mean. Useful for showing where values are unusually high or low.
+
+**Color principles:**
+
+- **Sequential schemes** --- light to dark for ordered data (e.g., low-to-high prevalence). Use for most public health choropleths.
+- **Diverging schemes** --- two contrasting hues meeting at a neutral midpoint. Use when there is a meaningful center (e.g., above/below average).
+- **Qualitative schemes** --- distinct hues for categorical data (e.g., land use types).
+- Use [ColorBrewer](https://colorbrewer2.org/) to select color schemes that are print-safe and colorblind-safe.
+- Avoid red-green diverging schemes (colorblind-unfriendly).
+
+**Map layout best practices:**
+
+- Every thematic map needs: title, legend, scale bar, north arrow, data source, date, author
+- Match the visual hierarchy to the information hierarchy --- the most important information should be most visually prominent
+- Keep it simple: remove unnecessary elements that do not support the map's message
+
+::: {.callout-note}
+## Small Numbers and Rate Stability
+
+Mapping crude rates for rare events in small populations produces noisy, unreliable maps. A tract with 2 cases out of 500 people (rate = 400 per 100,000) is not meaningfully different from a tract with 0 cases --- it is just random variation. Solutions include using larger geographic units, age-adjusting, applying empirical Bayes smoothing (GeoDa does this), or suppressing tracts with small denominators.
+:::
+
+### Public Health GIS Applications
+
+The course concludes with real-world case studies showing how GIS has been applied to public health problems, including pedestrian injury analysis, healthcare access mapping, environmental justice screening, and health equity assessment.
+
+## Lab Exercises
+
+::: {.lab-exercise}
+
+#### Lab 5a: Interpolation
+
+**What you will learn:**
+
+- Apply interpolation methods (IDW, kriging) to create continuous surfaces from point measurements
+- Compare interpolation outputs under different parameters (e.g., IDW power, kriging model)
+- Assess interpolation quality and identify areas of uncertainty
+
+**What you will produce:**
+
+- Interpolated surfaces using IDW and kriging
+- Visual comparison of methods
+- Assessment of prediction quality
+
+**Skills practiced:**
+
+- Configuring interpolation tools (search radius, power/model settings)
+- Interpreting interpolated surfaces
+- Understanding the limitations of interpolation with sparse data
+
+:::
+
+::: {.lab-exercise}
+
+#### Lab 5b: Cartographic Modeling
+
+**What you will learn:**
+
+- Build a multi-criteria spatial model combining several data layers
+- Apply weighted overlay or raster-based suitability analysis
+- Design a professional map layout communicating results
+
+**What you will produce:**
+
+- A composite suitability or risk map derived from multiple input layers
+- A professional map layout with all required elements (title, legend, scale, source, north arrow)
+
+**Skills practiced:**
+
+- Multi-layer analysis workflow
+- Reclassification and weighting
+- Map layout design and export
+- Communicating analytical results through cartography
+
+:::
+
+## Readings
+
+**Required:**
+
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 12: Spatial Estimation (Interpolation)
+
+**Supplemental:**
+
+- Brewer, *Designing Better Maps*, Chapter 4: Color Basics
+- Monmonier, *How to Lie with Maps*, Chapter 10: Data Maps
+- Monmonier, *How to Lie with Maps*, Chapter 11: Color
+- Gelman & Price (1999), "All Maps of Parameter Estimates Are Misleading" (*Statistics in Medicine*)
+
+## Key Takeaways
+
+After Day 5, you should be able to:
+
+- Apply interpolation methods to create continuous surfaces and understand their limitations
+- Interpret Moran's I and LISA cluster maps for spatial pattern detection
+- Design effective choropleth maps using appropriate classification, color, and layout
+- Produce a professional map layout suitable for a report or presentation
+- Recognize the limitations of mapping rare events in small areas

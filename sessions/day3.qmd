@@ -1,0 +1,144 @@
+---
+title: "Day 3: Data Management & Spatial Analysis"
+subtitle: "Data Sources, Table Operations, Buffers, and Overlay"
+---
+
+::: {.session-header}
+## Day 3 — Wednesday
+[9:00 AM -- 12:00 PM EDT]{.session-meta} | [Lecture + Lab]{.session-meta}
+:::
+
+## Lecture Topics
+
+### Data Management and Processing
+
+Spatial analysis depends on having clean, well-organized data. This section covers how to find, acquire, and manage the data that public health GIS work depends on.
+
+**Key public health data sources:**
+
+- **U.S. Census Bureau / ACS** --- demographics, income, housing, poverty, health insurance at tract and block-group level. Accessed via [data.census.gov](https://data.census.gov/) or [NHGIS](https://nhgis.org/).
+- **CDC PLACES** --- small-area estimates for 36 health measures (asthma, diabetes, mental health, preventive services) at census tract and ZCTA level. The single most useful national public health spatial dataset. [cdc.gov/places](https://www.cdc.gov/places/)
+- **CDC/ATSDR Social Vulnerability Index (SVI)** --- composite index of social vulnerability at the tract level, organized into four themes: socioeconomic status, household characteristics, racial/ethnic minority status, and housing type/transportation. [atsdr.cdc.gov/placeandhealth/svi](https://www.atsdr.cdc.gov/placeandhealth/svi/)
+- **EPA EJScreen** --- environmental justice screening tool with block-group-level environmental and demographic indicators. [epa.gov/ejscreen](https://www.epa.gov/ejscreen)
+- **OpenDataPhilly** --- Philadelphia's open data portal with parks, schools, crashes, 311 calls, health department data, and more. [opendataphilly.org](https://opendataphilly.org/)
+- **PASDA** --- Pennsylvania's spatial data clearinghouse. Boundaries, environmental layers, transportation. [pasda.psu.edu](https://pasda.psu.edu/)
+
+**Data management concepts:**
+
+- File formats: shapefile, file geodatabase, GeoJSON, CSV, GeoTIFF
+- Attribute tables: structure, field types, primary keys
+- Table joins: linking tabular data (e.g., health indicators) to geographic boundaries using a shared identifier (typically FIPS GEOID)
+- Data quality: completeness, accuracy, currency, consistency
+
+### Vector Spatial Analysis
+
+Vector spatial analysis is the core toolkit for most public health GIS work. Buffers and overlay operations let you answer questions like "what population lives near this facility?" and "where do two risk factors overlap?"
+
+**Buffers:**
+
+- **Fixed-distance buffer** --- same distance around every feature (e.g., 1 km around all TRI facilities)
+- **Variable-distance buffer** --- distance varies by an attribute (e.g., buffer based on facility emission volume)
+- **Multi-ring buffer** --- concentric zones (e.g., 0--500 m, 500 m--1 km, 1--2 km)
+- **Dissolve vs. no-dissolve** --- whether overlapping buffers merge or stay separate
+
+**Overlay operations:**
+
+- **Intersect** --- keeps only the area shared by both layers
+- **Union** --- combines all areas from both layers
+- **Clip** --- trims one layer to the boundary of another
+- **Erase** --- removes the area of one layer from another
+
+**Selection:**
+
+- **Select by attribute** --- SQL-based queries on the attribute table (e.g., `POVERTY_RATE > 0.25`)
+- **Select by location** --- spatial queries based on proximity, containment, or intersection (e.g., select all tracts that intersect a flood zone)
+
+::: {.callout-note}
+## MAUP and Ecological Fallacy
+
+The **Modifiable Areal Unit Problem (MAUP)** occurs when the same data produces different results depending on how geographic boundaries are drawn. The **ecological fallacy** is the error of inferring individual-level relationships from aggregate data. Both are common pitfalls in public health spatial analysis --- for example, a tract-level correlation between poverty and asthma prevalence does not prove that poor individuals have higher asthma rates.
+:::
+
+## Lab Exercises
+
+::: {.lab-exercise}
+
+#### Lab 3a: Digital Data and Table Operations
+
+**What you will learn:**
+
+- Find and download data from national repositories
+- Add tabular data to a GIS project
+- Perform table joins (linking health data to census geography by GEOID)
+- Query attribute tables using SQL/Boolean expressions
+- Use the field calculator to compute new variables
+- Generate summary statistics
+
+**What you will produce:**
+
+- A population density map from census data with selected cities
+- A proportional symbol map of county population
+- A shaded relief map with hydrography overlay
+- A wetlands map classified by size
+
+**Data:** Census county data, U.S. cities, USGS watershed boundaries, National Elevation Dataset, National Hydrologic Dataset, wetland boundaries
+
+**Skills practiced:**
+
+- Downloading and integrating data from multiple sources
+- Table joins by shared key field
+- SQL queries and Boolean selections
+- Field calculator operations
+- Proportional symbol and graduated color symbology
+
+:::
+
+::: {.lab-exercise}
+
+#### Lab 3b: Spatial Analysis --- Buffering and Overlay
+
+**What you will learn:**
+
+- Create fixed-distance and variable-distance buffers
+- Perform overlay operations (intersect, union, erase)
+- Combine spatial operations to answer multi-criteria questions
+- Calculate areas and proportions for spatial analysis results
+
+**What you will produce:**
+
+- A map of lake variable-distance buffer zones
+- A map identifying suitable recreation areas based on multiple spatial criteria (distance from roads, proximity to lakes, within public land)
+- A map of suitable recreation areas on private land only (using erase)
+
+**Data:** Lakes, roads, and public land boundaries (UTM Zone 15, NAD83, meters)
+
+**Skills practiced:**
+
+- Fixed-distance buffering
+- Variable-distance buffering (using an attribute field)
+- Multipart to singlepart conversion
+- Union and erase overlay operations
+- Area calculation and spatial query
+
+:::
+
+## Readings
+
+**Required:**
+
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 7: Digital Data
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 9: Vector Spatial Analysis
+
+**Supplemental:**
+
+- Dent, *Cartography*, Chapter 12
+- Openshaw (1984), "Ecological Fallacies and the Analysis of Areal Census Data"
+
+## Key Takeaways
+
+After Day 3, you should be able to:
+
+- Identify and download public health spatial data from national and local sources
+- Join tabular health data to geographic boundaries using GEOID
+- Apply buffer and overlay operations to answer spatial questions
+- Recognize when MAUP or ecological fallacy might affect your analysis

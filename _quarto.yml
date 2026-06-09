@@ -1,0 +1,59 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Introduction to GIS for Public Health"
+  description: "Urban Health Summer Institute | Drexel University Dornsife School of Public Health"
+  # favicon: "images/favicon.png"  # uncomment after adding a favicon image
+  site-url: https://aquistberg.github.io/intro-gis-ph/  # update with your actual GitHub Pages URL
+  repo-url: https://github.com/aquistberg/intro-gis-ph  # update with your actual repo URL
+  repo-actions: [issue]
+
+  navbar:
+    background: "#07294D"
+    foreground: "#FFFFFF"
+    title: "Intro GIS for Public Health"
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Schedule"
+        href: schedule.qmd
+      - text: "Sessions"
+        menu:
+          - text: "Day 1: Introduction to GIS"
+            href: sessions/day1.qmd
+          - text: "Day 2: Projections & Data Entry"
+            href: sessions/day2.qmd
+          - text: "Day 3: Data Management & Spatial Analysis"
+            href: sessions/day3.qmd
+          - text: "Day 4: Network Analysis, Geocoding & Raster"
+            href: sessions/day4.qmd
+          - text: "Day 5: Spatial Estimation & Map Design"
+            href: sessions/day5.qmd
+      - text: "Readings"
+        href: readings.qmd
+      - text: "Resources"
+        href: resources.qmd
+      - text: "Setup"
+        href: setup.qmd
+
+  sidebar: false
+
+  page-footer:
+    left: |
+      Introduction to GIS for Public Health | Urban Health Summer Institute
+    center: |
+      Drexel University Dornsife School of Public Health
+    right: |
+      &copy; 2026 Alex Quistberg
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles.css]
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true

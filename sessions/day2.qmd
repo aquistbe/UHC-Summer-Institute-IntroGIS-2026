@@ -1,0 +1,122 @@
+---
+title: "Day 2: Projections & Data Entry"
+subtitle: "Geodesy, Coordinate Systems, and Digitizing"
+---
+
+::: {.session-header}
+## Day 2 — Tuesday
+[9:00 AM -- 12:00 PM EDT]{.session-meta} | [Lecture + Lab]{.session-meta}
+:::
+
+## Lecture Topics
+
+### Geodesy, Projections, and Coordinate Systems
+
+The Earth is not flat, and representing its curved surface on a flat map inevitably introduces distortion. This section covers the practical aspects of map projections that matter most for public health work.
+
+**The core problem:** Flattening a 3D surface onto a 2D map distorts one or more of: shape, area, distance, or direction. Different projections preserve different properties.
+
+Key concepts:
+
+- **Geographic coordinate systems** --- latitude and longitude (degrees); the default for GPS data (WGS84). Units are in degrees, not meters, so you cannot directly measure distances or areas.
+- **Projected coordinate systems** --- coordinates in linear units (meters or feet) on a flat surface. Required for distance and area calculations.
+- **Common CRS choices for public health work in Pennsylvania:**
+  - NAD83 PA State Plane South (EPSG:2272) --- feet; good for Philadelphia-area work
+  - NAD83 UTM Zone 18N (EPSG:26918) --- meters; good for regional analyses
+  - WGS84 (EPSG:4326) --- geographic; for GPS data and web mapping
+- **EPSG codes** --- standardized numeric identifiers for coordinate reference systems. Look up at [epsg.io](https://epsg.io/).
+- **On-the-fly projection** --- ArcGIS Pro can display layers in different CRS together, but this is for display only. Always reproject your data before doing spatial analysis.
+
+::: {.callout-important}
+## When your buffer is wrong
+
+If you run a 1-mile buffer on data in a geographic coordinate system (WGS84), the buffer will be in *degrees*, not miles. At Philadelphia's latitude, 1 degree of longitude is about 53 miles. This is one of the most common GIS mistakes in public health research --- and it produces results that look plausible but are completely wrong.
+
+**Rule of thumb:** Always check your CRS before running any distance or area calculation. If your units are in degrees, reproject first.
+:::
+
+### Data Entry and Editing
+
+Not all spatial data comes ready-made. Sometimes you need to create new features from scratch --- for example, digitizing boundaries for a study area or recording observation points from a field audit.
+
+Key concepts:
+
+- **On-screen digitizing:** creating point, line, and polygon features by tracing on a basemap or aerial imagery
+- **Attribute entry:** adding descriptive information to each feature you create
+- **Snapping and topology:** ensuring that features connect properly (no gaps, no overlaps)
+- **GPS data integration:** importing waypoints and tracks from field data collection
+- **Practical applications in public health:** digitizing study area boundaries, marking audit observation points, creating intervention zone polygons
+
+## Lab Exercises
+
+::: {.lab-exercise}
+
+#### Lab 2a: Projecting Geographic Data
+
+**What you will learn:**
+
+- Identify a layer's coordinate reference system
+- Understand the difference between geographic and projected coordinate systems
+- Reproject data from one CRS to another
+- Observe how projection affects distance and area measurements
+
+**What you will produce:**
+
+- Maps of Minnesota in multiple projections (Albers Equal Area, Mercator) showing how the same geography looks different in each
+- A worksheet recording area and distance measurements in different projections, demonstrating measurement distortion
+
+**Data:**
+
+- Minnesota county boundaries and city locations in multiple projections
+- U.S. lower-48 state boundaries
+- Graticule (latitude/longitude grid)
+
+**Skills practiced:**
+
+- Setting and changing the map's coordinate system
+- Using the Project tool to reproject data
+- Measuring distances and areas
+- Comparing measurements across projections
+- Understanding on-the-fly projection vs. actual reprojection
+
+:::
+
+::: {.lab-exercise}
+
+#### Lab 2b: Digitizing Data
+
+**What you will learn:**
+
+- Create a new feature class (point, line, or polygon)
+- Digitize features on screen using a basemap
+- Add and populate attribute fields
+- Edit and modify existing features
+- Calculate geometry (area, length, coordinates)
+
+**Skills practiced:**
+
+- Creating new feature classes with defined schemas
+- On-screen digitizing with snapping
+- Attribute data entry
+- Geometry calculations
+
+:::
+
+## Readings
+
+**Required:**
+
+- Bolstad & Manson, *GIS Fundamentals*, Chapter 3: Geodesy, Projections, and Coordinate Systems
+
+**Supplemental:**
+
+- Monmonier, *How to Lie with Maps*, Chapter 2: Projections
+
+## Key Takeaways
+
+After Day 2, you should be able to:
+
+- Explain the difference between geographic and projected coordinate systems
+- Choose an appropriate CRS for a given public health analysis task
+- Check a dataset's CRS and reproject it if needed
+- Create new spatial features through on-screen digitizing

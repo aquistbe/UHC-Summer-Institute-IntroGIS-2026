@@ -1,0 +1,125 @@
+---
+title: "Readings"
+---
+
+## Required Textbook
+
+**GIS Fundamentals: A First Text on Geographic Information Systems** (7th Edition)\
+Paul Bolstad & Steve Manson\
+Publisher: Baker & Taylor\
+ISBN: 978-1-59399-552-2\
+[gisfundamentals.org](https://www.gisfundamentals.org/home)
+
+The textbook provides background on the concepts covered in lectures. It is a helpful reference for future GIS work, but is not strictly necessary to complete the lab exercises.
+
+## Recommended Textbook
+
+**Mastering ArcGIS Pro** (2nd Edition)\
+Maribeth Price\
+Publisher: McGraw-Hill Higher Education\
+ISBN: 9781260587333
+
+A practical reference for ArcGIS Pro procedures. Selected reading materials from this book will be provided by the instructor.
+
+---
+
+## Readings by Day
+
+### Day 1 --- Introduction to GIS
+
+::: {.reading-item}
+[Day 1]{.reading-day} **Bolstad & Manson, Ch. 1: An Introduction to GIS** --- Overview of GIS concepts, components, and applications.
+:::
+
+::: {.reading-item}
+[Day 1]{.reading-day} Dent, *Cartography: Thematic Map Design*, Ch. 1: Introduction to Thematic Mapping --- Foundations of map design and the role of thematic maps in communication.
+:::
+
+::: {.reading-item}
+[Day 1]{.reading-day} Monmonier, *How to Lie with Maps*, Ch. 1 & 3 --- How maps can mislead, and the relationship between scale and generalization.
+:::
+
+### Day 2 --- Projections & Data Entry
+
+::: {.reading-item}
+[Day 2]{.reading-day} **Bolstad & Manson, Ch. 3: Geodesy, Projections, and Coordinate Systems** --- The shape of the Earth, map projections, and coordinate reference systems.
+:::
+
+::: {.reading-item}
+[Day 2]{.reading-day} Monmonier, *How to Lie with Maps*, Ch. 2: Projections --- How projection choice affects map appearance and interpretation.
+:::
+
+### Day 3 --- Data Management & Spatial Analysis
+
+::: {.reading-item}
+[Day 3]{.reading-day} **Bolstad & Manson, Ch. 7: Digital Data** --- Sources and types of digital geographic data.
+:::
+
+::: {.reading-item}
+[Day 3]{.reading-day} **Bolstad & Manson, Ch. 9: Vector Spatial Analysis** --- Buffering, overlay, and other vector operations.
+:::
+
+::: {.reading-item}
+[Day 3]{.reading-day} Dent, *Cartography*, Ch. 12 --- Dot and proportional symbol mapping.
+:::
+
+::: {.reading-item}
+[Day 3]{.reading-day} Openshaw (1984), "Ecological Fallacies and the Analysis of Areal Census Data" --- The risks of drawing individual-level conclusions from aggregate spatial data.
+:::
+
+### Day 4 --- Network Analysis, Geocoding & Raster
+
+::: {.reading-item}
+[Day 4]{.reading-day} **Bolstad & Manson, Ch. 10: Raster Analysis** --- Raster data models, reclassification, map algebra, and zonal operations.
+:::
+
+::: {.reading-item}
+[Day 4]{.reading-day} Ribeiro et al., "Tools for Address Georeferencing in Public Health" (*PLoS ONE*) --- Review of geocoding tools and accuracy considerations for health research.
+:::
+
+::: {.reading-item}
+[Day 4]{.reading-day} Network Analysis tutorial (provided) --- Step-by-step guide to ArcGIS Pro Network Analyst.
+:::
+
+### Day 5 --- Spatial Estimation & Map Design
+
+::: {.reading-item}
+[Day 5]{.reading-day} **Bolstad & Manson, Ch. 12: Spatial Estimation** --- Interpolation methods including IDW, splines, and kriging.
+:::
+
+::: {.reading-item}
+[Day 5]{.reading-day} Brewer, *Designing Better Maps*, Ch. 4: Color Basics --- Principles of color use in cartography.
+:::
+
+::: {.reading-item}
+[Day 5]{.reading-day} Monmonier, *How to Lie with Maps*, Ch. 10: Data Maps --- How classification and symbolization choices affect map interpretation.
+:::
+
+::: {.reading-item}
+[Day 5]{.reading-day} Monmonier, *How to Lie with Maps*, Ch. 11: Color --- The role of color in map communication and potential misuse.
+:::
+
+::: {.reading-item}
+[Day 5]{.reading-day} Gelman & Price (1999), "All Maps of Parameter Estimates Are Misleading" (*Statistics in Medicine*) --- Why visualizing uncertainty matters when mapping estimated parameters.
+:::
+
+---
+
+## Additional References
+
+These readings provide deeper background on topics covered in the course. They are optional but recommended for students planning to use GIS in their research.
+
+**Spatial Analysis and Epidemiology:**
+
+- Anselin (2005), "Under the Hood: Issues in the Specification and Interpretation of Spatial Regression Models" (*Agricultural Economics*)
+- Baller et al. (2002), "The Interchangeability of Homicide Data Sources: A Spatial Analytical Perspective"
+- Voss et al. (2006), "Census Exploratory Spatial Data Analysis"
+- Coombes et al. (1979), "Daily Urban Systems in Britain: From Theory to Practice"
+
+**Cartography and Visualization:**
+
+- Dent, *Cartography*, Ch. 8 (pp. 131--149) --- Map design and visual hierarchy
+
+**Geocoding and Address Data:**
+
+- Nominatim documentation (OpenStreetMap geocoding service)

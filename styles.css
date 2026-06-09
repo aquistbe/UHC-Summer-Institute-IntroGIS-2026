@@ -1,0 +1,259 @@
+/*-- scss:rules --*/
+
+/* Intro GIS for Public Health — Course Website Styles */
+/* Drexel University Color Palette */
+
+:root {
+  --drexel-blue: #07294D;
+  --drexel-gold: #FFC600;
+  --drexel-light-blue: #D5E8F0;
+  --drexel-dark-gray: #2D2D2D;
+  --drexel-medium-gray: #6C757D;
+  --drexel-light-gray: #F5F5F5;
+  --accent-green: #2E8B57;
+  --accent-red: #C0392B;
+}
+
+/* Navbar */
+.navbar {
+  font-weight: 500;
+  border-bottom: 3px solid var(--drexel-gold);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Hero section on landing page */
+.hero-banner {
+  background: linear-gradient(135deg, var(--drexel-blue) 0%, #0D3F6E 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.hero-banner h1 {
+  color: white;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.hero-banner .subtitle {
+  color: var(--drexel-gold);
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.hero-banner .tagline {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+}
+
+/* Course info cards */
+.info-card {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.info-card h3 {
+  color: var(--drexel-blue);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--drexel-gold);
+  padding-bottom: 0.5rem;
+}
+
+/* Day cards on schedule page */
+.day-card {
+  background: white;
+  border-left: 4px solid var(--drexel-blue);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.day-card h3 {
+  color: var(--drexel-blue);
+  margin-bottom: 0.75rem;
+}
+
+.day-card .day-label {
+  display: inline-block;
+  background: var(--drexel-blue);
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+/* Session page styling */
+.session-header {
+  background: var(--drexel-light-blue);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.session-header h2 {
+  color: var(--drexel-blue);
+  margin-bottom: 0.25rem;
+}
+
+.session-header .session-meta {
+  color: var(--drexel-medium-gray);
+  font-size: 0.95rem;
+}
+
+/* Lab exercise callouts */
+.lab-exercise {
+  background: #F0F7ED;
+  border-left: 4px solid var(--accent-green);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.lab-exercise h4 {
+  color: var(--accent-green);
+  margin-bottom: 0.5rem;
+}
+
+/* Lecture callouts */
+.lecture-topic {
+  background: var(--drexel-light-blue);
+  border-left: 4px solid var(--drexel-blue);
+  border-radius: 4px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.lecture-topic h4 {
+  color: var(--drexel-blue);
+  margin-bottom: 0.5rem;
+}
+
+/* Reading list items */
+.reading-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.reading-item:last-child {
+  border-bottom: none;
+}
+
+.reading-item .reading-day {
+  display: inline-block;
+  background: var(--drexel-blue);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+}
+
+/* Resource cards */
+.resource-section {
+  margin-bottom: 2rem;
+}
+
+.resource-section h3 {
+  color: var(--drexel-blue);
+  border-bottom: 2px solid var(--drexel-gold);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Software badge */
+.software-badge {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  border-radius: 3px;
+  margin-right: 0.3rem;
+}
+
+.badge-arcgis {
+  background: #0079C1;
+  color: white;
+}
+
+.badge-qgis {
+  background: #589632;
+  color: white;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+th {
+  background: var(--drexel-blue);
+  color: white;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
+
+tr:nth-child(even) {
+  background: var(--drexel-light-gray);
+}
+
+/* Callout box overrides */
+.callout-note {
+  border-left-color: var(--drexel-blue) !important;
+}
+
+.callout-tip {
+  border-left-color: var(--accent-green) !important;
+}
+
+.callout-important {
+  border-left-color: var(--drexel-gold) !important;
+}
+
+/* Footer */
+.nav-footer {
+  background: var(--drexel-light-gray);
+  border-top: 2px solid var(--drexel-blue);
+  font-size: 0.85rem;
+  color: var(--drexel-medium-gray);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-banner h1 {
+    font-size: 1.6rem;
+  }
+}

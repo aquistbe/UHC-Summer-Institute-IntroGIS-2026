@@ -1,0 +1,359 @@
+[
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Schedule",
+    "section": "",
+    "text": "All sessions run 9:00 AM – 12:00 PM EDT via Zoom. Each day includes a lecture portion and a hands-on lab. Office hours are 12:00–12:30 PM daily after class.\nLecture slides and lab materials will be posted on the course website before each session. Lecture recordings will be posted after each class.\n\n\nDay 1 — Monday\n\nIntroduction to GIS\nLecture Topics\n\nWhat is cartography and why it matters for public health\nGeographic Information Systems: components, capabilities, and applications\nData models and representation: vector (points, lines, polygons) vs. raster (grids, images)\nAttribute data types: nominal, ordinal, interval, ratio — with public health examples\nThe public health data hierarchy: address, block, block group, tract, ZCTA, county\n\nLab Exercise\n\nLab 1: Introduction to ArcGIS Pro — Orientation to ArcGIS Pro through Philadelphia public health data. Create three maps: green water infrastructure near flood zones, heat vulnerability index by census tract, and cooling centers in relation to heat vulnerability. Practice adding data layers, changing symbology, creating layouts, and exporting PDFs.\n\nReadings: Bolstad Ch. 1 (Introduction); Dent Ch. 1 (Cartography)\nGo to Day 1 session →\n\n\n\nDay 2 — Tuesday\n\nProjections & Data Entry\nLecture Topics\n\nGeodesy: the shape of the Earth and why it complicates mapping\nMap projections: types of distortion, projection families, and how to choose\nCoordinate systems: geographic (lat/lon) vs. projected (meters/feet)\nPractical CRS decisions for public health work (State Plane, UTM, WGS84)\nData entry and editing: on-screen digitizing, GPS data, and field data collection\n\nLab Exercises\n\nLab 2a: Projecting Geographic Data — Work with map projections in ArcGIS Pro. Compare the same geographic features displayed in different projections, observe how area and distance measurements change, and practice reprojecting data between coordinate systems.\nLab 2b: Digitizing Data — Create new spatial features through on-screen digitizing. Create point, line, and polygon features and attach attribute information.\n\nReadings: Bolstad Ch. 3 (Projections); Monmonier Ch. 2 (Projections)\nGo to Day 2 session →\n\n\n\nDay 3 — Wednesday\n\nData Management & Spatial Analysis\nLecture Topics\n\nData management and processing: file formats, geodatabases, data sources\nKey public health data sources: Census/ACS, CDC PLACES, SVI, EPA, OpenDataPhilly, PASDA\nAttribute table operations: queries, joins, relates, field calculator\nSQL and Boolean expressions for data selection\nVector spatial analysis: buffers, overlay operations (intersect, clip, union, erase)\nModifiable Areal Unit Problem (MAUP) and ecological fallacy\n\nLab Exercises\n\nLab 3a: Digital Data and Table Operations — Work with common digital data sources. Practice downloading and adding data from national repositories, performing table joins, running queries, and calculating new fields.\nLab 3b: Spatial Analysis — Buffering and Overlay — Apply buffering and overlay operations. Create fixed-distance and variable-distance buffers, perform overlay operations to identify areas meeting multiple spatial criteria.\n\nReadings: Bolstad Ch. 7 (Digital Data); Ch. 9 (Spatial Analysis)\nGo to Day 3 session →\n\n\n\nDay 4 — Thursday\n\nNetwork Analysis, Geocoding & Raster\nLecture Topics\n\nNetwork analysis: routing, service areas, closest facility, allocation\nGeocoding: converting addresses to coordinates, match quality, and privacy considerations\nGeocoding and PHI: Census geocoder, address suppression, cell suppression for published maps\nRaster spatial analysis: reclassification, map algebra, zonal statistics\nKernel density estimation for hot-spot mapping\n\nLab Exercises\n\nLab 4a: Network Analysis — Perform network-based analyses including shortest route, closest facility, and service area generation.\nLab 4b: Geocoding — Geocode address data and evaluate match quality. Discuss privacy and PHI considerations when mapping individual-level health data.\nLab 4c: Raster Analysis — Work with raster data: reclassify land cover, perform zonal statistics to summarize raster values within polygon boundaries.\n\nReadings: Bolstad Ch. 10 (Raster Analysis); Network Analysis tutorial (provided)\nGo to Day 4 session →\n\n\n\nDay 5 — Friday\n\nSpatial Estimation & Map Design\nLecture Topics\n\nSpatial estimation and interpolation: nearest neighbor, IDW, kriging\nSpatial autocorrelation: Moran’s I, LISA, Getis-Ord Gi*\nGIS data visualization and map design: classification methods, color theory, layout principles\nChoropleth mapping: equal interval, quantile, natural breaks, standard deviation\nMap design for public health communication\nPublic health GIS applications: case studies and real-world examples\n\nLab Exercises\n\nLab 5a: Interpolation — Apply interpolation methods (IDW, kriging) to create continuous surfaces from point data. Compare methods and assess output quality.\nLab 5b: Cartographic Modeling — Build a multi-criteria spatial model combining several data layers. Design a professional map layout communicating the results.\n\nReadings: Bolstad Ch. 12 (Interpolation); Brewer Ch. 4 (Color Basics)\nGo to Day 5 session →"
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Software Setup",
+    "section": "",
+    "text": "Please install your preferred GIS software before the first class session. If you run into trouble, reach out to the instructors beforehand — we will also set aside time on Day 1 to help with any remaining installation issues."
+  },
+  {
+    "objectID": "setup.html#option-1-arcgis-pro-primary",
+    "href": "setup.html#option-1-arcgis-pro-primary",
+    "title": "Software Setup",
+    "section": "Option 1: ArcGIS Pro (Primary)",
+    "text": "Option 1: ArcGIS Pro (Primary)\nArcGIS Pro is the primary software used in this course. It runs on Windows only — Mac users will need to use a virtual machine (see below).\n\nSystem Requirements\n\n2-core CPU minimum (4-core recommended)\n8 GB RAM minimum (16 GB recommended)\n32 GB free disk space\nWindows 10 or Windows 11\n\nFull requirements: ArcGIS Pro System Requirements\n\n\nInstallation\n\nYou will receive an email from Esri inviting you to set up your ArcGIS Online organizational account. Follow the instructions in that email.\nDownload ArcGIS Pro from pro.arcgis.com\nInstall and sign in with your organizational account credentials\nVerify the installation by opening ArcGIS Pro and creating a new Map project\n\n\n\n\n\n\n\nNoteTemporary License\n\n\n\nIf needed, a temporary Esri license will be provided for the duration of the course. However, if your institution has a site license, we recommend using that for uninterrupted access after the course ends.\n\n\n\n\nMac Users\nArcGIS Pro requires Windows. Mac users have several options:\nParallels Desktop (recommended for Apple Silicon Macs):\n\nParallels is the best option for M1/M2/M3/M4 Macs and works well with Intel Macs too\nCosts about $50/year for an academic license, or $99 standard\nInstall Windows 11 (ARM for Apple Silicon) within Parallels, then install ArcGIS Pro\nparallels.com\n\nVMware Fusion:\n\nFree and paid versions available for both Intel and Apple Silicon Macs\nvmware.com/products/fusion\n\nBoot Camp (Intel Macs only):\n\nPartition your Mac to dual-boot into Windows\nFree but requires restarting to switch between macOS and Windows\nNot available for Apple Silicon Macs\n\nVirtual Remote Desktop:\n\nIf none of the above options work, contact the instructors — we can provide temporary access to a virtual desktop with ArcGIS Pro pre-installed\n\n\n\n\n\n\n\nImportantPhiladelphia City Employees\n\n\n\nBased on prior experience, Philadelphia city employees may need IT approval to install ArcGIS Pro on work computers. This can take a day or more, so please submit your IT request well before the course starts."
+  },
+  {
+    "objectID": "setup.html#option-2-qgis-open-source-alternative",
+    "href": "setup.html#option-2-qgis-open-source-alternative",
+    "title": "Software Setup",
+    "section": "Option 2: QGIS (Open-Source Alternative)",
+    "text": "Option 2: QGIS (Open-Source Alternative)\nQGIS is a free, open-source GIS that runs on Windows, Mac, and Linux. All course lab exercises are available in QGIS versions. While QGIS does not have every feature found in ArcGIS Pro, it handles the core GIS operations covered in this course.\n\nInstallation\n\nGo to qgis.org/download\nDownload the Long-Term Release (LTR) for your operating system\nInstall using the default settings\nVerify the installation by opening QGIS and creating a new project\n\nQGIS is a good choice if:\n\nYou use a Mac and do not want to set up a virtual machine\nYour institution does not have an Esri license\nYou want a free tool you can continue using after the course"
+  },
+  {
+    "objectID": "setup.html#additional-software-optional",
+    "href": "setup.html#additional-software-optional",
+    "title": "Software Setup",
+    "section": "Additional Software (Optional)",
+    "text": "Additional Software (Optional)\nThese tools are not required but may be demonstrated or referenced during the course:\n\nGeoDa — Free software for exploratory spatial data analysis. Particularly useful for Moran’s I, LISA cluster maps, and spatial regression. Available for Windows, Mac, and Linux.\nGRASS GIS — Another open-source GIS with advanced raster analysis capabilities. Available for Windows, Mac, and Linux."
+  },
+  {
+    "objectID": "setup.html#verifying-your-installation",
+    "href": "setup.html#verifying-your-installation",
+    "title": "Software Setup",
+    "section": "Verifying Your Installation",
+    "text": "Verifying Your Installation\nBefore Day 1, confirm that you can:\n\nOpen ArcGIS Pro (or QGIS)\nCreate a new project\nAdd a basemap layer\nPan and zoom around the map\n\nIf any of these steps fail, contact the instructors at daq26@drexel.edu."
+  },
+  {
+    "objectID": "setup.html#downloading-lab-data",
+    "href": "setup.html#downloading-lab-data",
+    "title": "Software Setup",
+    "section": "Downloading Lab Data",
+    "text": "Downloading Lab Data\nLab data for each day will be available on the course website (learn.dcollege.net) before each session. Download the data to a local folder on your computer — do not work directly from a USB drive, cloud drive, or network drive, as this can cause performance issues with ArcGIS Pro."
+  },
+  {
+    "objectID": "setup.html#deploying-this-course-website-instructor-notes",
+    "href": "setup.html#deploying-this-course-website-instructor-notes",
+    "title": "Software Setup",
+    "section": "Deploying This Course Website (Instructor Notes)",
+    "text": "Deploying This Course Website (Instructor Notes)\nThis course website is built with Quarto and can be deployed to GitHub Pages:\n\nInstall Quarto from quarto.org/docs/get-started\nPreview locally:\ncd course-website\nquarto preview\nRender the site:\nquarto render\nThis generates the HTML files in the docs/ folder.\nDeploy to GitHub Pages:\n\nCreate a GitHub repository (e.g., intro-gis-ph)\nPush the course-website/ folder contents to the repository\nIn the repository Settings &gt; Pages, set the source to the docs/ folder on the main branch\nThe site will be available at https://[username].github.io/intro-gis-ph/\n\nUpdate the site: Edit .qmd files, re-render, commit, and push.\n\nFor more details, see the Quarto GitHub Pages documentation."
+  },
+  {
+    "objectID": "sessions/day3.html",
+    "href": "sessions/day3.html",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day3.html#day-3-wednesday",
+    "href": "sessions/day3.html#day-3-wednesday",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day3.html#lecture-topics",
+    "href": "sessions/day3.html#lecture-topics",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "Lecture Topics",
+    "text": "Lecture Topics\n\nData Management and Processing\nSpatial analysis depends on having clean, well-organized data. This section covers how to find, acquire, and manage the data that public health GIS work depends on.\nKey public health data sources:\n\nU.S. Census Bureau / ACS — demographics, income, housing, poverty, health insurance at tract and block-group level. Accessed via data.census.gov or NHGIS.\nCDC PLACES — small-area estimates for 36 health measures (asthma, diabetes, mental health, preventive services) at census tract and ZCTA level. The single most useful national public health spatial dataset. cdc.gov/places\nCDC/ATSDR Social Vulnerability Index (SVI) — composite index of social vulnerability at the tract level, organized into four themes: socioeconomic status, household characteristics, racial/ethnic minority status, and housing type/transportation. atsdr.cdc.gov/placeandhealth/svi\nEPA EJScreen — environmental justice screening tool with block-group-level environmental and demographic indicators. epa.gov/ejscreen\nOpenDataPhilly — Philadelphia’s open data portal with parks, schools, crashes, 311 calls, health department data, and more. opendataphilly.org\nPASDA — Pennsylvania’s spatial data clearinghouse. Boundaries, environmental layers, transportation. pasda.psu.edu\n\nData management concepts:\n\nFile formats: shapefile, file geodatabase, GeoJSON, CSV, GeoTIFF\nAttribute tables: structure, field types, primary keys\nTable joins: linking tabular data (e.g., health indicators) to geographic boundaries using a shared identifier (typically FIPS GEOID)\nData quality: completeness, accuracy, currency, consistency\n\n\n\nVector Spatial Analysis\nVector spatial analysis is the core toolkit for most public health GIS work. Buffers and overlay operations let you answer questions like “what population lives near this facility?” and “where do two risk factors overlap?”\nBuffers:\n\nFixed-distance buffer — same distance around every feature (e.g., 1 km around all TRI facilities)\nVariable-distance buffer — distance varies by an attribute (e.g., buffer based on facility emission volume)\nMulti-ring buffer — concentric zones (e.g., 0–500 m, 500 m–1 km, 1–2 km)\nDissolve vs. no-dissolve — whether overlapping buffers merge or stay separate\n\nOverlay operations:\n\nIntersect — keeps only the area shared by both layers\nUnion — combines all areas from both layers\nClip — trims one layer to the boundary of another\nErase — removes the area of one layer from another\n\nSelection:\n\nSelect by attribute — SQL-based queries on the attribute table (e.g., POVERTY_RATE &gt; 0.25)\nSelect by location — spatial queries based on proximity, containment, or intersection (e.g., select all tracts that intersect a flood zone)\n\n\n\n\n\n\n\nNoteMAUP and Ecological Fallacy\n\n\n\nThe Modifiable Areal Unit Problem (MAUP) occurs when the same data produces different results depending on how geographic boundaries are drawn. The ecological fallacy is the error of inferring individual-level relationships from aggregate data. Both are common pitfalls in public health spatial analysis — for example, a tract-level correlation between poverty and asthma prevalence does not prove that poor individuals have higher asthma rates."
+  },
+  {
+    "objectID": "sessions/day3.html#lab-exercises",
+    "href": "sessions/day3.html#lab-exercises",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "Lab Exercises",
+    "text": "Lab Exercises\n\nLab 3a: Digital Data and Table Operations\nWhat you will learn:\n\nFind and download data from national repositories\nAdd tabular data to a GIS project\nPerform table joins (linking health data to census geography by GEOID)\nQuery attribute tables using SQL/Boolean expressions\nUse the field calculator to compute new variables\nGenerate summary statistics\n\nWhat you will produce:\n\nA population density map from census data with selected cities\nA proportional symbol map of county population\nA shaded relief map with hydrography overlay\nA wetlands map classified by size\n\nData: Census county data, U.S. cities, USGS watershed boundaries, National Elevation Dataset, National Hydrologic Dataset, wetland boundaries\nSkills practiced:\n\nDownloading and integrating data from multiple sources\nTable joins by shared key field\nSQL queries and Boolean selections\nField calculator operations\nProportional symbol and graduated color symbology\n\n\n\nLab 3b: Spatial Analysis — Buffering and Overlay\nWhat you will learn:\n\nCreate fixed-distance and variable-distance buffers\nPerform overlay operations (intersect, union, erase)\nCombine spatial operations to answer multi-criteria questions\nCalculate areas and proportions for spatial analysis results\n\nWhat you will produce:\n\nA map of lake variable-distance buffer zones\nA map identifying suitable recreation areas based on multiple spatial criteria (distance from roads, proximity to lakes, within public land)\nA map of suitable recreation areas on private land only (using erase)\n\nData: Lakes, roads, and public land boundaries (UTM Zone 15, NAD83, meters)\nSkills practiced:\n\nFixed-distance buffering\nVariable-distance buffering (using an attribute field)\nMultipart to singlepart conversion\nUnion and erase overlay operations\nArea calculation and spatial query"
+  },
+  {
+    "objectID": "sessions/day3.html#readings",
+    "href": "sessions/day3.html#readings",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "Readings",
+    "text": "Readings\nRequired:\n\nBolstad & Manson, GIS Fundamentals, Chapter 7: Digital Data\nBolstad & Manson, GIS Fundamentals, Chapter 9: Vector Spatial Analysis\n\nSupplemental:\n\nDent, Cartography, Chapter 12\nOpenshaw (1984), “Ecological Fallacies and the Analysis of Areal Census Data”"
+  },
+  {
+    "objectID": "sessions/day3.html#key-takeaways",
+    "href": "sessions/day3.html#key-takeaways",
+    "title": "Day 3: Data Management & Spatial Analysis",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nAfter Day 3, you should be able to:\n\nIdentify and download public health spatial data from national and local sources\nJoin tabular health data to geographic boundaries using GEOID\nApply buffer and overlay operations to answer spatial questions\nRecognize when MAUP or ecological fallacy might affect your analysis"
+  },
+  {
+    "objectID": "sessions/day5.html",
+    "href": "sessions/day5.html",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day5.html#day-5-friday",
+    "href": "sessions/day5.html#day-5-friday",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day5.html#lecture-topics",
+    "href": "sessions/day5.html#lecture-topics",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "Lecture Topics",
+    "text": "Lecture Topics\n\nSpatial Estimation and Interpolation\nInterpolation creates a continuous surface from a set of sample points. In public health, this is used to estimate environmental exposures (e.g., air pollution, temperature) at locations where no direct measurement exists.\nCommon methods:\n\nNearest Neighbor (Thiessen/Voronoi polygons) — assigns the value of the closest sample point. Simple but creates abrupt boundaries.\nInverse Distance Weighting (IDW) — weighted average of nearby points, with closer points given more weight. Sensitive to clustering of sample points.\nSpline — fits a smooth surface through sample points. Good for gently varying surfaces; can produce unrealistic values between sparse points.\nKriging — statistically optimal interpolation that models spatial autocorrelation (the tendency for nearby values to be similar). Provides prediction uncertainty estimates. The gold standard for environmental surfaces, but requires stationarity and enough sample points.\n\nPractical guidance for public health: For most public health applications involving environmental surfaces (PM2.5, temperature, noise), kriging or IDW with appropriate validation is sufficient. For rate stabilization and hot-spot analysis, kernel density or empirical Bayes smoothing (available in GeoDa) is more appropriate than traditional interpolation.\n\n\nSpatial Autocorrelation\nSpatial autocorrelation is the tendency for nearby locations to have similar values — “everything is related to everything else, but near things are more related than distant things” (Tobler’s First Law of Geography). Measuring it is fundamental to spatial epidemiology.\nKey concepts:\n\nMoran’s I (Global) — a single statistic summarizing the degree of spatial clustering across the entire study area. Ranges from -1 (perfect dispersion) to +1 (perfect clustering). Values near 0 indicate spatial randomness.\nLocal Indicators of Spatial Association (LISA) — identifies where clusters are located. Produces a cluster map showing:\n\nHigh-High — locations with high values surrounded by high values (hot spots)\nLow-Low — locations with low values surrounded by low values (cold spots)\nHigh-Low and Low-High — spatial outliers\n\nGetis-Ord Gi* — identifies statistically significant hot spots and cold spots based on the concentration of high or low values in a neighborhood\n\nPublic health applications: Identifying disease clusters, mapping persistent crash hot spots, detecting spatial patterns in health disparities, evaluating whether a health outcome is spatially random or clustered.\n\n\nGIS Data Visualization and Map Design\nThe final step in any GIS analysis is communicating results through effective maps. This section covers the principles of cartographic design that make maps clear, accurate, and appropriate for their audience.\nClassification methods for choropleth maps:\n\nEqual interval — divides the data range into equal-width classes. Simple but can be misleading if data is skewed.\nQuantile — equal number of features in each class. Good for comparing relative rank but can put very different values in the same class.\nNatural breaks (Jenks) — minimizes within-class variance. Often the best default for exploratory mapping.\nStandard deviation — classes based on distance from the mean. Useful for showing where values are unusually high or low.\n\nColor principles:\n\nSequential schemes — light to dark for ordered data (e.g., low-to-high prevalence). Use for most public health choropleths.\nDiverging schemes — two contrasting hues meeting at a neutral midpoint. Use when there is a meaningful center (e.g., above/below average).\nQualitative schemes — distinct hues for categorical data (e.g., land use types).\nUse ColorBrewer to select color schemes that are print-safe and colorblind-safe.\nAvoid red-green diverging schemes (colorblind-unfriendly).\n\nMap layout best practices:\n\nEvery thematic map needs: title, legend, scale bar, north arrow, data source, date, author\nMatch the visual hierarchy to the information hierarchy — the most important information should be most visually prominent\nKeep it simple: remove unnecessary elements that do not support the map’s message\n\n\n\n\n\n\n\nNoteSmall Numbers and Rate Stability\n\n\n\nMapping crude rates for rare events in small populations produces noisy, unreliable maps. A tract with 2 cases out of 500 people (rate = 400 per 100,000) is not meaningfully different from a tract with 0 cases — it is just random variation. Solutions include using larger geographic units, age-adjusting, applying empirical Bayes smoothing (GeoDa does this), or suppressing tracts with small denominators.\n\n\n\n\nPublic Health GIS Applications\nThe course concludes with real-world case studies showing how GIS has been applied to public health problems, including pedestrian injury analysis, healthcare access mapping, environmental justice screening, and health equity assessment."
+  },
+  {
+    "objectID": "sessions/day5.html#lab-exercises",
+    "href": "sessions/day5.html#lab-exercises",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "Lab Exercises",
+    "text": "Lab Exercises\n\nLab 5a: Interpolation\nWhat you will learn:\n\nApply interpolation methods (IDW, kriging) to create continuous surfaces from point measurements\nCompare interpolation outputs under different parameters (e.g., IDW power, kriging model)\nAssess interpolation quality and identify areas of uncertainty\n\nWhat you will produce:\n\nInterpolated surfaces using IDW and kriging\nVisual comparison of methods\nAssessment of prediction quality\n\nSkills practiced:\n\nConfiguring interpolation tools (search radius, power/model settings)\nInterpreting interpolated surfaces\nUnderstanding the limitations of interpolation with sparse data\n\n\n\nLab 5b: Cartographic Modeling\nWhat you will learn:\n\nBuild a multi-criteria spatial model combining several data layers\nApply weighted overlay or raster-based suitability analysis\nDesign a professional map layout communicating results\n\nWhat you will produce:\n\nA composite suitability or risk map derived from multiple input layers\nA professional map layout with all required elements (title, legend, scale, source, north arrow)\n\nSkills practiced:\n\nMulti-layer analysis workflow\nReclassification and weighting\nMap layout design and export\nCommunicating analytical results through cartography"
+  },
+  {
+    "objectID": "sessions/day5.html#readings",
+    "href": "sessions/day5.html#readings",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "Readings",
+    "text": "Readings\nRequired:\n\nBolstad & Manson, GIS Fundamentals, Chapter 12: Spatial Estimation (Interpolation)\n\nSupplemental:\n\nBrewer, Designing Better Maps, Chapter 4: Color Basics\nMonmonier, How to Lie with Maps, Chapter 10: Data Maps\nMonmonier, How to Lie with Maps, Chapter 11: Color\nGelman & Price (1999), “All Maps of Parameter Estimates Are Misleading” (Statistics in Medicine)"
+  },
+  {
+    "objectID": "sessions/day5.html#key-takeaways",
+    "href": "sessions/day5.html#key-takeaways",
+    "title": "Day 5: Spatial Estimation & Map Design",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nAfter Day 5, you should be able to:\n\nApply interpolation methods to create continuous surfaces and understand their limitations\nInterpret Moran’s I and LISA cluster maps for spatial pattern detection\nDesign effective choropleth maps using appropriate classification, color, and layout\nProduce a professional map layout suitable for a report or presentation\nRecognize the limitations of mapping rare events in small areas"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to GIS for Public Health",
+    "section": "",
+    "text": "Urban Health Summer Institute 2026 | Drexel University\nA five-day intensive course on Geographic Information Systems for public health professionals"
+  },
+  {
+    "objectID": "index.html#course-overview",
+    "href": "index.html#course-overview",
+    "title": "Introduction to GIS for Public Health",
+    "section": "Course Overview",
+    "text": "Course Overview\nThis course introduces the fundamental concepts and techniques of Geographic Information Systems (GIS) with a public health focus. Over five days, you will learn to acquire, manage, analyze, and visualize spatial data using ArcGIS Pro and QGIS, with datasets drawn from Philadelphia and national public health sources.\nThe course is designed for working public health professionals with no prior GIS experience. All lectures and hands-on exercises are completed during class sessions.\n\n\n\nInstructor\nAlex Quistberg, PhD, MPH\nAssociate Research Professor\nDirector, Urban Health MPH Program\nUrban Health Collaborative\nDept of Environmental & Occupational Health\nDornsife School of Public Health\nDrexel University\ndaq26@drexel.edu\n\n\n\n\nSchedule\nDates: June 2026 (Mon–Fri)\nTime: 9:00 AM – 12:00 PM EDT\nFormat: Via Zoom\nOffice Hours: 12:00–12:30 PM daily\n\nCourse Website:\nBlackboard (learn.dcollege.net)\nCredit: 1.5 CEU or 15 CPH\n\n\n\n\nSoftware\nArcGIS Pro Primary platform\nWindows required (Parallels for Mac)\nQGIS Open-source alternative\nWorks on Windows, Mac, and Linux\nSee Setup for installation instructions.\nTextbook: GIS Fundamentals (7th ed) by Bolstad & Manson"
+  },
+  {
+    "objectID": "index.html#what-you-will-learn",
+    "href": "index.html#what-you-will-learn",
+    "title": "Introduction to GIS for Public Health",
+    "section": "What You Will Learn",
+    "text": "What You Will Learn\nBy the end of this course, you will be able to:\n\nUnderstand GIS fundamentals — core concepts, data models, and spatial thinking applied to public health problems\nAcquire public health spatial data — work with Census/ACS demographics, CDC PLACES health estimates, Social Vulnerability Index, EPA environmental data, and local sources like OpenDataPhilly\nManage spatial data — handle coordinate systems and projections, join tabular health data to geographic boundaries, and maintain data quality\nPerform spatial analysis — apply buffering, overlay, network analysis, geocoding, and raster operations to answer public health research questions\nCreate professional maps — design thematic maps (choropleths, proportional symbols, kernel density) for public health communication\nThink critically about spatial data — recognize issues like the modifiable areal unit problem, ecological fallacy, small-number instability in rates, and privacy considerations when mapping health data"
+  },
+  {
+    "objectID": "index.html#course-at-a-glance",
+    "href": "index.html#course-at-a-glance",
+    "title": "Introduction to GIS for Public Health",
+    "section": "Course at a Glance",
+    "text": "Course at a Glance\n\n\n\n\n\n\n\n\nDay\nLecture Topics\nLab Exercises\n\n\n\n\n1\nCartography; GIS fundamentals; Data models\nArcGIS Pro orientation with Philadelphia health data (green infrastructure, flood zones, heat vulnerability)\n\n\n2\nGeodesy, projections & coordinate systems; Data entry and editing\nProjecting geographic data; Digitizing\n\n\n3\nData management & processing; Vector spatial analysis\nDigital data & table operations; Buffering and overlay\n\n\n4\nNetwork analysis; Geocoding; Raster spatial analysis\nNetwork analysis; Geocoding; Raster analysis\n\n\n5\nSpatial estimation (interpolation); Map design & visualization; PH applications\nInterpolation; Cartographic modeling; Capstone map\n\n\n\nSee the full Schedule for detailed session descriptions, or jump directly to any Session page for lecture topics, lab instructions, and readings."
+  },
+  {
+    "objectID": "readings.html",
+    "href": "readings.html",
+    "title": "Readings",
+    "section": "",
+    "text": "GIS Fundamentals: A First Text on Geographic Information Systems (7th Edition)\nPaul Bolstad & Steve Manson\nPublisher: Baker & Taylor\nISBN: 978-1-59399-552-2\ngisfundamentals.org\nThe textbook provides background on the concepts covered in lectures. It is a helpful reference for future GIS work, but is not strictly necessary to complete the lab exercises."
+  },
+  {
+    "objectID": "readings.html#required-textbook",
+    "href": "readings.html#required-textbook",
+    "title": "Readings",
+    "section": "",
+    "text": "GIS Fundamentals: A First Text on Geographic Information Systems (7th Edition)\nPaul Bolstad & Steve Manson\nPublisher: Baker & Taylor\nISBN: 978-1-59399-552-2\ngisfundamentals.org\nThe textbook provides background on the concepts covered in lectures. It is a helpful reference for future GIS work, but is not strictly necessary to complete the lab exercises."
+  },
+  {
+    "objectID": "readings.html#recommended-textbook",
+    "href": "readings.html#recommended-textbook",
+    "title": "Readings",
+    "section": "Recommended Textbook",
+    "text": "Recommended Textbook\nMastering ArcGIS Pro (2nd Edition)\nMaribeth Price\nPublisher: McGraw-Hill Higher Education\nISBN: 9781260587333\nA practical reference for ArcGIS Pro procedures. Selected reading materials from this book will be provided by the instructor."
+  },
+  {
+    "objectID": "readings.html#readings-by-day",
+    "href": "readings.html#readings-by-day",
+    "title": "Readings",
+    "section": "Readings by Day",
+    "text": "Readings by Day\n\nDay 1 — Introduction to GIS\n\nDay 1 Bolstad & Manson, Ch. 1: An Introduction to GIS — Overview of GIS concepts, components, and applications.\n\n\nDay 1 Dent, Cartography: Thematic Map Design, Ch. 1: Introduction to Thematic Mapping — Foundations of map design and the role of thematic maps in communication.\n\n\nDay 1 Monmonier, How to Lie with Maps, Ch. 1 & 3 — How maps can mislead, and the relationship between scale and generalization.\n\n\n\nDay 2 — Projections & Data Entry\n\nDay 2 Bolstad & Manson, Ch. 3: Geodesy, Projections, and Coordinate Systems — The shape of the Earth, map projections, and coordinate reference systems.\n\n\nDay 2 Monmonier, How to Lie with Maps, Ch. 2: Projections — How projection choice affects map appearance and interpretation.\n\n\n\nDay 3 — Data Management & Spatial Analysis\n\nDay 3 Bolstad & Manson, Ch. 7: Digital Data — Sources and types of digital geographic data.\n\n\nDay 3 Bolstad & Manson, Ch. 9: Vector Spatial Analysis — Buffering, overlay, and other vector operations.\n\n\nDay 3 Dent, Cartography, Ch. 12 — Dot and proportional symbol mapping.\n\n\nDay 3 Openshaw (1984), “Ecological Fallacies and the Analysis of Areal Census Data” — The risks of drawing individual-level conclusions from aggregate spatial data.\n\n\n\nDay 4 — Network Analysis, Geocoding & Raster\n\nDay 4 Bolstad & Manson, Ch. 10: Raster Analysis — Raster data models, reclassification, map algebra, and zonal operations.\n\n\nDay 4 Ribeiro et al., “Tools for Address Georeferencing in Public Health” (PLoS ONE) — Review of geocoding tools and accuracy considerations for health research.\n\n\nDay 4 Network Analysis tutorial (provided) — Step-by-step guide to ArcGIS Pro Network Analyst.\n\n\n\nDay 5 — Spatial Estimation & Map Design\n\nDay 5 Bolstad & Manson, Ch. 12: Spatial Estimation — Interpolation methods including IDW, splines, and kriging.\n\n\nDay 5 Brewer, Designing Better Maps, Ch. 4: Color Basics — Principles of color use in cartography.\n\n\nDay 5 Monmonier, How to Lie with Maps, Ch. 10: Data Maps — How classification and symbolization choices affect map interpretation.\n\n\nDay 5 Monmonier, How to Lie with Maps, Ch. 11: Color — The role of color in map communication and potential misuse.\n\n\nDay 5 Gelman & Price (1999), “All Maps of Parameter Estimates Are Misleading” (Statistics in Medicine) — Why visualizing uncertainty matters when mapping estimated parameters."
+  },
+  {
+    "objectID": "readings.html#additional-references",
+    "href": "readings.html#additional-references",
+    "title": "Readings",
+    "section": "Additional References",
+    "text": "Additional References\nThese readings provide deeper background on topics covered in the course. They are optional but recommended for students planning to use GIS in their research.\nSpatial Analysis and Epidemiology:\n\nAnselin (2005), “Under the Hood: Issues in the Specification and Interpretation of Spatial Regression Models” (Agricultural Economics)\nBaller et al. (2002), “The Interchangeability of Homicide Data Sources: A Spatial Analytical Perspective”\nVoss et al. (2006), “Census Exploratory Spatial Data Analysis”\nCoombes et al. (1979), “Daily Urban Systems in Britain: From Theory to Practice”\n\nCartography and Visualization:\n\nDent, Cartography, Ch. 8 (pp. 131–149) — Map design and visual hierarchy\n\nGeocoding and Address Data:\n\nNominatim documentation (OpenStreetMap geocoding service)"
+  },
+  {
+    "objectID": "sessions/day4.html",
+    "href": "sessions/day4.html",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day4.html#day-4-thursday",
+    "href": "sessions/day4.html#day-4-thursday",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day4.html#lecture-topics",
+    "href": "sessions/day4.html#lecture-topics",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "Lecture Topics",
+    "text": "Lecture Topics\n\nNetwork Analysis\nNetwork analysis uses the topology of connected line features (roads, transit routes, walking paths) to answer questions about accessibility and routing. This is directly relevant to healthcare access analysis and emergency response planning.\nKey operations:\n\nShortest route — find the optimal path between two locations along a road or transit network\nClosest facility — determine which facility (hospital, clinic, fire station) is nearest to a set of demand points\nService area / isochrone — define the area reachable within a given travel time or distance from a facility (e.g., the 15-minute driving catchment of an FQHC)\nAllocation — assign demand points to their nearest or most appropriate facility\n\nPublic health applications: Identifying populations with poor healthcare access, optimizing facility placement, evaluating transit equity, modeling emergency response times.\n\n\nGeocoding\nGeocoding is the process of converting street addresses into geographic coordinates (latitude, longitude). It is one of the most common GIS operations in public health, used whenever individual-level data includes addresses (disease reports, death certificates, crash reports, patient records).\nKey concepts:\n\nAddress components: street number, street name, city, state, ZIP code\nMatch quality: exact match vs. interpolated (placed along a street segment based on address range). Interpolated geocodes can be off by tens of meters, which matters for small-buffer analyses.\nMatch rate: the percentage of addresses successfully geocoded. Always report this.\nReference data quality: the accuracy of the geocoder’s underlying address database\n\n\n\n\n\n\n\nImportantGeocoding and Privacy (PHI)\n\n\n\nWhen geocoding health data with personally identifiable information (PHI), you must consider:\n\nWhich geocoder to use: The U.S. Census Geocoder is free and does not retain submitted addresses. Cloud-based commercial geocoders (Esri, Google) may store queries — check your IRB protocol and data use agreement.\nAddress suppression: Never publish maps at the address level for health data. Aggregate to census tract or higher.\nCell suppression: Suppress counts fewer than 5 (or per your agency’s policy) to prevent re-identification.\nThe analyst’s working copy vs. the published map: You may geocode to rooftop precision for analysis but must aggregate before sharing results.\n\n\n\n\n\nRaster Spatial Analysis\nRaster analysis works with gridded data — continuous surfaces where each cell holds a value. In public health, raster data is used for environmental exposures (air quality, temperature, vegetation), terrain, and density surfaces.\nKey operations:\n\nReclassify — assign new values to raster cells based on ranges (e.g., reclassify land surface temperature into “high,” “medium,” “low” heat categories)\nMap algebra — cell-by-cell arithmetic on rasters (add, subtract, multiply, divide layers)\nZonal statistics — summarize raster values within polygon boundaries (e.g., mean PM2.5 concentration by census tract, mean NDVI by ZCTA). This is the single most useful raster operation for public health.\nKernel density estimation — create a continuous density surface from point data (e.g., crash density, disease case density). Controls: bandwidth (search radius) and cell size."
+  },
+  {
+    "objectID": "sessions/day4.html#lab-exercises",
+    "href": "sessions/day4.html#lab-exercises",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "Lab Exercises",
+    "text": "Lab Exercises\n\nLab 4a: Network Analysis\nWhat you will learn:\n\nSet up and use network analysis tools in ArcGIS Pro\nGenerate shortest routes along a road network\nFind the closest facility to a set of locations\nCreate service areas (isochrones) showing areas reachable within a specified travel time or distance\n\nWhat you will produce:\n\nShortest route maps between specified locations\nClosest facility analysis results\nService area maps showing travel-time catchments\n\nSkills practiced:\n\nConfiguring network analysis layers\nSetting impedance (time or distance)\nInterpreting network analysis results for accessibility assessment\n\n\n\nLab 4b: Geocoding\nWhat you will learn:\n\nPrepare address data for geocoding (standardization, formatting)\nGeocode addresses using ArcGIS Pro or the Census Geocoder\nEvaluate geocoding results: match rate, match quality, unmatched addresses\nRematching and manual correction of failed matches\n\nWhat you will produce:\n\nA geocoded point layer from an address table\nA summary of match rates and quality assessment\n\nSkills practiced:\n\nAddress table preparation and cleaning\nBatch geocoding\nInterpreting match scores\nUnderstanding geocode accuracy and its implications for spatial analysis\n\n\n\nLab 4c: Raster Analysis\nWhat you will learn:\n\nAdd and display raster data\nReclassify raster values into categories\nPerform raster calculations (map algebra)\nExtract raster values to points or zones\n\nWhat you will produce:\n\nA reclassified land cover map\nResults of raster-based spatial analysis\n\nData: Raster datasets including elevation, land cover, and derived surfaces\nSkills practiced:\n\nRaster symbology and display\nReclassification\nRaster calculator / map algebra\nZonal statistics\n\n\n\n\n\n\n\n\nTipQGIS Alternative for Network Analysis\n\n\n\nQGIS does not include a full network analysis toolset equivalent to ArcGIS Network Analyst out of the box, but the QGIS Network Analysis plugin and built-in shortest-path tools provide basic routing and service area capabilities. A separate QGIS lab guide is provided for Day 4 network and geocoding exercises."
+  },
+  {
+    "objectID": "sessions/day4.html#readings",
+    "href": "sessions/day4.html#readings",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "Readings",
+    "text": "Readings\nRequired:\n\nBolstad & Manson, GIS Fundamentals, Chapter 10: Raster Analysis\nNetwork Analysis tutorial (provided on course website)\n\nSupplemental:\n\nRibeiro et al., “Tools for Address Georeferencing in Public Health” (PLoS ONE)\nArcGIS Pro Geocoding Tutorial (provided on course website)"
+  },
+  {
+    "objectID": "sessions/day4.html#key-takeaways",
+    "href": "sessions/day4.html#key-takeaways",
+    "title": "Day 4: Network Analysis, Geocoding & Raster",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nAfter Day 4, you should be able to:\n\nPerform basic network analysis to assess spatial accessibility\nGeocode address data and evaluate match quality\nApply appropriate privacy protections when geocoding health data\nPerform raster reclassification and zonal statistics\nUnderstand when kernel density is appropriate for public health hot-spot analysis"
+  },
+  {
+    "objectID": "sessions/day2.html",
+    "href": "sessions/day2.html",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day2.html#day-2-tuesday",
+    "href": "sessions/day2.html#day-2-tuesday",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day2.html#lecture-topics",
+    "href": "sessions/day2.html#lecture-topics",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "Lecture Topics",
+    "text": "Lecture Topics\n\nGeodesy, Projections, and Coordinate Systems\nThe Earth is not flat, and representing its curved surface on a flat map inevitably introduces distortion. This section covers the practical aspects of map projections that matter most for public health work.\nThe core problem: Flattening a 3D surface onto a 2D map distorts one or more of: shape, area, distance, or direction. Different projections preserve different properties.\nKey concepts:\n\nGeographic coordinate systems — latitude and longitude (degrees); the default for GPS data (WGS84). Units are in degrees, not meters, so you cannot directly measure distances or areas.\nProjected coordinate systems — coordinates in linear units (meters or feet) on a flat surface. Required for distance and area calculations.\nCommon CRS choices for public health work in Pennsylvania:\n\nNAD83 PA State Plane South (EPSG:2272) — feet; good for Philadelphia-area work\nNAD83 UTM Zone 18N (EPSG:26918) — meters; good for regional analyses\nWGS84 (EPSG:4326) — geographic; for GPS data and web mapping\n\nEPSG codes — standardized numeric identifiers for coordinate reference systems. Look up at epsg.io.\nOn-the-fly projection — ArcGIS Pro can display layers in different CRS together, but this is for display only. Always reproject your data before doing spatial analysis.\n\n\n\n\n\n\n\nImportantWhen your buffer is wrong\n\n\n\nIf you run a 1-mile buffer on data in a geographic coordinate system (WGS84), the buffer will be in degrees, not miles. At Philadelphia’s latitude, 1 degree of longitude is about 53 miles. This is one of the most common GIS mistakes in public health research — and it produces results that look plausible but are completely wrong.\nRule of thumb: Always check your CRS before running any distance or area calculation. If your units are in degrees, reproject first.\n\n\n\n\nData Entry and Editing\nNot all spatial data comes ready-made. Sometimes you need to create new features from scratch — for example, digitizing boundaries for a study area or recording observation points from a field audit.\nKey concepts:\n\nOn-screen digitizing: creating point, line, and polygon features by tracing on a basemap or aerial imagery\nAttribute entry: adding descriptive information to each feature you create\nSnapping and topology: ensuring that features connect properly (no gaps, no overlaps)\nGPS data integration: importing waypoints and tracks from field data collection\nPractical applications in public health: digitizing study area boundaries, marking audit observation points, creating intervention zone polygons"
+  },
+  {
+    "objectID": "sessions/day2.html#lab-exercises",
+    "href": "sessions/day2.html#lab-exercises",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "Lab Exercises",
+    "text": "Lab Exercises\n\nLab 2a: Projecting Geographic Data\nWhat you will learn:\n\nIdentify a layer’s coordinate reference system\nUnderstand the difference between geographic and projected coordinate systems\nReproject data from one CRS to another\nObserve how projection affects distance and area measurements\n\nWhat you will produce:\n\nMaps of Minnesota in multiple projections (Albers Equal Area, Mercator) showing how the same geography looks different in each\nA worksheet recording area and distance measurements in different projections, demonstrating measurement distortion\n\nData:\n\nMinnesota county boundaries and city locations in multiple projections\nU.S. lower-48 state boundaries\nGraticule (latitude/longitude grid)\n\nSkills practiced:\n\nSetting and changing the map’s coordinate system\nUsing the Project tool to reproject data\nMeasuring distances and areas\nComparing measurements across projections\nUnderstanding on-the-fly projection vs. actual reprojection\n\n\n\nLab 2b: Digitizing Data\nWhat you will learn:\n\nCreate a new feature class (point, line, or polygon)\nDigitize features on screen using a basemap\nAdd and populate attribute fields\nEdit and modify existing features\nCalculate geometry (area, length, coordinates)\n\nSkills practiced:\n\nCreating new feature classes with defined schemas\nOn-screen digitizing with snapping\nAttribute data entry\nGeometry calculations"
+  },
+  {
+    "objectID": "sessions/day2.html#readings",
+    "href": "sessions/day2.html#readings",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "Readings",
+    "text": "Readings\nRequired:\n\nBolstad & Manson, GIS Fundamentals, Chapter 3: Geodesy, Projections, and Coordinate Systems\n\nSupplemental:\n\nMonmonier, How to Lie with Maps, Chapter 2: Projections"
+  },
+  {
+    "objectID": "sessions/day2.html#key-takeaways",
+    "href": "sessions/day2.html#key-takeaways",
+    "title": "Day 2: Projections & Data Entry",
+    "section": "Key Takeaways",
+    "text": "Key Takeaways\nAfter Day 2, you should be able to:\n\nExplain the difference between geographic and projected coordinate systems\nChoose an appropriate CRS for a given public health analysis task\nCheck a dataset’s CRS and reproject it if needed\nCreate new spatial features through on-screen digitizing"
+  },
+  {
+    "objectID": "sessions/day1.html",
+    "href": "sessions/day1.html",
+    "title": "Day 1: Introduction to GIS",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day1.html#day-1-monday",
+    "href": "sessions/day1.html#day-1-monday",
+    "title": "Day 1: Introduction to GIS",
+    "section": "",
+    "text": "9:00 AM – 12:00 PM EDT | Lecture + Lab"
+  },
+  {
+    "objectID": "sessions/day1.html#lecture-topics",
+    "href": "sessions/day1.html#lecture-topics",
+    "title": "Day 1: Introduction to GIS",
+    "section": "Lecture Topics",
+    "text": "Lecture Topics\n\nIntroduction to Cartography\nMaps are among the oldest forms of communication, and cartography — the art and science of mapmaking — underpins everything we do in GIS. This opening section covers what makes a map effective, how maps encode spatial information, and how cartographic principles apply to public health communication.\nKey concepts:\n\nMap elements: title, legend, scale bar, north arrow, data source, projection information\nReference maps vs. thematic maps\nMap scale: large-scale (detailed, small area) vs. small-scale (less detailed, large area)\nGeneralization: how and why we simplify spatial information for display\n\n\n\nGeographic Information Systems\nA GIS is a system for capturing, storing, analyzing, managing, and presenting spatial data. This section introduces the components of a GIS and why spatial analysis matters for public health.\nKey concepts:\n\nThe five components of a GIS: hardware, software, data, people, methods\nSpatial questions GIS can answer: Where is it? What is nearby? What patterns exist? How has it changed?\nPublic health applications: disease surveillance, environmental exposure assessment, healthcare access analysis, injury mapping, health equity assessment\n\n\n\nData Models and Representation\nGIS data comes in two fundamental forms: vector and raster. Understanding when to use each is essential for choosing the right approach to a public health question.\nKey concepts:\n\nVector data: points (e.g., clinic locations, crash sites), lines (e.g., road networks, transit routes), polygons (e.g., census tracts, park boundaries)\nRaster data: continuous grids (e.g., land surface temperature, air pollution surfaces, satellite imagery, elevation)\nAttribute data types: nominal (race/ethnicity categories), ordinal (SVI quartile), interval (calendar year), ratio (age-adjusted mortality rate)\nCommon file formats: shapefile, geodatabase, GeoJSON, GeoTIFF, CSV with coordinates\n\n\n\nThe Public Health Data Hierarchy\nPublic health data exists at many geographic scales. Understanding the hierarchy is critical for choosing appropriate units of analysis and avoiding common pitfalls.\n\nIndividual address — highest resolution; privacy/HIPAA concerns\nCensus block — smallest Census unit (~600–3,000 people in urban areas)\nBlock group — cluster of blocks (~600–3,000 people); ACS data available here\nCensus tract — designed to be socioeconomically homogeneous (~1,200–8,000 people); most common unit for health data (CDC PLACES, SVI)\nZCTA — ZIP Code Tabulation Area (not the same as ZIP codes); used by some CDC products\nCounty — vital statistics, mortality data, BRFSS"
+  },
+  {
+    "objectID": "sessions/day1.html#lab-exercise",
+    "href": "sessions/day1.html#lab-exercise",
+    "title": "Day 1: Introduction to GIS",
+    "section": "Lab Exercise",
+    "text": "Lab Exercise\n\nLab 1: Introduction to ArcGIS Pro\nWhat you will learn:\n\nStart ArcGIS Pro and create a new project\nAdd data layers from local files\nPan, zoom, and navigate the map\nChange data symbology (single symbol, graduated colors, categories)\nCreate map layouts with legends, titles, north arrows, and scale bars\nExport maps to PDF\n\nWhat you will produce: Three maps of Philadelphia:\n\nGreen infrastructure and flood zones — Green water infrastructure projects overlaid on FEMA 100-year flood zones, with census tract boundaries as a base layer\nHeat vulnerability index — Census tract-level heat vulnerability scores displayed as a graduated color choropleth with an inset map of a high-vulnerability area\nCooling centers and heat vulnerability — Side-by-side comparison of heat vulnerability and the locations of public swimming pools and spraygrounds as cooling resources\n\nData:\n\nPhiladelphia_census_tracts.shp — Census tract boundaries\nGSI_public_projects.shp — Green stormwater infrastructure projects\n100_yr_flood.shp — FEMA 100-year flood zone boundaries\nheat_vulnerability_ct.shp — Heat vulnerability index by census tract\nPPR_spraygrounds.shp — Philadelphia Parks & Recreation spraygrounds\nPPR_Swimming_Pools.shp — Philadelphia Parks & Recreation public pools\n\nSkills practiced:\n\nSoftware orientation and navigation\nAdding and ordering data layers\nSymbology: single symbol, graduated colors (equal interval, quantile)\nLayout creation and element placement\nInset map creation\nDistance measurement tools\nExporting to PDF\n\n\n\n\n\n\n\n\nTipArcGIS Pro and QGIS\n\n\n\nAll labs are available for both ArcGIS Pro and QGIS. If you are using QGIS, the equivalent operations are: Add Vector Layer, Properties &gt; Symbology &gt; Graduated, and Print Layout for map export."
+  },
+  {
+    "objectID": "sessions/day1.html#readings",
+    "href": "sessions/day1.html#readings",
+    "title": "Day 1: Introduction to GIS",
+    "section": "Readings",
+    "text": "Readings\nRequired:\n\nBolstad & Manson, GIS Fundamentals, Chapter 1: An Introduction to GIS\n\nSupplemental:\n\nDent, Cartography: Thematic Map Design, Chapter 1: Introduction to Thematic Mapping\nMonmonier, How to Lie with Maps, Chapters 1 and 3"
+  },
+  {
+    "objectID": "sessions/day1.html#preparation",
+    "href": "sessions/day1.html#preparation",
+    "title": "Day 1: Introduction to GIS",
+    "section": "Preparation",
+    "text": "Preparation\nBefore Day 1, make sure you have:\n\nArcGIS Pro installed and working (or QGIS as an alternative)\nDownloaded the Day 1 lab data from the course website\nTested that you can launch ArcGIS Pro and create a new project\n\nSee the Setup page for detailed installation instructions."
+  },
+  {
+    "objectID": "resources.html",
+    "href": "resources.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Source\nDescription\nURL\n\n\n\n\nOpenDataPhilly\nPhiladelphia’s open data portal: parks, schools, crashes, 311, health, vacant lots, zoning\nopendataphilly.org\n\n\nPASDA\nPennsylvania Spatial Data Access — state boundaries, environmental layers, transportation\npasda.psu.edu\n\n\nDVRPC\nDelaware Valley Regional Planning Commission — transportation, land use, equity data for the 9-county region\ndvrpc.org/data\n\n\nPHL Maps\nPhiladelphia’s ArcGIS Hub — health department data, city services, infrastructure\nphl.maps.arcgis.com\n\n\nPA DOH\nPennsylvania Department of Health — county-level health statistics via EpiQMS\nhealth.pa.gov\n\n\nPennDOT Crash Data\nMotor vehicle crash records for Pennsylvania (processed versions available via DVRPC)\npenndot.pa.gov\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nCDC PLACES\nTract- and ZCTA-level estimates for 36 health measures (asthma, diabetes, mental health, preventive services)\ncdc.gov/places\n\n\nCDC/ATSDR SVI\nSocial Vulnerability Index at tract and county level — 4 themes, pre-joined to Census geometry\natsdr.cdc.gov/placeandhealth/svi\n\n\nCDC/ATSDR EJI\nEnvironmental Justice Index — integrates environmental burden with social vulnerability\natsdr.cdc.gov/placeandhealth/eji\n\n\nEPA EJScreen\nEnvironmental indicators at block group: PM2.5, ozone, traffic, lead paint, hazardous waste\nepa.gov/ejscreen\n\n\nEPA TRI\nToxic Release Inventory — facility-level emissions reporting\nepa.gov/toxics-release-inventory-tri-program\n\n\nHRSA Data\nHealth Professional Shortage Areas, Medically Underserved Areas, provider locations\ndata.hrsa.gov\n\n\nCMS Provider Data\nHospital, FQHC, nursing facility locations and quality measures\ndata.cms.gov\n\n\nCDC WONDER\nMortality and natality data at county level (with suppression for small counts)\nwonder.cdc.gov\n\n\nNHGIS\nHistorical and current Census/ACS data with pre-joined geography, standardized across decades\nnhgis.org\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nNLCD\nNational Land Cover Database — 30 m land cover, impervious surface, tree canopy\nmrlc.gov\n\n\nUSGS EarthExplorer\nLandsat, Sentinel-2, elevation, and other satellite imagery\nearthexplorer.usgs.gov\n\n\nPRISM Climate\nDaily and monthly temperature and precipitation grids for the U.S.\nprism.oregonstate.edu\n\n\nNOAA HEAT.gov\nHeat vulnerability and heat health risk products\nheat.gov\n\n\nEPA AirNow / AQS\nAir quality monitoring data\naqs.epa.gov\n\n\nMicrosoft Planetary Computer\nCloud-hosted satellite imagery and environmental data (Landsat, Sentinel, NAIP)\nplanetarycomputer.microsoft.com\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nTIGER/Line Shapefiles\nAll Census boundary geometries (tracts, block groups, counties, places, ZCTAs)\ncensus.gov/geographies/mapping-files\n\n\nACS 5-Year Estimates\nSocioeconomic indicators at tract and block-group level\ndata.census.gov\n\n\nCensus Geocoder\nFree batch geocoding service — does not retain submitted addresses\ngeocoding.geo.gov/geocoder\n\n\nU.S. Census Bureau\nDecennial census, population estimates, and surveys\ncensus.gov\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nArea Deprivation Index (ADI)\nBlock-group-level socioeconomic deprivation index\nneighborhoodatlas.medicine.wisc.edu\n\n\nHUD USPS Vacancy\nQuarterly vacancy and no-stat address data (housing distress proxy)\nhuduser.gov\n\n\nNCHS Urban-Rural Classification\nCDC classification of counties by urbanization level\ncdc.gov/nchs"
+  },
+  {
+    "objectID": "resources.html#data-sources-for-public-health-gis",
+    "href": "resources.html#data-sources-for-public-health-gis",
+    "title": "Resources",
+    "section": "",
+    "text": "Source\nDescription\nURL\n\n\n\n\nOpenDataPhilly\nPhiladelphia’s open data portal: parks, schools, crashes, 311, health, vacant lots, zoning\nopendataphilly.org\n\n\nPASDA\nPennsylvania Spatial Data Access — state boundaries, environmental layers, transportation\npasda.psu.edu\n\n\nDVRPC\nDelaware Valley Regional Planning Commission — transportation, land use, equity data for the 9-county region\ndvrpc.org/data\n\n\nPHL Maps\nPhiladelphia’s ArcGIS Hub — health department data, city services, infrastructure\nphl.maps.arcgis.com\n\n\nPA DOH\nPennsylvania Department of Health — county-level health statistics via EpiQMS\nhealth.pa.gov\n\n\nPennDOT Crash Data\nMotor vehicle crash records for Pennsylvania (processed versions available via DVRPC)\npenndot.pa.gov\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nCDC PLACES\nTract- and ZCTA-level estimates for 36 health measures (asthma, diabetes, mental health, preventive services)\ncdc.gov/places\n\n\nCDC/ATSDR SVI\nSocial Vulnerability Index at tract and county level — 4 themes, pre-joined to Census geometry\natsdr.cdc.gov/placeandhealth/svi\n\n\nCDC/ATSDR EJI\nEnvironmental Justice Index — integrates environmental burden with social vulnerability\natsdr.cdc.gov/placeandhealth/eji\n\n\nEPA EJScreen\nEnvironmental indicators at block group: PM2.5, ozone, traffic, lead paint, hazardous waste\nepa.gov/ejscreen\n\n\nEPA TRI\nToxic Release Inventory — facility-level emissions reporting\nepa.gov/toxics-release-inventory-tri-program\n\n\nHRSA Data\nHealth Professional Shortage Areas, Medically Underserved Areas, provider locations\ndata.hrsa.gov\n\n\nCMS Provider Data\nHospital, FQHC, nursing facility locations and quality measures\ndata.cms.gov\n\n\nCDC WONDER\nMortality and natality data at county level (with suppression for small counts)\nwonder.cdc.gov\n\n\nNHGIS\nHistorical and current Census/ACS data with pre-joined geography, standardized across decades\nnhgis.org\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nNLCD\nNational Land Cover Database — 30 m land cover, impervious surface, tree canopy\nmrlc.gov\n\n\nUSGS EarthExplorer\nLandsat, Sentinel-2, elevation, and other satellite imagery\nearthexplorer.usgs.gov\n\n\nPRISM Climate\nDaily and monthly temperature and precipitation grids for the U.S.\nprism.oregonstate.edu\n\n\nNOAA HEAT.gov\nHeat vulnerability and heat health risk products\nheat.gov\n\n\nEPA AirNow / AQS\nAir quality monitoring data\naqs.epa.gov\n\n\nMicrosoft Planetary Computer\nCloud-hosted satellite imagery and environmental data (Landsat, Sentinel, NAIP)\nplanetarycomputer.microsoft.com\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nTIGER/Line Shapefiles\nAll Census boundary geometries (tracts, block groups, counties, places, ZCTAs)\ncensus.gov/geographies/mapping-files\n\n\nACS 5-Year Estimates\nSocioeconomic indicators at tract and block-group level\ndata.census.gov\n\n\nCensus Geocoder\nFree batch geocoding service — does not retain submitted addresses\ngeocoding.geo.gov/geocoder\n\n\nU.S. Census Bureau\nDecennial census, population estimates, and surveys\ncensus.gov\n\n\n\n\n\n\n\n\n\nSource\nDescription\nURL\n\n\n\n\nArea Deprivation Index (ADI)\nBlock-group-level socioeconomic deprivation index\nneighborhoodatlas.medicine.wisc.edu\n\n\nHUD USPS Vacancy\nQuarterly vacancy and no-stat address data (housing distress proxy)\nhuduser.gov\n\n\nNCHS Urban-Rural Classification\nCDC classification of counties by urbanization level\ncdc.gov/nchs"
+  },
+  {
+    "objectID": "resources.html#software",
+    "href": "resources.html#software",
+    "title": "Resources",
+    "section": "Software",
+    "text": "Software\n\n\nArcGIS Pro\n\nArcGIS Pro download and installation\nArcGIS Pro system requirements\nArcGIS Pro documentation\nArcGIS Pro tutorials\nEsri Training (free courses)\n\n\n\nQGIS\n\nQGIS download — install the Long-Term Release (LTR)\nQGIS documentation\nQGIS tutorials and tips\n\n\n\nOther Useful Tools\n\nGeoDa — free software for exploratory spatial data analysis, Moran’s I, LISA, spatial regression\nColorBrewer — select cartographic color schemes (sequential, diverging, qualitative) that are colorblind-safe and print-friendly\nepsg.io — look up coordinate reference systems by EPSG code or name\nOpenStreetMap — free, editable world map; useful for basemaps and amenity data\nOverpass Turbo — query and download OpenStreetMap data\nGTFS feeds — transit schedule data for access analyses"
+  },
+  {
+    "objectID": "resources.html#tutorials-and-learning-resources",
+    "href": "resources.html#tutorials-and-learning-resources",
+    "title": "Resources",
+    "section": "Tutorials and Learning Resources",
+    "text": "Tutorials and Learning Resources\n\n\nGIS Fundamentals\n\nEsri Academy (free MOOCs) — Esri’s official training platform with many free courses on ArcGIS Pro\nGIS&T Body of Knowledge — comprehensive, peer-reviewed resource on GIS concepts\nBolstad & Manson textbook companion site: gisfundamentals.org\n\n\n\nPublic Health GIS\n\nCDC GIS resources — GIS applications in public health from CDC\nWHO GIS resources — global health mapping resources\n\n\n\nCartography and Visualization\n\nColorBrewer — essential for choosing map color schemes\nAxis Maps Cartography Guide — practical cartographic design advice"
+  }
+]
