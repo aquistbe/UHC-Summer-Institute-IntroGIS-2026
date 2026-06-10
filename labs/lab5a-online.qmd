@@ -1,0 +1,11 @@
+---
+title: "Lab 5a: Interpolating an Exposure Surface"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 5"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab05a_Interpolation_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab05a_Interpolation_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab05a_Interpolation_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab05a_Interpolation_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab5a-online.md >}}

@@ -1,0 +1,11 @@
+---
+title: "Lab 3a: Joining and Querying Surveillance Data"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 3"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab03a_JoinsQueries_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03a_JoinsQueries_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab3a-online.md >}}

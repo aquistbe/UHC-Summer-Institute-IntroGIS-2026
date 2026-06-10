@@ -61,6 +61,20 @@ The **Modifiable Areal Unit Problem (MAUP)** occurs when the same data produces 
 
 ## Lab Exercises
 
+
+::: {.lab-tracks}
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+
+**Lab 3a — Joining &amp; Querying Surveillance Data** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab3a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03a_JoinsQueries_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03a_JoinsQueries_ArcGISPro_PH.docx"}
+
+
+**Lab 3b — Buffer &amp; Overlay for EJ Screening** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab3b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03b_BufferOverlay_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03b_BufferOverlay_ArcGISPro_PH.docx"}
+
+
+:::
+
 ::: {.lab-exercise}
 
 #### Lab 3a: Digital Data and Table Operations

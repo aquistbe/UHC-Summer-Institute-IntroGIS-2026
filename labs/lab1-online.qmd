@@ -1,0 +1,11 @@
+---
+title: "Lab 1: Introduction to ArcGIS Online"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 1"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab01_Intro_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab01_Intro_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab01_Intro_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab01_Intro_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab1-online.md >}}

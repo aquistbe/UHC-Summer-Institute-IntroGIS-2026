@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 5b: Capstone — Composite Index &amp; StoryMap – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-load-and-inspect-the-base-tract-layer" id="toc-part-1-load-and-inspect-the-base-tract-layer" class="nav-link" data-scroll-target="#part-1-load-and-inspect-the-base-tract-layer">Part 1: Load and inspect the base tract layer</a></li>
+  <li><a href="#part-2-join-the-cdc-svi-layer" id="toc-part-2-join-the-cdc-svi-layer" class="nav-link" data-scroll-target="#part-2-join-the-cdc-svi-layer">Part 2: Join the CDC SVI layer</a></li>
+  <li><a href="#part-3-add-a-tree-canopy-or-impervious-surface-variable" id="toc-part-3-add-a-tree-canopy-or-impervious-surface-variable" class="nav-link" data-scroll-target="#part-3-add-a-tree-canopy-or-impervious-surface-variable">Part 3: Add a tree canopy or impervious surface variable</a>
+  <ul class="collapse">
+  <li><a href="#option-a-enrich-layer-if-available" id="toc-option-a-enrich-layer-if-available" class="nav-link" data-scroll-target="#option-a-enrich-layer-if-available">Option A — Enrich Layer (if available)</a></li>
+  <li><a href="#option-b-join-a-living-atlas-nlcd-layer" id="toc-option-b-join-a-living-atlas-nlcd-layer" class="nav-link" data-scroll-target="#option-b-join-a-living-atlas-nlcd-layer">Option B — Join a Living Atlas NLCD layer</a></li>
+  </ul></li>
+  <li><a href="#part-4-normalize-inputs-and-compute-the-composite-index" id="toc-part-4-normalize-inputs-and-compute-the-composite-index" class="nav-link" data-scroll-target="#part-4-normalize-inputs-and-compute-the-composite-index">Part 4: Normalize inputs and compute the composite index</a>
+  <ul class="collapse">
+  <li><a href="#a-add-normalized-fields" id="toc-a-add-normalized-fields" class="nav-link" data-scroll-target="#a-add-normalized-fields">4a — Add normalized fields</a></li>
+  <li><a href="#b-calculate-lst_norm" id="toc-b-calculate-lst_norm" class="nav-link" data-scroll-target="#b-calculate-lst_norm">4b — Calculate LST_norm</a></li>
+  <li><a href="#c-calculate-svi_norm" id="toc-c-calculate-svi_norm" class="nav-link" data-scroll-target="#c-calculate-svi_norm">4c — Calculate SVI_norm</a></li>
+  <li><a href="#d-calculate-canopy_norm" id="toc-d-calculate-canopy_norm" class="nav-link" data-scroll-target="#d-calculate-canopy_norm">4d — Calculate CANOPY_norm</a></li>
+  <li><a href="#e-add-the-composite-field-and-calculate-primary-weights" id="toc-e-add-the-composite-field-and-calculate-primary-weights" class="nav-link" data-scroll-target="#e-add-the-composite-field-and-calculate-primary-weights">4e — Add the composite field and calculate (primary weights)</a></li>
+  </ul></li>
+  <li><a href="#part-5-sensitivity-check-with-alternative-weights" id="toc-part-5-sensitivity-check-with-alternative-weights" class="nav-link" data-scroll-target="#part-5-sensitivity-check-with-alternative-weights">Part 5: Sensitivity check with alternative weights</a></li>
+  <li><a href="#part-6-style-the-composite-map" id="toc-part-6-style-the-composite-map" class="nav-link" data-scroll-target="#part-6-style-the-composite-map">Part 6: Style the composite map</a></li>
+  <li><a href="#part-7-save-and-share-the-web-map" id="toc-part-7-save-and-share-the-web-map" class="nav-link" data-scroll-target="#part-7-save-and-share-the-web-map">Part 7: Save and share the web map</a></li>
+  <li><a href="#part-8-build-a-public-facing-communication-product" id="toc-part-8-build-a-public-facing-communication-product" class="nav-link" data-scroll-target="#part-8-build-a-public-facing-communication-product">Part 8: Build a public-facing communication product</a>
+  <ul class="collapse">
+  <li><a href="#option-a-arcgis-storymap-recommended-for-narrative-framing" id="toc-option-a-arcgis-storymap-recommended-for-narrative-framing" class="nav-link" data-scroll-target="#option-a-arcgis-storymap-recommended-for-narrative-framing">Option A — ArcGIS StoryMap (recommended for narrative framing)</a></li>
+  <li><a href="#option-b-arcgis-dashboard-recommended-for-indicator-style-reporting" id="toc-option-b-arcgis-dashboard-recommended-for-indicator-style-reporting" class="nav-link" data-scroll-target="#option-b-arcgis-dashboard-recommended-for-indicator-style-reporting">Option B — ArcGIS Dashboard (recommended for indicator-style reporting)</a></li>
+  </ul></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 5b: Capstone — Composite Index &amp; StoryMap</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 5</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab05b_Capstone_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab05b_Capstone_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab05b_CartographicModeling_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab05b_CartographicModeling_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Extreme heat is the leading weather-related cause of death in the United States, and its burden falls unevenly across neighborhoods. Communities with high impervious cover, low tree canopy, elevated land-surface temperatures, and concentrated social vulnerability face compounding risks. This lab asks: which Philadelphia census tracts carry the highest combined heat-health risk, and how do we communicate that finding responsibly? By assembling tract-level environmental and social layers into a composite vulnerability index, you can direct heat-mitigation resources — cooling centers, tree planting, outreach — toward the places that need them most.</p>
+<hr>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Assemble tract-level inputs from the Living Atlas and instructor-shared layers onto a single feature layer using <strong>Join Features</strong> and <strong>Enrich Layer</strong></li>
+<li>Normalize each input variable to a common 0–1 scale and compute a weighted composite index using <strong>Calculate</strong> with an Arcade expression</li>
+<li>Run a sensitivity check by reweighting inputs and comparing spatial patterns</li>
+<li>Style a choropleth with a colorblind-safe sequential color ramp and compare <strong>Quantile</strong> vs.&nbsp;<strong>Natural Breaks</strong> classification</li>
+<li>Share a web map and embed it in an <strong>ArcGIS StoryMap</strong> or <strong>ArcGIS Dashboard</strong> as a public-facing communication product</li>
+<li>Apply ethical framing to vulnerability maps intended for community or media audiences</li>
+</ul>
+<hr>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A saved, shared web map showing the composite heat-health vulnerability index by Philadelphia census tract (primary weighting)</li>
+<li>A second field on the same layer showing the sensitivity-check composite (alternative weights), with a visual comparison</li>
+<li>A public-facing communication product: either an <strong>ArcGIS StoryMap</strong> (narrative + map) or an <strong>ArcGIS Dashboard</strong> (indicators + map) — one of the two, your choice</li>
+<li>A 150-word written methods note stating which inputs you used, how you normalized them, and the weights for both the primary and sensitivity runs</li>
+<li>AI-assisted accessibility alt-text and a map critique response, labeled and annotated (see <strong>Using AI in this lab</strong>)</li>
+</ol>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer name</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PHL_Tracts_HeatSummary</code></td>
+<td>Philadelphia census tracts with mean summer LST (°C) per tract, summarized in Lab 4c</td>
+<td>Instructor-shared ArcGIS Online item</td>
+</tr>
+<tr class="even">
+<td>CDC SVI 2022 — Pennsylvania</td>
+<td>CDC/ATSDR Social Vulnerability Index 2022, tract level; field <code>RPL_THEMES</code> (0–1 overall rank)</td>
+<td>Living Atlas of the World</td>
+</tr>
+<tr class="odd">
+<td>NLCD Land Cover / Tree Canopy (Living Atlas)</td>
+<td>National Land Cover Database tree canopy or impervious-surface summary at the tract level; use <strong>Enrich Layer</strong> or the Living Atlas NLCD-derived tract layer</td>
+<td>Living Atlas of the World / Esri Enrich</td>
+</tr>
+<tr class="even">
+<td>Philadelphia County boundary</td>
+<td>Administrative boundary for clip and context</td>
+<td>Living Atlas — USA Counties</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> This lab does not use raster inputs directly. The LST raster from Lab 4c was summarized to tracts in that lab; the result is the instructor-shared <code>PHL_Tracts_HeatSummary</code> layer. If that layer is not yet available, ask your instructor. The approach here — a vector composite index on tracts — replaces the raster <strong>Weighted Overlay</strong> workflow used in the ArcGIS Pro version of this lab. ArcGIS Online’s standard Map Viewer does not provide a simple weighted raster overlay without <strong>ArcGIS Image for ArcGIS Online</strong> raster-analysis privileges (which consume additional credits). The tract-based approach is epidemiologically appropriate: most heat-health interventions target neighborhoods, and census tracts are a natural administrative unit for resource allocation.</p>
+</blockquote>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites:</strong> Labs 1–5a, including Lab 4c (LST summarized to tracts). You need access to the instructor-shared <code>PHL_Tracts_HeatSummary</code> item in your ArcGIS organizational account.</p>
+<p><strong>Sign in:</strong> Go to <a href="https://arcgis.com">arcgis.com</a> and sign in with your <strong>ArcGIS organizational account</strong> provided by the course. A free public account cannot run Analysis tools.</p>
+<blockquote class="blockquote">
+<p><strong>Warning — credits and privileges:</strong> Running <strong>Join Features</strong>, <strong>Enrich Layer</strong>, and any other Analysis tool consumes <strong>credits</strong> from your organization’s account and requires <strong>Publisher</strong> or <strong>Analysis</strong> privileges. Do not run these tools repeatedly with large datasets. Plan your parameters before clicking <strong>Run</strong>. If you are unsure of your privilege level, ask your instructor before proceeding.</p>
+</blockquote>
+<p><strong>Time estimate:</strong> 2.5–3 hours, including the StoryMap or Dashboard step.</p>
+<hr>
+</section>
+<section id="part-1-load-and-inspect-the-base-tract-layer" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-load-and-inspect-the-base-tract-layer">Part 1: Load and inspect the base tract layer</h2>
+<ol type="1">
+<li>Sign in to <a href="https://arcgis.com">arcgis.com</a>. From the app launcher (the grid icon at top right), choose <strong>Map Viewer</strong>.</li>
+<li>In the left toolbar, click <strong>Add</strong> → <strong>Browse layers</strong> → <strong>My Organization</strong>. Search for <code>PHL_Tracts_HeatSummary</code>. Click the <strong>+</strong> icon to add it to the map.</li>
+<li>In the left toolbar, click <strong>Tables</strong> (table icon). The attribute table opens at the bottom. Locate the field that holds mean summer LST per tract. It is likely named <code>MEAN_LST</code> or similar — confirm with your instructor. Note the approximate range of values (minimum and maximum).</li>
+<li>Close the table. Click the layer name in the <strong>Contents</strong> pane to select it, then click <strong>Fields</strong> in the right toolbar. Scroll through the available fields. You need at minimum: a tract identifier (<code>GEOID</code> or <code>FIPS</code>), and the LST summary field.</li>
+</ol>
+<p><em>[Figure: Map Viewer showing PHL_Tracts_HeatSummary layer loaded, attribute table open at bottom with GEOID and MEAN_LST columns visible]</em></p>
+<hr>
+</section>
+<section id="part-2-join-the-cdc-svi-layer" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-join-the-cdc-svi-layer">Part 2: Join the CDC SVI layer</h2>
+<p>You will join the CDC SVI percentile rank (<code>RPL_THEMES</code>) onto your tract layer so all inputs live on one feature layer.</p>
+<ol type="1">
+<li><p>In the left toolbar, click <strong>Add</strong> → <strong>Browse layers</strong> → <strong>Living Atlas</strong>. Search for <code>CDC Social Vulnerability Index 2022</code>. Add the Pennsylvania or national layer to the map. It will appear as a separate layer in the <strong>Contents</strong> pane.</p></li>
+<li><p>In the left toolbar, click <strong>Analysis</strong> (the tools icon). In the analysis tools pane, search for <strong>Join Features</strong>.</p></li>
+<li><p>Set <strong>Join Features</strong> parameters:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Target layer</td>
+<td><code>PHL_Tracts_HeatSummary</code></td>
+</tr>
+<tr class="even">
+<td>Join layer</td>
+<td>CDC SVI 2022</td>
+</tr>
+<tr class="odd">
+<td>Join type</td>
+<td>One to one</td>
+</tr>
+<tr class="even">
+<td>Join condition</td>
+<td>Spatial — target contains join feature centroid, OR attribute match on <code>FIPS</code> / <code>GEOID</code> if both layers share that field</td>
+</tr>
+<tr class="odd">
+<td>Fields to join</td>
+<td><code>RPL_THEMES</code> only (to minimize output size)</td>
+</tr>
+<tr class="even">
+<td>Output layer name</td>
+<td><code>PHL_Tracts_Joined</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> This tool consumes credits. Confirm your parameters before clicking <strong>Run</strong>. If the SVI layer covers all of Pennsylvania, the spatial join will still work correctly because it matches only within the Philadelphia tracts in your target layer.</p>
+</blockquote>
+<p><em>[Figure: Join Features tool pane showing target layer, join layer, and output name filled in]</em></p>
+<hr>
+</section>
+<section id="part-3-add-a-tree-canopy-or-impervious-surface-variable" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-add-a-tree-canopy-or-impervious-surface-variable">Part 3: Add a tree canopy or impervious surface variable</h2>
+<p>You need a third environmental input. Use <strong>Enrich Layer</strong> if your organization has Enrich credits, or add a Living Atlas NLCD-derived tract layer and join it as in Part 2.</p>
+<section id="option-a-enrich-layer-if-available" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-enrich-layer-if-available">Option A — Enrich Layer (if available)</h3>
+<ol type="1">
+<li>Select <code>PHL_Tracts_Joined</code> in the Contents pane. Click <strong>Analysis</strong> → search <strong>Enrich Layer</strong>.</li>
+<li>Click <strong>Select variables</strong>. Under the Environmental or Land Cover category, find a variable related to tree canopy coverage or impervious surface (Esri’s enrichment data catalog includes NLCD-derived land cover summaries).</li>
+<li>Output layer name: <code>PHL_Tracts_Enriched</code>. Click <strong>Run</strong>.</li>
+<li>After the tool completes, open <strong>Tables</strong> and confirm a tree canopy or impervious variable field was added.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Enrich Layer can consume significant credits depending on the variables selected and the number of polygons enriched. Select only the one variable you need.</p>
+</blockquote>
+</section>
+<section id="option-b-join-a-living-atlas-nlcd-layer" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-join-a-living-atlas-nlcd-layer">Option B — Join a Living Atlas NLCD layer</h3>
+<ol type="1">
+<li>In <strong>Add</strong> → <strong>Browse layers</strong> → <strong>Living Atlas</strong>, search for <code>NLCD Tree Canopy</code> or <code>USA NLCD Tree Canopy</code>. Add the layer.</li>
+<li>Run <strong>Join Features</strong> again: target = <code>PHL_Tracts_Joined</code>, join = NLCD tract layer. Join on a shared FIPS/GEOID field (attribute join) or spatial centroid. Join the tree canopy percentage field only. Output: <code>PHL_Tracts_Enriched</code>.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Either option produces the same result: a single tract layer with LST, SVI, and tree canopy fields. Rename your final layer <code>PHL_Tracts_Enriched</code> regardless of which option you used. Note in your methods write-up which option you used.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="part-4-normalize-inputs-and-compute-the-composite-index" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-normalize-inputs-and-compute-the-composite-index">Part 4: Normalize inputs and compute the composite index</h2>
+<p>With all inputs on one layer, you will normalize each to a 0–1 scale and calculate a weighted composite using Arcade in the <strong>Calculate</strong> field tool.</p>
+<section id="a-add-normalized-fields" class="level3">
+<h3 class="anchored" data-anchor-id="a-add-normalized-fields">4a — Add normalized fields</h3>
+<ol type="1">
+<li>In the Contents pane, select <code>PHL_Tracts_Enriched</code>. In the right toolbar, click <strong>Fields</strong>.</li>
+<li>Click <strong>+ Add field</strong>. Name: <code>LST_norm</code>, Type: <strong>Double</strong>. Click <strong>Save</strong> (the checkmark). Repeat to add <code>SVI_norm</code> (Double) and <code>CANOPY_norm</code> (Double).</li>
+</ol>
+</section>
+<section id="b-calculate-lst_norm" class="level3">
+<h3 class="anchored" data-anchor-id="b-calculate-lst_norm">4b — Calculate LST_norm</h3>
+<p>Min-max normalization scales each value to 0–1. A value of 1 = highest LST (highest heat exposure). You need the observed minimum and maximum LST across all tracts. Read them from the table in Part 1 or use the <strong>Statistics</strong> panel.</p>
+<ol type="1">
+<li><p>Click the <code>LST_norm</code> field header → <strong>Calculate</strong>.</p></li>
+<li><p>In the Arcade expression box, enter:</p>
+<pre><code>($feature.MEAN_LST - 28.5) / (42.1 - 28.5)</code></pre>
+<p>Replace <code>28.5</code> with your observed minimum and <code>42.1</code> with your observed maximum. This maps the coldest tract to 0 and the hottest tract to 1.</p></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Arcade expressions in <strong>Calculate</strong> do not automatically compute dataset-wide statistics like min and max — you must supply those numbers manually from the table or field statistics. Record the values you use; they must appear in your methods write-up.</p>
+</blockquote>
+</section>
+<section id="c-calculate-svi_norm" class="level3">
+<h3 class="anchored" data-anchor-id="c-calculate-svi_norm">4c — Calculate SVI_norm</h3>
+<p><code>RPL_THEMES</code> is already a 0–1 percentile rank, so normalization is simple. A value of 1 = highest social vulnerability.</p>
+<ol type="1">
+<li><p>Click <code>SVI_norm</code> → <strong>Calculate</strong>. Expression:</p>
+<pre><code>$feature.RPL_THEMES</code></pre></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> SVI values of -999 indicate missing data. Filter those records out before calculating if any tracts show -999: in the right toolbar click <strong>Filter</strong>, set <code>RPL_THEMES</code> does not equal <code>-999</code>, apply the filter, then run Calculate only on filtered records. Remove the filter afterward.</p>
+</blockquote>
+</section>
+<section id="d-calculate-canopy_norm" class="level3">
+<h3 class="anchored" data-anchor-id="d-calculate-canopy_norm">4d — Calculate CANOPY_norm</h3>
+<p>High tree canopy = lower heat-health risk. To align direction so that 1 = highest risk, invert the canopy variable.</p>
+<ol type="1">
+<li><p>Click <code>CANOPY_norm</code> → <strong>Calculate</strong>. Expression:</p>
+<pre><code>1 - (($feature.TREE_CANOPY_PCT - 0) / (100 - 0))</code></pre>
+<p>Replace <code>TREE_CANOPY_PCT</code> with the actual field name from your enriched layer. This maps 0% canopy to 1 (highest risk) and 100% canopy to 0 (lowest risk).</p></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+</ol>
+</section>
+<section id="e-add-the-composite-field-and-calculate-primary-weights" class="level3">
+<h3 class="anchored" data-anchor-id="e-add-the-composite-field-and-calculate-primary-weights">4e — Add the composite field and calculate (primary weights)</h3>
+<p><strong>Primary weights:</strong> LST 40%, SVI 30%, Tree Canopy 30%. These weights reflect that land-surface temperature is the most direct driver of acute heat exposure; canopy and social vulnerability are important modifiers. These weights are a deliberate analytic choice — document them.</p>
+<ol type="1">
+<li><p>Add a field: <code>HVI_primary</code>, Type <strong>Double</strong>.</p></li>
+<li><p>Click <code>HVI_primary</code> → <strong>Calculate</strong>. Expression:</p>
+<pre><code>($feature.LST_norm * 0.40) + ($feature.SVI_norm * 0.30) + ($feature.CANOPY_norm * 0.30)</code></pre></li>
+<li><p>Click <strong>OK</strong>. Values will range from 0 to 1, where higher values indicate greater heat-health vulnerability.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Weights are a value judgment. There is no objectively correct weighting for a composite vulnerability index. The choice of 40/30/30 is defensible but not uniquely correct. The sensitivity check in Part 5 tests how much your conclusions depend on this choice. Document both runs and present the uncertainty honestly.</p>
+</blockquote>
+<p><em>[Figure: Fields panel showing HVI_primary field selected and Arcade expression entered in the Calculate dialog]</em></p>
+<hr>
+</section>
+</section>
+<section id="part-5-sensitivity-check-with-alternative-weights" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-sensitivity-check-with-alternative-weights">Part 5: Sensitivity check with alternative weights</h2>
+<p>A single weighting scheme is one analytic choice among many. Running a second scenario reveals whether your conclusions are robust.</p>
+<p><strong>Alternative weights:</strong> LST 20%, SVI 60%, Tree Canopy 20%. This scenario treats social vulnerability as the dominant driver, consistent with a social determinants of health framework.</p>
+<ol type="1">
+<li><p>Add a field: <code>HVI_sensitivity</code>, Type <strong>Double</strong>.</p></li>
+<li><p>Click <code>HVI_sensitivity</code> → <strong>Calculate</strong>. Expression:</p>
+<pre><code>($feature.LST_norm * 0.20) + ($feature.SVI_norm * 0.60) + ($feature.CANOPY_norm * 0.20)</code></pre></li>
+<li><p>Click <strong>OK</strong>.</p></li>
+<li><p>Open the <strong>Table</strong>. Sort by <code>HVI_primary</code> descending and note the top 10 tracts. Then sort by <code>HVI_sensitivity</code> descending and note the top 10. Are the same tracts in both lists?</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> If the primary and sensitivity runs identify the same high-risk tracts, your index is robust to this weight change. If they diverge substantially, acknowledge the uncertainty in your communication product and avoid presenting the map as a definitive ranking. Showing only the run that confirms a preferred narrative is analytic bias.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-6-style-the-composite-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-style-the-composite-map">Part 6: Style the composite map</h2>
+<ol type="1">
+<li>In the Contents pane, select <code>PHL_Tracts_Enriched</code>. In the right toolbar, click <strong>Styles</strong>.</li>
+<li>Under <strong>Pick a field to show</strong>, choose <code>HVI_primary</code>.</li>
+<li>In <strong>Pick a style</strong>, select <strong>Counts and Amounts (Color)</strong>.</li>
+<li>Click <strong>Style options</strong>. Under <strong>Theme</strong>, set classification method to <strong>Quantile</strong> with <strong>5 classes</strong>. Note how the class breaks are assigned.</li>
+<li>Under <strong>Color ramp</strong>, choose a colorblind-safe sequential ramp. <strong>Yellow-Orange-Red</strong> (ColorBrewer) or <strong>Viridis</strong> are good choices. Apply so that low values (lower vulnerability) appear light and high values (higher vulnerability) appear dark red or purple.</li>
+<li>Click <strong>Done</strong>.</li>
+<li>Repeat steps 1–6 on a duplicate of the layer styled on <code>HVI_sensitivity</code> to enable a visual comparison. Toggle between the two styled layers.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Try switching classification from <strong>Quantile</strong> to <strong>Natural Breaks</strong> and observe how the map changes. Natural breaks emphasizes data-driven groupings; quantile guarantees equal tract counts per class. Note which you prefer and state the reason in your methods write-up.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Colorblind-safe ramps matter for any map shown to a public audience. Approximately 8% of men and 0.5% of women have red-green color vision deficiency. Red-green diverging ramps (red = bad, green = good) should be avoided for vulnerability maps.</p>
+</blockquote>
+<p><em>[Figure: Styles panel showing HVI_primary field, Counts and Amounts style, Quantile 5-class, Yellow-Orange-Red ramp applied to Philadelphia tracts]</em></p>
+<hr>
+</section>
+<section id="part-7-save-and-share-the-web-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-7-save-and-share-the-web-map">Part 7: Save and share the web map</h2>
+<ol type="1">
+<li>Click <strong>Save</strong> (the floppy disk icon at the top of the screen). In the <strong>Save map</strong> dialog: Title: <code>Heat-Health Vulnerability Index — Philadelphia PA</code>; Tags: <code>heat</code>, <code>public health</code>, <code>Philadelphia</code>, <code>vulnerability</code>; Summary: <code>Composite tract-level heat-health vulnerability index combining land-surface temperature, CDC Social Vulnerability Index, and tree canopy cover. Intro GIS for Public Health capstone.</code></li>
+<li>Click <strong>Save map</strong>.</li>
+<li>Click <strong>Share map</strong> (the share icon). Under <strong>Who can view this map</strong>, choose your organization (or as directed by your instructor). Click <strong>Save</strong>.</li>
+<li>Copy the item URL from your browser’s address bar or from <strong>My Content</strong>. You will embed this in your communication product in Part 8.</li>
+</ol>
+<hr>
+</section>
+<section id="part-8-build-a-public-facing-communication-product" class="level2">
+<h2 class="anchored" data-anchor-id="part-8-build-a-public-facing-communication-product">Part 8: Build a public-facing communication product</h2>
+<p>ArcGIS Online excels at sharing spatial findings with non-GIS audiences. Choose one of the two options below. Both are accessible from the Esri app launcher.</p>
+<section id="option-a-arcgis-storymap-recommended-for-narrative-framing" class="level3">
+<h3 class="anchored" data-anchor-id="option-a-arcgis-storymap-recommended-for-narrative-framing">Option A — ArcGIS StoryMap (recommended for narrative framing)</h3>
+<p>A StoryMap pairs your map with text, photos, and context in a scrollable web page — ideal for communicating with community members, policymakers, or media.</p>
+<ol type="1">
+<li>From the app launcher, choose <strong>StoryMaps</strong>. Click <strong>+ New story</strong> → <strong>Start from scratch</strong>.</li>
+<li>Add a <strong>Title</strong> block: <code>Heat-Health Vulnerability in Philadelphia: Which Neighborhoods Need Cooling Resources Most?</code></li>
+<li>Add a <strong>Text</strong> block of 2–3 sentences stating the public health question in plain language. Avoid jargon. Avoid language that stigmatizes residents (see the public health note below).</li>
+<li>Add a <strong>Map</strong> block: click <strong>+</strong> → <strong>Map</strong> → <strong>Select a map from ArcGIS Online</strong>. Search for your saved <code>Heat-Health Vulnerability Index — Philadelphia PA</code> web map. Select it. The interactive map embeds in the story.</li>
+<li>Add a <strong>Text</strong> block after the map explaining what colors represent and one key finding from the spatial pattern (for example, which cluster of tracts consistently appears in the highest-risk class across both weighting scenarios).</li>
+<li>Add a <strong>Text</strong> block for data sources and a brief methods note (two to three sentences maximum for a public audience).</li>
+<li>Click <strong>Publish</strong> → <strong>Everyone</strong> or <strong>Organization</strong> as instructed. Copy the StoryMap URL for your deliverables.</li>
+</ol>
+<p><em>[Figure: StoryMaps editor with title block, embedded web map block, and text block visible in the editing panel]</em></p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Language matters. “High-risk tracts” describes structural conditions — not the people living in those tracts. Avoid phrasing like “residents who are at risk” when the risk drivers are physical environment and historical disinvestment. Label what drives the score (heat, lack of canopy, social vulnerability) rather than naming neighborhoods as dangerous. Acknowledge in your story that the index is a tool to guide resource allocation, not a definitive measure of individual health risk. Stigmatizing maps can harm communities and undermine trust in public health agencies.</p>
+</blockquote>
+</section>
+<section id="option-b-arcgis-dashboard-recommended-for-indicator-style-reporting" class="level3">
+<h3 class="anchored" data-anchor-id="option-b-arcgis-dashboard-recommended-for-indicator-style-reporting">Option B — ArcGIS Dashboard (recommended for indicator-style reporting)</h3>
+<p>A Dashboard presents a map alongside summary statistics — appropriate for internal reporting or public health department communication products.</p>
+<ol type="1">
+<li>From the app launcher, choose <strong>Dashboards</strong>. Click <strong>+ New dashboard</strong>.</li>
+<li>Click the <strong>+</strong> icon in the canvas → <strong>Map</strong>. Select your saved web map. Resize the map panel to occupy most of the canvas.</li>
+<li>Click <strong>+</strong> → <strong>Indicator</strong>. Set the data source to <code>PHL_Tracts_Enriched</code>. Statistic: <strong>Maximum</strong> of <code>HVI_primary</code>. Label: <code>Highest Vulnerability Score</code>. Add a second Indicator for <strong>Average</strong> of <code>HVI_primary</code>.</li>
+<li>Click <strong>+</strong> → <strong>Serial Chart</strong> (bar chart). Data source: <code>PHL_Tracts_Enriched</code>, sorted by <code>HVI_primary</code> descending, showing the top 15 tracts. Add tract name or GEOID as the category field.</li>
+<li>Save the dashboard. Share it with your organization or as directed by your instructor. Copy the URL.</li>
+</ol>
+<p><em>[Figure: Dashboard editor showing the embedded map panel on the left, two indicator widgets at top right, and a bar chart of top-scoring tracts at bottom right]</em></p>
+<hr>
+</section>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Submit all of the following to your instructor’s LMS drop folder by the end of Day 5:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Item</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Web map URL</td>
+<td>Shared <code>Heat-Health Vulnerability Index — Philadelphia PA</code> map; confirm it is accessible to your organization</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>StoryMap URL or Dashboard URL</td>
+<td>Whichever communication product you built in Part 8</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Screenshot of the styled <code>HVI_primary</code> map</td>
+<td>Export from the Print tool or take a screen capture at full resolution; include the legend</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Written methods note</td>
+<td>150 words max; state inputs used, normalization approach and min/max values used, weights for primary and sensitivity runs, and classification method chosen</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Sensitivity comparison note</td>
+<td>2–3 sentences: which tracts appeared in the top quintile in the primary run but not the sensitivity run (or vice versa), and what that implies for analytic confidence</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>AI-assisted map alt-text</td>
+<td>One paragraph; label which sentences are AI-drafted and what you changed</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>AI map critique response</td>
+<td>List the critique points identified; note which you acted on and which you did not, with a brief reason</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p>AI assistance is permitted for two specific, bounded tasks.</p>
+<p><strong>Task A — Accessibility alt-text.</strong> Accessibility requires descriptive alt-text for maps posted online or in reports. Share a screenshot of your styled <code>HVI_primary</code> map with Claude and prompt: <em>“Write one paragraph of accessibility alt-text for this heat-health vulnerability map of Philadelphia census tracts. Describe the geographic pattern, the color ramp, the classification method, and the key finding. Aim for 75–100 words.”</em> Edit any factual errors. Label the output: <code>[AI-drafted, edited by [Your Name]]</code>.</p>
+<p><strong>Task B — Map critique.</strong> Prompt Claude: <em>“Critique this map for: (1) color choice and colorblind accessibility, (2) appropriateness of the classification method (quantile vs.&nbsp;natural breaks), and (3) ethical framing — does the title, legend, or StoryMap text risk stigmatizing neighborhoods? Suggest specific improvements.”</em> In your deliverables, list each critique point and state whether you acted on it and why.</p>
+<p><strong>Guardrails that apply to this course:</strong></p>
+<ul>
+<li>AI helps with scaffolding, explaining, and critiquing. It does not make analytic decisions, choose datasets, select weights, or interpret spatial patterns in the data.</li>
+<li>Never paste patient-level, address-level, or otherwise identifiable public health data into a public LLM.</li>
+<li>Label all AI-assisted output in your submitted work. Unlabeled AI output is an academic integrity violation.</li>
+<li>Verify every AI-generated factual claim before including it in your submission.</li>
+</ul>
+<hr>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<p>The Pro version of this lab (Lab 5b: Cartographic Modeling Capstone) uses a fully raster-based workflow. The table below maps each ArcGIS Online step to the corresponding Pro tool.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Online step</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Join Features + Enrich Layer (Parts 2–3)</td>
+<td>Load raster inputs directly; <strong>Polygon to Raster</strong> to convert SVI vector to raster</td>
+</tr>
+<tr class="even">
+<td>Calculate (Arcade, min-max normalization)</td>
+<td><strong>Reclassify</strong> — rescales each raster input to a 1–5 ordinal scale using quantile or equal-interval breaks</td>
+</tr>
+<tr class="odd">
+<td><code>HVI_primary</code> weighted sum (Arcade)</td>
+<td><strong>Weighted Overlay</strong> — applies percentage weights to reclassified rasters and produces a composite raster</td>
+</tr>
+<tr class="even">
+<td>Second Calculate field <code>HVI_sensitivity</code></td>
+<td>Second <strong>Weighted Overlay</strong> run with alternative weights</td>
+</tr>
+<tr class="odd">
+<td>Styles → Counts and Amounts (Color)</td>
+<td><strong>Symbology</strong> pane → Classify → color ramp</td>
+</tr>
+<tr class="even">
+<td>StoryMap or Dashboard</td>
+<td><strong>Layout</strong> in Pro → Export to PDF/PNG; or <strong>ArcGIS Online Share</strong> for web communication</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key difference:</strong> The ArcGIS Online approach operates on tract polygons (vector composite index); the Pro approach operates on 30-meter raster cells. The raster approach captures within-tract variation in LST and canopy that the tract-level average smooths over. For intervention planning at the neighborhood level, both approaches yield comparable priority areas. The desktop Lab 5b exists for users who need raster precision.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li>You inverted the tree canopy variable so that high canopy coverage maps to a low vulnerability score (near 0). Explain in one sentence why this inversion is necessary to make all three inputs point in the same direction.</li>
+<li>In the primary weights, LST received 40% weight and SVI received 30%. Describe one alternative weighting scheme you could justify from a social determinants of health perspective and state the reasoning.</li>
+<li>A colleague reviews your StoryMap and says: “This map shows that Kensington residents are at high risk.” Explain why that framing is potentially problematic and how you would reword it.</li>
+<li>You ran a sensitivity check and found that 8 of the top 10 tracts appeared in both the primary and alternative weight runs. What does this tell you about the robustness of your index? What would it mean if only 3 of 10 matched?</li>
+<li>You want to add proximity to cooling centers as a fourth input. The cooling center layer is a point feature class. Describe the steps you would take in ArcGIS Online — specifically which Analysis tool you would use to create a tract-level proximity variable — and in which direction you would code the normalized value (high proximity = low or high vulnerability score).</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

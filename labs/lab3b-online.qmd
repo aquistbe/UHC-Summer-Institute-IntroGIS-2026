@@ -1,0 +1,11 @@
+---
+title: "Lab 3b: Buffer and Overlay for EJ Screening"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 3"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab03b_BufferOverlay_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab03b_BufferOverlay_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03b_BufferOverlay_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab3b-online.md >}}

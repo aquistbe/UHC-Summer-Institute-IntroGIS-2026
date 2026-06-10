@@ -1,0 +1,11 @@
+---
+title: "Lab 5b: Capstone — Composite Index & StoryMap"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 5"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab05b_Capstone_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab05b_Capstone_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab05b_CartographicModeling_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab05b_CartographicModeling_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab5b-online.md >}}

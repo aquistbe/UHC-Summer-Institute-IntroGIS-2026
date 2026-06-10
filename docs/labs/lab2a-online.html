@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 2a: Measuring Distance and Access – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-open-map-viewer-and-add-the-data" id="toc-part-1-open-map-viewer-and-add-the-data" class="nav-link" data-scroll-target="#part-1-open-map-viewer-and-add-the-data">Part 1: Open Map Viewer and add the data</a></li>
+  <li><a href="#part-2-understand-how-arcgis-online-handles-coordinate-systems" id="toc-part-2-understand-how-arcgis-online-handles-coordinate-systems" class="nav-link" data-scroll-target="#part-2-understand-how-arcgis-online-handles-coordinate-systems">Part 2: Understand how ArcGIS Online handles coordinate systems</a>
+  <ul class="collapse">
+  <li><a href="#inspect-the-source-crs" id="toc-inspect-the-source-crs" class="nav-link" data-scroll-target="#inspect-the-source-crs">Inspect the source CRS</a></li>
+  </ul></li>
+  <li><a href="#part-3-create-0.5-mile-geodesic-buffers-around-parks" id="toc-part-3-create-0.5-mile-geodesic-buffers-around-parks" class="nav-link" data-scroll-target="#part-3-create-0.5-mile-geodesic-buffers-around-parks">Part 3: Create 0.5-mile geodesic buffers around parks</a></li>
+  <li><a href="#part-4-summarize-child-population-within-the-buffer-by-tract" id="toc-part-4-summarize-child-population-within-the-buffer-by-tract" class="nav-link" data-scroll-target="#part-4-summarize-child-population-within-the-buffer-by-tract">Part 4: Summarize child population within the buffer by tract</a>
+  <ul class="collapse">
+  <li><a href="#run-summarize-within" id="toc-run-summarize-within" class="nav-link" data-scroll-target="#run-summarize-within">Run Summarize Within</a></li>
+  <li><a href="#calculate-children-with-access-per-tract" id="toc-calculate-children-with-access-per-tract" class="nav-link" data-scroll-target="#calculate-children-with-access-per-tract">Calculate children with access per tract</a></li>
+  <li><a href="#summarize-by-poverty-quintile" id="toc-summarize-by-poverty-quintile" class="nav-link" data-scroll-target="#summarize-by-poverty-quintile">Summarize by poverty quintile</a></li>
+  </ul></li>
+  <li><a href="#part-5-style-the-map-and-build-a-chart" id="toc-part-5-style-the-map-and-build-a-chart" class="nav-link" data-scroll-target="#part-5-style-the-map-and-build-a-chart">Part 5: Style the map and build a chart</a>
+  <ul class="collapse">
+  <li><a href="#classify-tracts-by-park-access-rate" id="toc-classify-tracts-by-park-access-rate" class="nav-link" data-scroll-target="#classify-tracts-by-park-access-rate">Classify tracts by park access rate</a></li>
+  <li><a href="#build-a-bar-chart" id="toc-build-a-bar-chart" class="nav-link" data-scroll-target="#build-a-bar-chart">Build a bar chart</a></li>
+  </ul></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 2a: Measuring Distance and Access</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 2</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab02a_DistanceAccess_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab02a_DistanceAccess_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab02a_Projections_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab02a_Projections_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Philadelphia’s park system is a critical public health resource, but proximity depends on how distance is measured. This lab asks: what share of Philadelphia children live within a 0.5-mile walk of a public park, and how does that share vary by census-tract poverty quintile? ArcGIS Online handles the distance calculation correctly by default — but understanding how and why lets you trust your results and explain them to colleagues.</p>
+<hr>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Understand why ArcGIS Online displays all layers in Web Mercator and what that means for analysis</li>
+<li>Recognize that Analysis tools compute <strong>geodesic</strong> distances — correct regardless of display projection</li>
+<li>Inspect a layer’s source coordinate reference system (CRS) in item details</li>
+<li>Run <strong>Create Buffers</strong> at 0.5 miles and get a valid result without reprojecting data</li>
+<li>Use <strong>Summarize Within</strong> to aggregate child population inside park buffers by census tract</li>
+<li>Add a calculated field with <strong>Calculate</strong> (Arcade) to derive percent of children with park access</li>
+<li>Classify tracts by poverty quintile and apply a choropleth style</li>
+<li>Build and export a bar <strong>Chart</strong> of access by poverty quintile</li>
+</ul>
+<hr>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A <strong>saved and shared web map</strong> showing Philadelphia census tracts symbolized by park access rate, with 0.5-mile geodesic park buffers overlaid. Submit the item URL.</li>
+<li>An <strong>exported bar chart image</strong> of the percentage of children with park access for each poverty quintile (1 = lowest poverty, 5 = highest).</li>
+<li>A <strong>completed access table</strong> (the template in Part 4) with five quintile values filled in.</li>
+<li>A <strong>100-word written interpretation</strong> identifying which quintile has the highest and lowest access rates, what the pattern suggests about park equity in Philadelphia, and why geodesic analysis matters here. Label any AI-assisted portions.</li>
+</ol>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Your instructor will share the items below to your ArcGIS organizational account before the lab.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer name</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Philadelphia_Parks</code></td>
+<td>Parks and recreation properties (polygons)</td>
+<td>Instructor-shared item (OpenDataPhilly)</td>
+</tr>
+<tr class="even">
+<td><code>Philadelphia_Tracts_ACS</code></td>
+<td>Census tracts with <code>CHILD_POP</code>, <code>POV_RATE</code>, and <code>POV_QUINTILE</code></td>
+<td>Instructor-shared item (NHGIS / ACS 5-year)</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <code>CHILD_POP</code> is total population under age 18 (ACS B09001). <code>POV_QUINTILE</code> is pre-coded (1 = lowest poverty, 5 = highest). Confirm exact field names in the item’s <strong>Fields</strong> tab before beginning Part 3.</p>
+</blockquote>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Account:</strong> Sign in at <strong>arcgis.com</strong> using the course organizational account. A free public ArcGIS account cannot run the Analysis tools used here.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Running <strong>Create Buffers</strong> and <strong>Summarize Within</strong> consumes <strong>ArcGIS credits</strong>. Credit use for city-scale analyses is modest, but confirm with your instructor that credits are available and that your account has <strong>Publisher</strong> or <strong>Analysis</strong> privileges before running any tool.</p>
+</blockquote>
+<p><strong>Prerequisites:</strong> Lab 1 (adding data, basic navigation). No prior CRS knowledge needed.</p>
+<p><strong>Time estimate:</strong> 2 to 2.5 hours.</p>
+<hr>
+</section>
+<section id="part-1-open-map-viewer-and-add-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-open-map-viewer-and-add-the-data">Part 1: Open Map Viewer and add the data</h2>
+<ol type="1">
+<li>Sign in at <strong>arcgis.com</strong>. From the app launcher (grid icon, top right), choose <strong>Map Viewer</strong>.</li>
+<li>Click <strong>Save</strong>. Enter a title (<code>Lab02a_ParkAccess_[YourName]</code>), tags, and a summary. Click <strong>Save</strong>.</li>
+<li>In the <strong>Contents</strong> toolbar (left, dark background), click <strong>Layers</strong> → <strong>Add</strong> → <strong>Browse layers</strong>. Switch to the <strong>My Organization</strong> tab.</li>
+<li>Search for <code>Philadelphia_Parks</code>; click <strong>Add</strong>. Repeat for <code>Philadelphia_Tracts_ACS</code>.</li>
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<p><em>[Figure: Map Viewer showing Philadelphia parks and census tract boundaries over the default basemap]</em></p>
+<hr>
+</section>
+<section id="part-2-understand-how-arcgis-online-handles-coordinate-systems" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-understand-how-arcgis-online-handles-coordinate-systems">Part 2: Understand how ArcGIS Online handles coordinate systems</h2>
+<section id="inspect-the-source-crs" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-the-source-crs">Inspect the source CRS</h3>
+<ol type="1">
+<li>In the <strong>Layers</strong> pane, click the three-dot menu (<code>...</code>) next to <code>Philadelphia_Parks</code> and choose <strong>View item details</strong>. On the item page, scroll to the <strong>Information</strong> section and find <strong>Coordinate System</strong> — note whether it reads WGS 1984 (EPSG:4326) or Web Mercator (EPSG:3857).</li>
+<li>Return to the map tab and repeat for <code>Philadelphia_Tracts_ACS</code>.</li>
+</ol>
+<p><em>[Figure: Item details page showing the Coordinate System field for Philadelphia_Parks]</em></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ArcGIS Online <strong>displays</strong> all layers in <strong>Web Mercator (EPSG:3857)</strong> regardless of their stored CRS. Layers with different source projections still line up on the map automatically. More importantly, Analysis tools do not use the display projection — they compute distances and areas <strong>geodesically</strong>, directly on the WGS84 ellipsoid. A buffer set to “0.5 miles” in <strong>Create Buffers</strong> is a true 0.5-mile radius no matter what CRS the source data use. You do not need to reproject data before running analysis in ArcGIS Online.</p>
+<p><strong>Why this is a desktop problem:</strong> In ArcGIS Pro or QGIS, the default buffer measures in the layer’s stored coordinate units. WGS84 data passed to a planar buffer produces a result in degrees — roughly 35 miles per unit at Philadelphia’s latitude, not half a mile. The Pro version of this lab demonstrates that error deliberately. ArcGIS Online sidesteps it through geodesic computation, but knowing the risk makes you a more careful analyst in any platform.</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Zoom to the <code>Philadelphia_Parks</code> layer (three-dot menu → <strong>Zoom to layer</strong>) and confirm the parks appear at city scale.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-3-create-0.5-mile-geodesic-buffers-around-parks" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-create-0.5-mile-geodesic-buffers-around-parks">Part 3: Create 0.5-mile geodesic buffers around parks</h2>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Create Buffers</strong> consumes credits. Click <strong>Estimate Credits</strong> before running.</p>
+</blockquote>
+<ol type="1">
+<li>Click <strong>Analysis</strong> in the top toolbar to open the Analysis pane.</li>
+<li>Search for <strong>Create Buffers</strong> and open the tool. Set:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Input layer</strong></td>
+<td><code>Philadelphia_Parks</code></td>
+</tr>
+<tr class="even">
+<td><strong>Distance</strong></td>
+<td><code>0.5</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Distance unit</strong></td>
+<td><strong>Miles</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Buffer overlap</strong></td>
+<td><strong>Dissolve</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Output layer name</strong></td>
+<td><code>Parks_Buffer_HalfMile</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Click <strong>Estimate Credits</strong>, then <strong>Run</strong>. The buffer layer is added to the map when complete.</li>
+</ol>
+<p><em>[Figure: Map showing dissolved 0.5-mile park buffers covering portions of Philadelphia]</em></p>
+<ol start="4" type="1">
+<li>Visually check the result. The rings should extend a modest distance from park edges, not cover the entire city. If the buffer looks wrong, check your distance value and units before proceeding.</li>
+</ol>
+<hr>
+</section>
+<section id="part-4-summarize-child-population-within-the-buffer-by-tract" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-summarize-child-population-within-the-buffer-by-tract">Part 4: Summarize child population within the buffer by tract</h2>
+<section id="run-summarize-within" class="level3">
+<h3 class="anchored" data-anchor-id="run-summarize-within">Run Summarize Within</h3>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Summarize Within</strong> also consumes credits. Estimate before running.</p>
+</blockquote>
+<ol type="1">
+<li>In the <strong>Analysis</strong> pane, search for <strong>Summarize Within</strong> and open the tool. Set:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Summary area</strong></td>
+<td><code>Philadelphia_Tracts_ACS</code></td>
+</tr>
+<tr class="even">
+<td><strong>Layer to summarize</strong></td>
+<td><code>Parks_Buffer_HalfMile</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Output layer name</strong></td>
+<td><code>Tracts_BufferOverlap</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>Click <strong>Estimate Credits</strong>, then <strong>Run</strong>. The output contains one record per tract, including the area of the buffer that overlaps each tract.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> For tracts partially inside the buffer, <strong>Summarize Within</strong> uses areal interpolation: it apportions values by the share of tract area inside the buffer, assuming uniform population distribution within each tract. This is imperfect but standard practice at this scale.</p>
+</blockquote>
+</section>
+<section id="calculate-children-with-access-per-tract" class="level3">
+<h3 class="anchored" data-anchor-id="calculate-children-with-access-per-tract">Calculate children with access per tract</h3>
+<ol start="3" type="1">
+<li><p>Open the <strong>Table</strong> for <code>Tracts_BufferOverlap</code> (click the layer, then <strong>Table</strong> in the left toolbar). Note the field recording buffer overlap area (named something like <code>sum_Area_SquareMiles</code>) and confirm <code>CHILD_POP</code> carried over from the tract layer.</p></li>
+<li><p>Click <strong>Fields</strong> (right toolbar) → <strong>Add field</strong>. Name it <code>PCTBUF</code> (Double). Click <strong>Calculate</strong> and enter the Arcade expression (adjust field names to match what you see in the table):</p>
+<p><code>($feature.sum_Area_SquareMiles / AreaGeodetic($feature, 'squaremiles')) * 100</code></p>
+<p>This gives the percentage of each tract’s area inside the buffer.</p></li>
+<li><p>Add a second field <code>CHILD_ACCESS</code> (Double). <strong>Calculate</strong>:</p>
+<p><code>$feature.CHILD_POP * ($feature.PCTBUF / 100)</code></p>
+<p>This estimates children in each tract who fall within the park buffer zone.</p></li>
+<li><p>Click <strong>Save</strong> (map).</p></li>
+</ol>
+</section>
+<section id="summarize-by-poverty-quintile" class="level3">
+<h3 class="anchored" data-anchor-id="summarize-by-poverty-quintile">Summarize by poverty quintile</h3>
+<ol start="7" type="1">
+<li>Use <strong>Filter</strong> (right toolbar) to select <code>POV_QUINTILE = 1</code>. Read the sums of <code>CHILD_ACCESS</code> and <code>CHILD_POP</code> from the table status bar. Clear the filter, repeat for quintiles 2–5, and record below:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Poverty quintile</th>
+<th>Total children</th>
+<th>Children with park access</th>
+<th>% with park access</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 (lowest poverty)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5 (highest poverty)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Divide <code>CHILD_ACCESS</code> by <code>CHILD_POP</code> and multiply by 100 per quintile.</p>
+<hr>
+</section>
+</section>
+<section id="part-5-style-the-map-and-build-a-chart" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-style-the-map-and-build-a-chart">Part 5: Style the map and build a chart</h2>
+<section id="classify-tracts-by-park-access-rate" class="level3">
+<h3 class="anchored" data-anchor-id="classify-tracts-by-park-access-rate">Classify tracts by park access rate</h3>
+<ol type="1">
+<li>In the <strong>Layers</strong> pane, select <code>Tracts_BufferOverlap</code>. Open <strong>Styles</strong> (right toolbar).</li>
+<li>Under <strong>Choose attributes</strong>, select <code>PCTBUF</code>. Choose the drawing style <strong>Counts and Amounts (Color)</strong>. Click <strong>Style options</strong>.</li>
+<li>Set <strong>Classification type</strong> to <strong>Quantile</strong>, <strong>Classes</strong> to <strong>5</strong>. Choose a sequential color ramp (e.g., YlGn). Click <strong>Done</strong>.</li>
+<li>Turn on <code>Parks_Buffer_HalfMile</code> and style it as a semi-transparent outline so the choropleth shows through. Click <strong>Save</strong>.</li>
+</ol>
+<p><em>[Figure: Choropleth map of Philadelphia tracts by percent area inside park buffers, with buffer outlines overlaid]</em></p>
+</section>
+<section id="build-a-bar-chart" class="level3">
+<h3 class="anchored" data-anchor-id="build-a-bar-chart">Build a bar chart</h3>
+<ol start="5" type="1">
+<li>With <code>Tracts_BufferOverlap</code> selected, click <strong>Charts</strong> (left toolbar, bar-chart icon) → <strong>Add chart</strong> → <strong>Bar chart</strong>.</li>
+<li>Set <strong>Category (X axis)</strong> to <code>POV_QUINTILE</code>, <strong>Value (Y axis)</strong> to <code>CHILD_ACCESS</code> (Sum). Title the chart “Children with Park Access by Poverty Quintile.”</li>
+<li>Click the <strong>Export</strong> icon to save the chart as a PNG image.</li>
+</ol>
+<p><em>[Figure: Bar chart with poverty quintile on the X axis and sum of estimated children with park access on the Y axis]</em></p>
+<hr>
+</section>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<ol type="1">
+<li><strong>Web map link:</strong> Share your map with your organization and submit the item URL.</li>
+<li><strong>Exported chart image:</strong> The bar chart PNG from Part 5.</li>
+<li><strong>Completed access table:</strong> All five quintile rows filled in.</li>
+<li><strong>100-word written interpretation:</strong> Which quintile has the highest and lowest access rate? What does this suggest about park equity? Why does geodesic analysis matter for this result? Label any AI-assisted portions.</li>
+</ol>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p><strong>Bounded AI task — interrogating Web Mercator and geodesic analysis:</strong></p>
+<ol type="1">
+<li>In ArcGIS Online, open the item details page for <code>Philadelphia_Parks</code>. Copy the <strong>Coordinate System</strong> text (e.g., “GCS WGS 1984” or “Web Mercator Auxiliary Sphere”).</li>
+<li>Paste it into <strong>Claude</strong> (claude.ai) with this prompt: “This is the coordinate system for a dataset in ArcGIS Online: [paste text]. Is it geographic or projected? When ArcGIS Online runs a buffer using geodesic computation, does the source CRS matter? Explain in plain language why geodesic analysis gives correct distances even when the display projection is Web Mercator.”</li>
+<li>Read the response critically. Does the AI correctly distinguish display projection from analysis method? Compare its explanation to what you observed in Part 2.</li>
+<li>Optional: ask “If I ran a 0.5-mile buffer in ArcGIS Pro on WGS84 data using a planar buffer, what would go wrong?” Compare the response to the Part 2 warning.</li>
+</ol>
+<p><strong>Guardrails:</strong></p>
+<ul>
+<li>AI helps with <strong>explaining</strong> (what is Web Mercator? why does geodesic matter?) and <strong>critiquing</strong> (is my interpretation of the quintile chart reasonable?). It does not make analytic decisions.</li>
+<li>AI does <strong>not</strong> select the right tool or interpret equity findings — those require your judgment.</li>
+<li><strong>Never paste patient data, addresses, or identifiable health information into a public AI tool.</strong> The item detail text you copy here contains no personal information.</li>
+<li>Label any AI-assisted text in your submitted deliverables.</li>
+</ul>
+<hr>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<p>The desktop version of this lab (Lab 2a, ArcGIS Pro) covers the same question using a reproject-first approach. The table below maps the key steps.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Online step</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inspect CRS in item details page</td>
+<td>Layer Properties → Source → Spatial Reference</td>
+</tr>
+<tr class="even">
+<td>No reprojection needed; geodesic analysis</td>
+<td><strong>Project</strong> tool → EPSG:2272 (PA State Plane South, feet)</td>
+</tr>
+<tr class="odd">
+<td><strong>Create Buffers</strong> (0.5 miles, geodesic)</td>
+<td><strong>Buffer</strong> tool — input in feet (2,640 ft), planar mode</td>
+</tr>
+<tr class="even">
+<td><strong>Summarize Within</strong> for area overlap by tract</td>
+<td><strong>Intersect</strong> + <strong>Calculate Geometry</strong> + <strong>Field Calculator</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Filter</strong> by quintile + table</td>
+<td><strong>Summary Statistics</strong> with case field <code>POV_QUINTILE</code></td>
+</tr>
+<tr class="even">
+<td>Charts panel + Share web map</td>
+<td>Chart Properties + Export layout as PDF</td>
+</tr>
+</tbody>
+</table>
+<p>The core difference: ArcGIS Online’s geodesic engine removes the reproject-before-buffer requirement. The Pro lab demonstrates the degree-unit buffer error deliberately so students recognize it in desktop workflows. Both platforms produce the same correct result when used properly.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li><p>ArcGIS Online displays all layers in Web Mercator, yet the buffer you created is correctly 0.5 miles. How is that possible? What type of computation does ArcGIS Online use for distance analysis?</p></li>
+<li><p>A colleague runs the same park buffer in ArcGIS Pro using data stored in WGS84 (EPSG:4326) and sets the buffer distance to 0.5, accepting the default units. What is likely wrong with her result, and how would you fix it?</p></li>
+<li><p><strong>Summarize Within</strong> uses areal interpolation when tracts partially overlap the buffer. What assumption does this make about population distribution? When might the assumption be most misleading?</p></li>
+<li><p>Your bar chart shows that poverty quintile 5 tracts have lower estimated park access than quintile 1 tracts. List two alternative explanations for this pattern — other than parks being located in wealthier areas — and describe what additional data you would need to evaluate each.</p></li>
+<li><p>ArcGIS Online requires credits to run Analysis tools; ArcGIS Pro’s geoprocessing tools do not. What does this trade-off suggest about when you might choose one platform over the other for routine public health GIS work?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 3a: Joining and Querying Surveillance Data – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-add-the-tracts-layer-and-the-cdc-places-data" id="toc-part-1-add-the-tracts-layer-and-the-cdc-places-data" class="nav-link" data-scroll-target="#part-1-add-the-tracts-layer-and-the-cdc-places-data">Part 1: Add the tracts layer and the CDC PLACES data</a>
+  <ul class="collapse">
+  <li><a href="#add-the-philadelphia-tracts-layer" id="toc-add-the-philadelphia-tracts-layer" class="nav-link" data-scroll-target="#add-the-philadelphia-tracts-layer">Add the Philadelphia tracts layer</a></li>
+  <li><a href="#add-cdc-places-from-living-atlas" id="toc-add-cdc-places-from-living-atlas" class="nav-link" data-scroll-target="#add-cdc-places-from-living-atlas">Add CDC PLACES from Living Atlas</a></li>
+  </ul></li>
+  <li><a href="#part-2-join-the-csv-tables-to-the-tracts-layer" id="toc-part-2-join-the-csv-tables-to-the-tracts-layer" class="nav-link" data-scroll-target="#part-2-join-the-csv-tables-to-the-tracts-layer">Part 2: Join the CSV tables to the tracts layer</a>
+  <ul class="collapse">
+  <li><a href="#prepare-and-upload-the-csv-files" id="toc-prepare-and-upload-the-csv-files" class="nav-link" data-scroll-target="#prepare-and-upload-the-csv-files">Prepare and upload the CSV files</a></li>
+  <li><a href="#run-join-features-primary-care-access" id="toc-run-join-features-primary-care-access" class="nav-link" data-scroll-target="#run-join-features-primary-care-access">Run Join Features (primary-care access)</a></li>
+  <li><a href="#run-join-features-acs-demographics" id="toc-run-join-features-acs-demographics" class="nav-link" data-scroll-target="#run-join-features-acs-demographics">Run Join Features (ACS demographics)</a></li>
+  </ul></li>
+  <li><a href="#part-3-find-percentile-cutoffs" id="toc-part-3-find-percentile-cutoffs" class="nav-link" data-scroll-target="#part-3-find-percentile-cutoffs">Part 3: Find percentile cutoffs</a></li>
+  <li><a href="#part-4-filter-to-qualifying-tracts" id="toc-part-4-filter-to-qualifying-tracts" class="nav-link" data-scroll-target="#part-4-filter-to-qualifying-tracts">Part 4: Filter to qualifying tracts</a></li>
+  <li><a href="#part-5-calculate-a-composite-need-index" id="toc-part-5-calculate-a-composite-need-index" class="nav-link" data-scroll-target="#part-5-calculate-a-composite-need-index">Part 5: Calculate a composite need index</a></li>
+  <li><a href="#part-6-compare-group-statistics" id="toc-part-6-compare-group-statistics" class="nav-link" data-scroll-target="#part-6-compare-group-statistics">Part 6: Compare group statistics</a></li>
+  <li><a href="#part-7-style-and-share-the-web-map" id="toc-part-7-style-and-share-the-web-map" class="nav-link" data-scroll-target="#part-7-style-and-share-the-web-map">Part 7: Style and share the web map</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a>
+  <ul class="collapse">
+  <li><a href="#use-1-generating-the-arcade-calculate-expression" id="toc-use-1-generating-the-arcade-calculate-expression" class="nav-link" data-scroll-target="#use-1-generating-the-arcade-calculate-expression">Use 1 — Generating the Arcade Calculate expression</a></li>
+  <li><a href="#use-2-translating-a-pro-python-field-calculator-expression-to-arcade" id="toc-use-2-translating-a-pro-python-field-calculator-expression-to-arcade" class="nav-link" data-scroll-target="#use-2-translating-a-pro-python-field-calculator-expression-to-arcade">Use 2 — Translating a Pro Python Field Calculator expression to Arcade</a></li>
+  </ul></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3a: Joining and Querying Surveillance Data</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 3</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab03a_JoinsQueries_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab03a_JoinsQueries_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Diabetes burden and limited access to primary care often cluster together in the same neighborhoods, compounding health risk. This lab asks: which Philadelphia census tracts have <strong>both</strong> high adult diabetes prevalence <strong>and</strong> low primary-care provider access? And what is the racial/ethnic and economic composition of those tracts? Identifying the intersection of disease burden and access barriers is a core step in health-equity analysis and resource-allocation planning.</p>
+<hr>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Add a hosted feature layer (census tracts) and CSV tables to ArcGIS Online Map Viewer</li>
+<li>Use the <strong>Join Features</strong> analysis tool to join tabular data to a spatial layer on a shared key field (<code>GEOID</code>)</li>
+<li>Understand one-to-one join cardinality and the ZCTA ≠ ZIP Code trap</li>
+<li>Find percentile cutoffs using the <strong>Statistics</strong> panel and layer charts</li>
+<li>Build a two-condition Boolean query with <strong>Filter</strong></li>
+<li>Save a filtered subset as a new hosted feature layer</li>
+<li>Write an <strong>Arcade</strong> expression in <strong>Fields &gt; Calculate</strong> to build a composite need index</li>
+<li>Compare group statistics between qualifying and non-qualifying tracts</li>
+<li>Style and share a web map that communicates the results</li>
+</ul>
+<hr>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A <strong>saved and shared web map</strong> of Philadelphia census tracts with qualifying tracts (high diabetes prevalence AND low primary-care access) highlighted in a high-contrast color.</li>
+<li>A <strong>screenshot or exported image</strong> of the map view for submission, captured with the browser’s Print or the map’s Share function.</li>
+<li>A <strong>short written interpretation</strong> (approximately 100 words) describing the spatial pattern, the demographic and income composition of qualifying tracts, and at least one caveat about the data or analysis.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ArcGIS Online does not have a full print layout editor like ArcGIS Pro. To produce a shareable map product, use <strong>Save and Share</strong> on your web map, then capture the view with the browser’s print-to-PDF function, or publish it as an <strong>ArcGIS Instant App</strong> or <strong>StoryMap</strong> for a polished deliverable.</p>
+</blockquote>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer / table</th>
+<th>Description</th>
+<th>Source / access method</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>phl_tracts</code></td>
+<td>TIGER/Line 2022 census tracts, Philadelphia County (hosted feature layer)</td>
+<td>Instructor-shared item in your ArcGIS organizational account</td>
+</tr>
+<tr class="even">
+<td>CDC PLACES — Census Tracts</td>
+<td>Adult diabetes crude prevalence (%), tract-level modeled estimates</td>
+<td><strong>ArcGIS Living Atlas of the World</strong> (search “CDC PLACES”)</td>
+</tr>
+<tr class="odd">
+<td><code>primarycare_access_tract.csv</code></td>
+<td>Primary-care providers per 10,000 residents, tract-level</td>
+<td>Instructor-provided file (download from course portal)</td>
+</tr>
+<tr class="even">
+<td><code>acs_tract.csv</code></td>
+<td>Race/ethnicity proportions and median household income, 2018–2022 ACS 5-year</td>
+<td>Instructor-provided file (download from course portal)</td>
+</tr>
+</tbody>
+</table>
+<p>All tables join to <code>phl_tracts</code> on the field <code>GEOID</code> (the 11-digit tract FIPS code, e.g., <code>42101000100</code>).</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> CDC PLACES tract-level data is available directly from the <strong>ArcGIS Living Atlas</strong>. Using the Living Atlas layer avoids file-type issues and keeps the data current. You will still join the primary-care and ACS tables from instructor-provided CSV files.</p>
+</blockquote>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Account:</strong> Sign in to <strong>arcgis.com</strong> using your <strong>ArcGIS organizational account</strong> provided by the course. Do not use a free public ArcGIS account — free accounts cannot run Analysis tools.</p>
+<blockquote class="blockquote">
+<p><strong>Warning — credits and privileges:</strong> Running <strong>Analysis</strong> tools (including <strong>Join Features</strong>) consumes <strong>credits</strong> from your organizational account and requires <strong>publisher</strong> or <strong>analysis</strong> privileges. Each Join Features run on a large layer costs credits. Be deliberate: set all parameters before clicking <strong>Run</strong>, and do not run the same tool repeatedly. If you see a message saying you lack privileges, contact the instructor before proceeding.</p>
+</blockquote>
+<p><strong>Prerequisites:</strong> You should have completed Lab 1 (Map Viewer orientation) and Lab 2a (coordinate systems). You should be comfortable opening a web map, adding a layer, and using the <strong>Contents</strong> and <strong>Settings</strong> toolbars.</p>
+<p><strong>Time estimate:</strong> 2.5–3 hours.</p>
+<p><strong>Setup:</strong> Open a browser and go to <a href="https://www.arcgis.com">arcgis.com</a>. Sign in. From the app launcher (grid icon, top right), choose <strong>Map Viewer</strong>. Click <strong>New map</strong>. Immediately click <strong>Save</strong> (the floppy-disk icon in the left toolbar), give your map the title <code>Lab03a_YourLastName</code>, add the tag <code>IntroGIS</code>, and click <strong>Save</strong>.</p>
+<hr>
+</section>
+<section id="part-1-add-the-tracts-layer-and-the-cdc-places-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-add-the-tracts-layer-and-the-cdc-places-data">Part 1: Add the tracts layer and the CDC PLACES data</h2>
+<section id="add-the-philadelphia-tracts-layer" class="level3">
+<h3 class="anchored" data-anchor-id="add-the-philadelphia-tracts-layer">Add the Philadelphia tracts layer</h3>
+<ol type="1">
+<li><p>In the <strong>Contents</strong> toolbar (left side, dark background), click <strong>Layers</strong>, then click <strong>Add</strong> (the plus icon).</p></li>
+<li><p>Choose <strong>Browse layers</strong>. In the search bar at the top of the browse panel, switch the search scope to <strong>My Organization</strong>. Search for <code>phl_tracts</code>. Click the result shared by your instructor, then click <strong>Add</strong>. Philadelphia’s 384 census tracts appear as polygons on the map.</p>
+<p><em>[Figure: Map Viewer showing Philadelphia tract polygons with the Layers panel open on the left]</em></p></li>
+</ol>
+</section>
+<section id="add-cdc-places-from-living-atlas" class="level3">
+<h3 class="anchored" data-anchor-id="add-cdc-places-from-living-atlas">Add CDC PLACES from Living Atlas</h3>
+<ol start="3" type="1">
+<li><p>Click <strong>Add</strong> again and choose <strong>Browse layers</strong>. Switch the search scope to <strong>Living Atlas</strong>. Search for <code>CDC PLACES census tracts</code>. Select the layer titled <strong>PLACES: Local Data for Better Health, Census Tract Data</strong> (published by Esri/CDC). Click <strong>Add</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The Living Atlas layer covers the entire United States. ArcGIS Online will display it at the national extent initially. Zoom to Philadelphia — the tracts will draw with prevalence data already attached. You do not need to join this table; the attributes are already in the layer. You will use it to extract the <code>DIABETES_CrudePrev</code> field value when setting your filter cutoff in Part 3.</p>
+</blockquote></li>
+<li><p>In the <strong>Layers</strong> panel, click the three-dot menu next to the PLACES layer and choose <strong>Show table</strong>. Scroll to find the <code>DIABETES_CrudePrev</code> column (adult diabetes crude prevalence, %). Confirm the column is populated for Philadelphia tracts.</p></li>
+<li><p>Click <strong>Save</strong> to preserve the current map state.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-2-join-the-csv-tables-to-the-tracts-layer" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-join-the-csv-tables-to-the-tracts-layer">Part 2: Join the CSV tables to the tracts layer</h2>
+<p>You will use the <strong>Join Features</strong> analysis tool to attach the primary-care access and ACS demographic data to the <code>phl_tracts</code> layer. Each join is <strong>one-to-one</strong>: one CSV row matches one tract polygon on the shared <code>GEOID</code> field.</p>
+<blockquote class="blockquote">
+<p><strong>Warning — credits:</strong> Each <strong>Join Features</strong> run consumes credits. You will run this tool twice (once for the primary-care table, once for the ACS table). Confirm your parameters carefully before clicking <strong>Run</strong> each time.</p>
+</blockquote>
+<section id="prepare-and-upload-the-csv-files" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-and-upload-the-csv-files">Prepare and upload the CSV files</h3>
+<ol type="1">
+<li><p>Download <code>primarycare_access_tract.csv</code> and <code>acs_tract.csv</code> from the course portal to your computer.</p></li>
+<li><p>In Map Viewer, click <strong>Add → Add layer from file</strong>. Drag <code>primarycare_access_tract.csv</code> into the upload area or browse to it. ArcGIS Online will detect it as a table (no geometry). Click <strong>Next</strong>, confirm the field types, then click <strong>Add</strong>. The table appears in the <strong>Layers</strong> panel with a spreadsheet icon. Repeat for <code>acs_tract.csv</code>.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Before joining, open each table’s <strong>Table</strong> view (three-dot menu → <strong>Show table</strong>) and inspect the <code>GEOID</code> column. Confirm the values are 11-digit strings like <code>42101000100</code>, not truncated integers. If leading zeros are missing (you see values like <code>42101100</code> instead of <code>42101000100</code>), the join will silently fail to match most records. Alert your instructor — a corrected file will be provided.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Note — ZCTA ≠ ZIP Code ≠ Census Tract:</strong> All three tables in this lab join on the <strong>11-digit census tract GEOID</strong> (state FIPS + county FIPS + tract code). This is not the same as a ZIP code or a ZIP Code Tabulation Area (ZCTA). ZCTAs are Census Bureau constructs that approximate ZIP codes but do not align with tract boundaries and cannot be directly joined to tract data using a ZIP field. If you ever obtain a data table keyed to ZIP codes and need to join it to tracts, you need a ZCTA-to-tract crosswalk file — a direct join will produce misleading or empty results.</p>
+</blockquote></li>
+</ol>
+</section>
+<section id="run-join-features-primary-care-access" class="level3">
+<h3 class="anchored" data-anchor-id="run-join-features-primary-care-access">Run Join Features (primary-care access)</h3>
+<ol start="3" type="1">
+<li><p>In Map Viewer, click <strong>Analysis</strong> (the wrench icon in the left toolbar). Search for <code>Join Features</code> and open the tool.</p></li>
+<li><p>Set the following parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Target layer</td>
+<td><code>phl_tracts</code></td>
+</tr>
+<tr class="even">
+<td>Join layer</td>
+<td><code>primarycare_access_tract</code> (the uploaded table)</td>
+</tr>
+<tr class="odd">
+<td>Join type</td>
+<td><strong>One to one</strong></td>
+</tr>
+<tr class="even">
+<td>Join operation</td>
+<td><strong>Join one to one</strong></td>
+</tr>
+<tr class="odd">
+<td>Define join fields</td>
+<td>Target field: <code>GEOID</code> · Join field: <code>GEOID</code></td>
+</tr>
+<tr class="even">
+<td>Keep all target features</td>
+<td>Yes (checked)</td>
+</tr>
+<tr class="odd">
+<td>Output layer name</td>
+<td><code>phl_tracts_pcjoin</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> “Keep all target features” (the equivalent of a LEFT JOIN in SQL) ensures every tract polygon is retained even if no matching row exists in the CSV. Unmatched rows will show <code>&lt;Null&gt;</code> in the joined fields. If you see many nulls after the join, the <code>GEOID</code> fields did not match — check field type and leading zeros.</p>
+</blockquote></li>
+<li><p>Click <strong>Estimate credits</strong> to see the projected cost, then click <strong>Run</strong>. The output layer <code>phl_tracts_pcjoin</code> is added to your map and saved to <strong>My Content</strong>.</p>
+<p><em>[Figure: Join Features tool pane showing the parameter settings before running]</em></p></li>
+</ol>
+</section>
+<section id="run-join-features-acs-demographics" class="level3">
+<h3 class="anchored" data-anchor-id="run-join-features-acs-demographics">Run Join Features (ACS demographics)</h3>
+<ol start="6" type="1">
+<li><p>Open <strong>Join Features</strong> again. This time, set:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Target layer</td>
+<td><code>phl_tracts_pcjoin</code> (the output from Step 5)</td>
+</tr>
+<tr class="even">
+<td>Join layer</td>
+<td><code>acs_tract</code> (the uploaded table)</td>
+</tr>
+<tr class="odd">
+<td>Join type</td>
+<td><strong>One to one</strong></td>
+</tr>
+<tr class="even">
+<td>Define join fields</td>
+<td>Target field: <code>GEOID</code> · Join field: <code>GEOID</code></td>
+</tr>
+<tr class="odd">
+<td>Keep all target features</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Output layer name</td>
+<td><code>phl_tracts_joined</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. The final joined layer <code>phl_tracts_joined</code> now contains original tract geometry, PLACES diabetes data (from Part 1), primary-care access (<code>pc_per_10k</code>), and ACS race/ethnicity and income fields (<code>pct_white_nh</code>, <code>pct_black_nh</code>, <code>pct_hispanic</code>, <code>pct_asian_nh</code>, <code>med_hh_income</code>).</p></li>
+<li><p>Open the table of <code>phl_tracts_joined</code> (three-dot menu → <strong>Show table</strong>) and scroll across all columns to confirm all fields are present. Close the table. Click <strong>Save</strong>.</p></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-3-find-percentile-cutoffs" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-find-percentile-cutoffs">Part 3: Find percentile cutoffs</h2>
+<p>Before writing the filter query, you need to know the 75th-percentile diabetes prevalence value and the 25th-percentile primary-care access value for Philadelphia tracts.</p>
+<ol type="1">
+<li><p>In the <strong>Layers</strong> panel, click <code>phl_tracts_joined</code> to make it active.</p></li>
+<li><p>Open the <strong>Statistics</strong> panel: click the three-dot menu next to the layer → <strong>View table</strong> → click the column header for <code>DIABETES_CrudePrev</code> → select <strong>Statistics</strong>. A summary panel appears showing minimum, maximum, mean, and a histogram. Read the approximate 75th percentile from the histogram or from the quantile display.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ArcGIS Online’s built-in statistics panel shows summary statistics but does not directly display a named “75th percentile” value. Use this approach: open the <strong>Charts</strong> option (three-dot menu → <strong>Create chart → Histogram</strong>), set the field to <code>DIABETES_CrudePrev</code>, and set the number of bins to 4 (quartile breaks). The break between the third and fourth bin approximates the 75th percentile. Alternatively, your instructor may provide the cutoff values directly.</p>
+</blockquote></li>
+<li><p>Repeat for <code>pc_per_10k</code> to find the 25th-percentile primary-care access value (the break between the first and second bin in a 4-bin histogram).</p></li>
+<li><p>Record the values here — you will need them in Part 4:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Statistic</th>
+<th>Value (fill in)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Diabetes prevalence, 75th percentile</td>
+<td>_______ %</td>
+</tr>
+<tr class="even">
+<td>Primary-care access, 25th percentile</td>
+<td>_______ per 10,000</td>
+</tr>
+</tbody>
+</table>
+<p><em>[Figure: Histogram chart for DIABETES_CrudePrev showing approximate quartile breaks]</em></p></li>
+</ol>
+<hr>
+</section>
+<section id="part-4-filter-to-qualifying-tracts" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-filter-to-qualifying-tracts">Part 4: Filter to qualifying tracts</h2>
+<p><strong>Filter</strong> in ArcGIS Online is the web equivalent of Select by Attributes in ArcGIS Pro. It builds a Boolean expression that shows only the rows meeting your conditions.</p>
+<ol type="1">
+<li><p>With <code>phl_tracts_joined</code> active, click <strong>Filter</strong> in the <strong>Settings</strong> toolbar (right side, light background).</p></li>
+<li><p>Click <strong>Add expression</strong>. Build the first clause:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Field</td>
+<td><code>DIABETES_CrudePrev</code></td>
+</tr>
+<tr class="even">
+<td>Operator</td>
+<td><code>is greater than</code></td>
+</tr>
+<tr class="odd">
+<td>Value</td>
+<td><em>(enter your 75th-percentile value from Part 3)</em></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Add expression</strong> again. The operator joining the two expressions defaults to <strong>And</strong> — leave it as <strong>And</strong>. Build the second clause:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Field</td>
+<td><code>pc_per_10k</code></td>
+</tr>
+<tr class="even">
+<td>Operator</td>
+<td><code>is less than</code></td>
+</tr>
+<tr class="odd">
+<td>Value</td>
+<td><em>(enter your 25th-percentile value from Part 3)</em></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Save</strong>. The map now displays only the tracts meeting both conditions — expect roughly 15–30 tracts. All other tracts are hidden (not deleted; the filter is non-destructive).</p>
+<p><em>[Figure: Map showing a subset of Philadelphia tracts passing the two-condition filter, highlighted against a muted basemap]</em></p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> This Boolean AND query identifies tracts simultaneously above the 75th percentile for diabetes AND below the 25th percentile for primary-care access. Even so, this is an <strong>ecological analysis</strong>: the result describes census tracts, not individuals. A tract above the 75th percentile for diabetes does not mean every resident has diabetes, and a resident of a low-access tract may still reach a provider in a neighboring tract. Interpreting tract-level results as descriptions of individuals is the <strong>ecological fallacy</strong>. Additionally, because tract boundaries are administrative artifacts, the choice of boundary affects which tracts qualify — a phenomenon called the <strong>Modifiable Areal Unit Problem (MAUP)</strong>. Use these maps to generate hypotheses and prioritize outreach, not to draw firm causal conclusions. CDC PLACES estimates are modeled (using multilevel regression and post-stratification), not directly measured, and carry uncertainty — particularly for small tracts.</p>
+</blockquote></li>
+<li><p>Click the three-dot menu on <code>phl_tracts_joined</code> → <strong>Save as layer</strong>. Name it <code>high_need_tracts</code>. This creates a permanent hosted feature layer containing only the qualifying tracts. The filter on <code>phl_tracts_joined</code> can now be cleared (click <strong>Filter → Remove filter</strong>) to restore all tracts for comparison.</p></li>
+</ol>
+<hr>
+</section>
+<section id="part-5-calculate-a-composite-need-index" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-calculate-a-composite-need-index">Part 5: Calculate a composite need index</h2>
+<p>Add a numeric composite index that averages diabetes need and primary-care access need into a single score for each qualifying tract.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The instructor has pre-calculated percentile-rank columns <code>diab_pctl</code> and <code>pcaccess_inv_pctl</code> in the joined layer. Both range from 0 to 100, and higher values indicate greater need. If these columns are not present, ask your instructor for updated data.</p>
+</blockquote>
+<ol type="1">
+<li><p>In the <strong>Layers</strong> panel, click <code>high_need_tracts</code> to make it active.</p></li>
+<li><p>In the <strong>Settings</strong> toolbar (right side), click <strong>Fields</strong>. The field list for the layer opens.</p></li>
+<li><p>Click <strong>Add field</strong> (the plus icon). Set:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Field name</td>
+<td><code>need_index</code></td>
+</tr>
+<tr class="even">
+<td>Display name</td>
+<td><code>Need Index</code></td>
+</tr>
+<tr class="odd">
+<td>Type</td>
+<td><code>Double</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>Create</strong>. The new field appears at the bottom of the field list with all values <code>&lt;Null&gt;</code>.</p></li>
+<li><p>Click the three-dot menu next to <code>need_index</code> and choose <strong>Calculate</strong>. An Arcade expression editor opens.</p></li>
+<li><p>In the expression box, type the following <strong>Arcade</strong> expression exactly:</p>
+<pre><code>($feature["diab_pctl"] + $feature["pcaccess_inv_pctl"]) / 2</code></pre>
+<p>Click <strong>OK</strong>. ArcGIS Online runs the calculation for all records in the layer. Scroll through the table to confirm <code>need_index</code> values are populated between 0 and 100 with no nulls.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ArcGIS Online field calculations use <strong>Arcade</strong>, not Python. In Arcade, field values are accessed with <code>$feature["field_name"]</code> (bracket notation) or <code>$feature.field_name</code> (dot notation). Standard arithmetic operators apply. This is different from ArcGIS Pro’s Field Calculator Python mode, where field names are wrapped in exclamation marks (e.g., <code>!diab_pctl!</code>).</p>
+</blockquote></li>
+<li><p>Click <strong>Save</strong> to save the field changes.</p></li>
+</ol>
+<hr>
+</section>
+<section id="part-6-compare-group-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-compare-group-statistics">Part 6: Compare group statistics</h2>
+<p>Use the <strong>Statistics</strong> and <strong>Charts</strong> panels to compare the demographic composition and median income of qualifying tracts against the Philadelphia average.</p>
+<ol type="1">
+<li><p>With <code>phl_tracts_joined</code> active (filter removed, all 384 tracts visible), open the <strong>Table</strong> (three-dot menu → <strong>Show table</strong>). Note the citywide mean of <code>med_hh_income</code> by clicking the column header → <strong>Statistics</strong>.</p></li>
+<li><p>Now open the table for <code>high_need_tracts</code>. Click the <code>med_hh_income</code> column header → <strong>Statistics</strong>. Compare the mean for qualifying tracts to the citywide mean recorded in Step 1.</p></li>
+<li><p>Repeat Steps 1–2 for <code>pct_black_nh</code>, <code>pct_hispanic</code>, and <code>pct_white_nh</code> to compare racial/ethnic composition.</p></li>
+<li><p>Record your findings in the table below for your written interpretation:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Measure</th>
+<th>All Philadelphia tracts (mean)</th>
+<th>Qualifying tracts (mean)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Median household income</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>% Non-Hispanic Black</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>% Hispanic</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>% Non-Hispanic White</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><em>[Figure: Statistics panel for a demographic field showing the comparison between the full layer and the filtered qualifying layer]</em></p></li>
+</ol>
+<hr>
+</section>
+<section id="part-7-style-and-share-the-web-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-7-style-and-share-the-web-map">Part 7: Style and share the web map</h2>
+<ol type="1">
+<li><p>In the <strong>Layers</strong> panel, ensure both <code>phl_tracts_joined</code> (all tracts) and <code>high_need_tracts</code> (qualifying tracts) are visible and <code>high_need_tracts</code> is listed above <code>phl_tracts_joined</code>.</p></li>
+<li><p>Click <code>phl_tracts_joined</code> to make it active. In the <strong>Settings</strong> toolbar, click <strong>Styles</strong>. Under <strong>Choose attributes</strong>, select <code>qual_group</code> (or, if that field is not present, select <strong>Location (single symbol)</strong>). Set the fill to a neutral light gray (e.g., <code>#D3D3D3</code>) and the outline to <code>No color</code>. Click <strong>Done</strong>.</p></li>
+<li><p>Click <code>high_need_tracts</code> to make it active. Click <strong>Styles</strong>. Choose <strong>Location (single symbol)</strong> — since every tract in this layer qualifies, a single high-contrast color is appropriate. Set the fill to a strong orange or red (e.g., <code>#E05B0E</code>). Set the outline to a slightly darker shade of the same color at 1 pt.&nbsp;Click <strong>Done</strong>.</p></li>
+<li><p>In the left toolbar, click <strong>Labels</strong> and add a label on <code>high_need_tracts</code> using the tract <code>GEOID</code> or <code>NAME</code> field, font size 8, white text. Click <strong>Done</strong>.</p></li>
+<li><p>Click <strong>Save</strong>.</p></li>
+<li><p>To share the map: in the left toolbar, click <strong>Share</strong> (the person-with-arrow icon). Set sharing to <strong>Your organization</strong> (or <strong>Everyone</strong> if instructed). Copy the item URL — this is your shareable deliverable.</p>
+<p><em>[Figure: Final web map showing all Philadelphia tracts in light gray with qualifying high-need tracts highlighted in orange]</em></p></li>
+</ol>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Submit the following on the course portal:</p>
+<ol type="1">
+<li><strong>Web map URL:</strong> the shareable link to your saved map (<code>Lab03a_YourLastName</code>) set to organizational or public sharing.</li>
+<li><strong>Exported map image or PDF:</strong> use your browser’s Print → Save as PDF while the map is displayed, or use the <strong>Print</strong> widget if your instructor has added one to the map. Ensure qualifying tracts are clearly visible.</li>
+<li><strong>Filled comparison table</strong> from Part 6 (median income, racial/ethnic proportions for all tracts vs.&nbsp;qualifying tracts).</li>
+<li><strong>Written interpretation</strong> (approximately 100 words): Where are the qualifying tracts located in Philadelphia? What racial/ethnic groups and income levels are over-represented? What caution would you add if presenting this map to a community partner? Include at least one reference to MAUP or ecological fallacy.</li>
+<li><strong>Label your deliverables</strong> if you used AI assistance in any step (see below).</li>
+</ol>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p>Two bounded uses of AI are appropriate here.</p>
+<section id="use-1-generating-the-arcade-calculate-expression" class="level3">
+<h3 class="anchored" data-anchor-id="use-1-generating-the-arcade-calculate-expression">Use 1 — Generating the Arcade Calculate expression</h3>
+<p>If you are unsure how to write the Arcade expression for <code>need_index</code>, provide Claude with your field names and the desired math:</p>
+<blockquote class="blockquote">
+<p>“I am using ArcGIS Online Fields &gt; Calculate with Arcade. I have two fields in a hosted feature layer: <code>diab_pctl</code> (diabetes percentile rank, 0–100) and <code>pcaccess_inv_pctl</code> (inverted primary-care access percentile rank, 0–100). Write an Arcade expression that averages them into a new field called <code>need_index</code>.”</p>
+</blockquote>
+<p>Claude should return something equivalent to:</p>
+<pre><code>($feature["diab_pctl"] + $feature["pcaccess_inv_pctl"]) / 2</code></pre>
+<p>Paste this into the <strong>Calculate</strong> expression editor. Verify that all <code>need_index</code> values fall between 0 and 100 with no nulls before moving on.</p>
+</section>
+<section id="use-2-translating-a-pro-python-field-calculator-expression-to-arcade" class="level3">
+<h3 class="anchored" data-anchor-id="use-2-translating-a-pro-python-field-calculator-expression-to-arcade">Use 2 — Translating a Pro Python Field Calculator expression to Arcade</h3>
+<p>If you have a Python expression from the ArcGIS Pro version of this lab and need the Arcade equivalent, ask Claude:</p>
+<blockquote class="blockquote">
+<p>“Translate this ArcGIS Pro Field Calculator Python expression to an ArcGIS Online Arcade expression: <code>(!diab_pctl! + !pcaccess_inv_pctl!) / 2</code>. The layer has the same two field names.”</p>
+</blockquote>
+<p>Claude should return:</p>
+<pre><code>($feature["diab_pctl"] + $feature["pcaccess_inv_pctl"]) / 2</code></pre>
+<p>The key difference: ArcGIS Pro Python mode uses <code>!field_name!</code> (exclamation marks); Arcade uses <code>$feature["field_name"]</code> (bracket notation referencing the current feature object).</p>
+<blockquote class="blockquote">
+<p><strong>AI guardrail:</strong> AI tools are useful for scaffolding expressions, explaining error messages, and critiquing your map design. They do <strong>not</strong> make analytic decisions for you — the choice of the 75th and 25th percentile cutoffs, the selection of variables, and the interpretation of results are yours. Never paste patient identifiers, addresses, or any individually identifiable health data into a public AI tool. AI-generated outputs should be verified against the data before you trust them. If you use AI assistance, note it explicitly on your submitted deliverables (e.g., “Arcade expression generated with Claude AI, verified by student”).</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<p>The ArcGIS Online workflow in this lab parallels the Pro desktop workflow, but uses different tools and terminology.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Online step</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Add layer from file</strong> (CSV)</td>
+<td><strong>Add Data</strong> → CSV; appears as standalone table in Contents</td>
+</tr>
+<tr class="even">
+<td><strong>Join Features</strong> (Analysis tool)</td>
+<td><strong>Add Join</strong> (right-click layer → Joins and Relates)</td>
+</tr>
+<tr class="odd">
+<td><strong>Filter</strong> (Settings toolbar)</td>
+<td><strong>Select by Attributes</strong> (Map tab → Selection group)</td>
+</tr>
+<tr class="even">
+<td><strong>Save as layer</strong> from filter</td>
+<td><strong>Export Features</strong> → new feature class</td>
+</tr>
+<tr class="odd">
+<td><strong>Fields &gt; Calculate</strong> (Arcade)</td>
+<td><strong>Field Calculator</strong> (Python 3 or Arcade mode)</td>
+</tr>
+<tr class="even">
+<td><strong>Statistics</strong> panel / Charts</td>
+<td><strong>Summary Statistics</strong> geoprocessing tool</td>
+</tr>
+<tr class="odd">
+<td><strong>Share</strong> web map + browser Print</td>
+<td><strong>Export Layout</strong> → PDF (Insert → New Layout)</td>
+</tr>
+</tbody>
+</table>
+<p>One key difference: ArcGIS Online joins via <strong>Join Features</strong> create a <strong>new output layer</strong> (a permanent hosted feature layer in My Content). ArcGIS Pro <strong>Add Join</strong> creates a <strong>temporary in-memory join</strong> that must be made permanent by exporting. The credit cost and output permanence should inform which platform you choose for a given workflow.</p>
+<p>The matching ArcGIS Pro lab is <strong>Lab 3a (ArcGIS Pro): Joining and Querying Public Health Surveillance Data</strong>, which covers the same analysis using desktop geoprocessing tools.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li><p>In <strong>Join Features</strong>, you set the join type to <strong>One to one</strong>. What would happen if the primary-care CSV contained two rows for the same tract GEOID — for example, if a tract had data from two different provider databases? How would ArcGIS Online handle the duplicate, and what should you do before running the join?</p></li>
+<li><p>After running <strong>Join Features</strong>, you open the table of the output layer and find that 80 of 384 tracts have <code>&lt;Null&gt;</code> in the <code>pc_per_10k</code> column. List two possible causes and explain how you would diagnose each.</p></li>
+<li><p>The <strong>Filter</strong> tool in ArcGIS Online hides non-matching features but does not delete them. How is this different from <strong>Save as layer</strong> from the filter result? Describe a situation in a public health workflow where you would want one behavior but not the other.</p></li>
+<li><p>You have applied the diabetes AND primary-care filter and identified 22 qualifying tracts. A colleague proposes presenting this map at a community meeting as evidence that those tracts “have a diabetes problem.” Using the concepts of MAUP and the ecological fallacy, explain two cautions you would raise before that presentation.</p></li>
+<li><p>The CDC PLACES layer is available directly from the ArcGIS Living Atlas, while the primary-care and ACS tables require a CSV upload. What are two practical advantages of using a Living Atlas layer over a locally uploaded file in an organizational GIS workflow?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 1: Introduction to ArcGIS Online – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-sign-in-and-create-a-web-map" id="toc-part-1-sign-in-and-create-a-web-map" class="nav-link" data-scroll-target="#part-1-sign-in-and-create-a-web-map">Part 1: Sign in and create a web map</a></li>
+  <li><a href="#part-2-symbology-for-map-view-1-flood-and-green-infrastructure" id="toc-part-2-symbology-for-map-view-1-flood-and-green-infrastructure" class="nav-link" data-scroll-target="#part-2-symbology-for-map-view-1-flood-and-green-infrastructure">Part 2: Symbology for Map View 1 — flood and green infrastructure</a></li>
+  <li><a href="#part-3-heat-vulnerability-choropleth-map-view-2" id="toc-part-3-heat-vulnerability-choropleth-map-view-2" class="nav-link" data-scroll-target="#part-3-heat-vulnerability-choropleth-map-view-2">Part 3: Heat vulnerability choropleth — Map View 2</a></li>
+  <li><a href="#part-4-cooling-resources-map-view-3" id="toc-part-4-cooling-resources-map-view-3" class="nav-link" data-scroll-target="#part-4-cooling-resources-map-view-3">Part 4: Cooling resources — Map View 3</a></li>
+  <li><a href="#part-5-measure-distance" id="toc-part-5-measure-distance" class="nav-link" data-scroll-target="#part-5-measure-distance">Part 5: Measure distance</a></li>
+  <li><a href="#part-6-save-and-share" id="toc-part-6-save-and-share" class="nav-link" data-scroll-target="#part-6-save-and-share">Part 6: Save and share</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a>
+  <ul class="collapse">
+  <li><a href="#task-a-explain-the-concept" id="toc-task-a-explain-the-concept" class="nav-link" data-scroll-target="#task-a-explain-the-concept">Task A — Explain the concept</a></li>
+  <li><a href="#task-b-compare-classification-schemes" id="toc-task-b-compare-classification-schemes" class="nav-link" data-scroll-target="#task-b-compare-classification-schemes">Task B — Compare classification schemes</a></li>
+  </ul></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 1: Introduction to ArcGIS Online</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 1</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab01_Intro_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab01_Intro_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab01_Intro_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab01_Intro_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Where are the most heat-vulnerable neighborhoods in Philadelphia, and how do cooling resources and flood hazards align with them? Extreme heat is the leading weather-related cause of death in the United States, and urban heat exposure is unequally distributed. This lab uses Philadelphia data to begin exploring that spatial inequality — asking whether the neighborhoods most vulnerable to heat are also best served by cooling infrastructure such as pools and spraygrounds.</p>
+<hr>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Sign in and navigate the <strong>Map Viewer</strong> interface (dark left Contents toolbar; light right Settings toolbar)</li>
+<li>Create, save, and share a web map</li>
+<li>Add layers from instructor-shared org items, from a file upload (zipped shapefile), and from the <strong>Living Atlas</strong></li>
+<li>Arrange layers and switch basemaps using the <strong>Basemap</strong> gallery</li>
+<li>Apply three drawing styles: <strong>Location (single symbol)</strong>, <strong>Counts and Amounts (Color)</strong>, and <strong>Types (Unique symbols)</strong></li>
+<li>Classify a health index with <strong>Equal Interval</strong> and <strong>Quantile</strong> and evaluate the trade-offs</li>
+<li>Configure pop-ups and edit the legend</li>
+<li>Create bookmarks to save named views and use the <strong>Measure</strong> tool</li>
+<li>Share a web map and understand Map Viewer’s layout limitations</li>
+</ul>
+<hr>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<p>One saved web map with bookmarks serving as saved views, containing three layer configurations:</p>
+<ol type="1">
+<li><strong>View 1 — Flood and green infrastructure:</strong> GSI points over FEMA 100-year flood zones with census tract outlines.</li>
+<li><strong>View 2 — Heat vulnerability choropleth:</strong> Tract-level HVI styled with graduated colors; bookmark zoomed to a high-vulnerability cluster.</li>
+<li><strong>View 3 — Cooling resources:</strong> HVI choropleth with pools and spraygrounds as point symbols.</li>
+</ol>
+<p>You will submit the shared web map URL and one screenshot per view. ArcGIS Online’s Map Viewer has no full print layout — no drag-and-drop north arrow, scale bar, or inset map. For polished layouts, the platform offers <strong>Instant Apps</strong>, <strong>ArcGIS Dashboards</strong>, and <strong>ArcGIS StoryMaps</strong>; a later lab covers those. Screenshots and the shared link are sufficient here.</p>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Description</th>
+<th>How to add</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Philadelphia Census Tracts</code></td>
+<td>2020 tract boundaries, Philadelphia County</td>
+<td>Browse layers → My Organization (instructor-shared)</td>
+</tr>
+<tr class="even">
+<td><code>GSI Public Projects</code></td>
+<td>Philadelphia Water Dept. public green stormwater infrastructure</td>
+<td>Browse layers → My Organization (instructor-shared)</td>
+</tr>
+<tr class="odd">
+<td><code>100-Year Flood Zones</code></td>
+<td>FEMA 1%-annual-chance flood zone polygons</td>
+<td>Browse layers → My Organization (instructor-shared)</td>
+</tr>
+<tr class="even">
+<td><code>Heat Vulnerability by Tract</code></td>
+<td>Heat vulnerability index (<code>HVI</code>) by census tract</td>
+<td>Browse layers → My Organization (instructor-shared)</td>
+</tr>
+<tr class="odd">
+<td><code>PPR Spraygrounds</code></td>
+<td>Philadelphia Parks &amp; Recreation sprayground locations</td>
+<td>Instructor-shared item or file upload (zipped .shp)</td>
+</tr>
+<tr class="even">
+<td><code>PPR Swimming Pools</code></td>
+<td>Philadelphia Parks &amp; Recreation swimming pool locations</td>
+<td>Instructor-shared item or file upload (zipped .shp)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<ul>
+<li><strong>Account:</strong> Use the <strong>ArcGIS organizational account</strong> your instructor provided. A free public account can create web maps but cannot run Analysis tools.</li>
+<li><strong>Credits:</strong> This lab does not run Analysis tools, so credit use is minimal. File hosting consumes a small number of credits. Later labs use tools like <strong>Enrich Layer</strong> and <strong>Create Drive-Time Areas</strong> that consume credits quickly — check with your instructor before running any unfamiliar Analysis tool.</li>
+<li><strong>Browser:</strong> Chrome, Firefox, Edge, or Safari. Allow pop-ups for arcgis.com if prompted.</li>
+<li><strong>Estimated time:</strong> 2–2.5 hours.</li>
+</ul>
+<hr>
+</section>
+<section id="part-1-sign-in-and-create-a-web-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-sign-in-and-create-a-web-map">Part 1: Sign in and create a web map</h2>
+<ol type="1">
+<li>Go to <a href="https://www.arcgis.com">arcgis.com</a> and click <strong>Sign In</strong>. Enter your organizational credentials (or the SSO URL your instructor provides).</li>
+<li>From the <strong>app launcher</strong> (grid icon, upper left) choose <strong>Map Viewer</strong>.</li>
+<li>Click <strong>Save</strong> (disk icon) → <strong>Save map</strong>. Enter:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title</td>
+<td><code>Lab01_Philadelphia_YourName</code></td>
+</tr>
+<tr class="even">
+<td>Tags</td>
+<td><code>Lab01</code>, <code>Philadelphia</code>, <code>heat vulnerability</code></td>
+</tr>
+<tr class="odd">
+<td>Summary</td>
+<td><code>Lab 1 — Philadelphia heat, flood, and cooling resources.</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li>Click <strong>Save</strong>. Save frequently — Map Viewer has no auto-save.</li>
+</ol>
+<p><em>[Figure: Map Viewer with the dark left (Contents) toolbar and light right (Settings) toolbar; map title visible at top]</em></p>
+<ol start="5" type="1">
+<li>In the left toolbar, click <strong>Layers</strong> → <strong>Add</strong> (plus icon) → <strong>Browse layers</strong>. Change the source to <strong>My Organization</strong>. Add <code>Philadelphia Census Tracts</code>, <code>GSI Public Projects</code>, and <code>100-Year Flood Zones</code>.</li>
+<li>Drag layers into this order (top to bottom): <code>GSI Public Projects</code>, <code>100-Year Flood Zones</code>, <code>Philadelphia Census Tracts</code>.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Layer order controls drawing order. Keep points and lines above polygon layers so they remain visible.</p>
+</blockquote>
+<ol start="7" type="1">
+<li>Click <strong>Basemap</strong> in the left toolbar. Select <strong>Light Gray Canvas</strong> to reduce visual noise.</li>
+<li>Click <strong>Bookmarks</strong> → <strong>Add bookmark</strong> → name it <code>Philadelphia full extent</code> → <strong>Add</strong>.</li>
+</ol>
+<hr>
+</section>
+<section id="part-2-symbology-for-map-view-1-flood-and-green-infrastructure" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-symbology-for-map-view-1-flood-and-green-infrastructure">Part 2: Symbology for Map View 1 — flood and green infrastructure</h2>
+<ol type="1">
+<li>Click <code>Philadelphia Census Tracts</code> in the Layers panel. In the right toolbar, click <strong>Styles</strong> → <strong>Style options</strong> (next to <strong>Location (single symbol)</strong>). Set fill to <strong>No color</strong>, outline to medium gray, <code>1 px</code>. Click <strong>Done</strong> twice.</li>
+<li>Click <code>100-Year Flood Zones</code>. Open <strong>Styles</strong> → <strong>Style options</strong>. Set fill to light blue at ~60% opacity, outline to the same blue, <code>1 px</code>. Click <strong>Done</strong> twice.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> FEMA 100-year flood zones mark a 1% annual flood probability. Repeated flooding damages housing and infrastructure and concentrates health consequences — disproportionately in lower-income communities.</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Click <code>GSI Public Projects</code>. Open <strong>Styles</strong> → <strong>Style options</strong>. Choose a dark green circle, <code>8 px</code>. Click <strong>Done</strong> twice.</li>
+<li>With <code>GSI Public Projects</code> selected, click <strong>Pop-ups</strong> in the right toolbar. Verify a pop-up opens with useful field information when you click a point on the map.</li>
+</ol>
+<p><em>[Figure: Map showing gray tract outlines, light blue flood zones, and dark green GSI points on Light Gray Canvas]</em></p>
+<hr>
+</section>
+<section id="part-3-heat-vulnerability-choropleth-map-view-2" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-heat-vulnerability-choropleth-map-view-2">Part 3: Heat vulnerability choropleth — Map View 2</h2>
+<ol type="1">
+<li>Click <strong>Add</strong> → <strong>Browse layers</strong> → <strong>My Organization</strong>. Add <code>Heat Vulnerability by Tract</code>. Drag it to the top of the Layers panel.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> The <code>HVI</code> field combines land surface temperature, impervious cover, tree canopy, poverty, and age to flag tracts with compounded heat risk. All vulnerability indices embed analytic assumptions — no index is the definitive picture.</p>
+</blockquote>
+<ol start="2" type="1">
+<li>Click <code>Heat Vulnerability by Tract</code>. In the right toolbar click <strong>Styles</strong>. Under <strong>Pick an attribute</strong>, select <code>HVI</code>. Click <strong>Counts and Amounts (Color)</strong> → <strong>Style options</strong>. Set:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Classification method</td>
+<td>Quantile</td>
+</tr>
+<tr class="even">
+<td>Number of classes</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Color ramp</td>
+<td>Sequential yellow-to-red (light = low; dark red = high)</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Edit the legend labels if needed. Click <strong>Done</strong> twice.</li>
+</ol>
+<p><em>[Figure: HVI quantile choropleth, yellow-to-red, 5 classes]</em></p>
+<ol start="4" type="1">
+<li>Return to <strong>Styles</strong> → <strong>Style options</strong>. Switch method to <strong>Equal interval</strong>, keeping 5 classes. Observe how class breaks shift and how many tracts appear in the highest class. Switch back to <strong>Quantile</strong> when done.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Quantile places equal numbers of tracts in each class — useful for showing variation but can exaggerate moderate differences. Equal interval uses equal-width bins, more honest about magnitude but often leaves most tracts in the lowest class for a skewed index. This is an analytic decision, not a software default.</p>
+</blockquote>
+<ol start="5" type="1">
+<li>Pan and zoom to a cluster of dark-red tracts (North or West Philadelphia). Click <strong>Bookmarks</strong> → <strong>Add bookmark</strong> → name it <code>High-vulnerability cluster</code>. Click <strong>Add</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Map Viewer does not support inset map frames. Use bookmarks instead: <code>Philadelphia full extent</code> and <code>High-vulnerability cluster</code> let viewers navigate between the city overview and the zoomed cluster — the web equivalent of a Pro layout inset.</p>
+</blockquote>
+<ol start="6" type="1">
+<li>Click <strong>Save</strong>.</li>
+</ol>
+<hr>
+</section>
+<section id="part-4-cooling-resources-map-view-3" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-cooling-resources-map-view-3">Part 4: Cooling resources — Map View 3</h2>
+<ol type="1">
+<li>Click <strong>Add</strong> → <strong>Browse layers</strong> → <strong>My Organization</strong>. Add <code>PPR Spraygrounds</code> and <code>PPR Swimming Pools</code>. Drag both to the top of the Layers panel. If directed to upload files, click <strong>Add</strong> → <strong>Add layer from file</strong> and browse to each zipped shapefile.</li>
+<li>Click <code>PPR Spraygrounds</code>. Open <strong>Styles</strong> → <strong>Style options</strong> → <strong>Location (single symbol)</strong>. Choose a blue circle, <code>10 px</code>. Click <strong>Done</strong> twice.</li>
+<li>Click <code>PPR Swimming Pools</code>. Open <strong>Styles</strong> → <strong>Style options</strong> → <strong>Location (single symbol)</strong>. Choose a distinct symbol — cyan square or diamond, <code>10 px</code>. Click <strong>Done</strong> twice.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Two separate layers with distinct single symbols is cleaner here than combining into one <strong>Types (Unique symbols)</strong> layer. Both appear as separate legend entries.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>Click <strong>Pop-ups</strong> for each cooling layer to verify information appears on click.</li>
+<li>Click <strong>Legend</strong> (left toolbar). If any entry is unclear, rename the layer via its three-dot menu → <strong>Rename</strong>.</li>
+</ol>
+<p><em>[Figure: Map with HVI choropleth, blue circle spraygrounds, and cyan diamond pools overlaid]</em></p>
+<hr>
+</section>
+<section id="part-5-measure-distance" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-measure-distance">Part 5: Measure distance</h2>
+<ol type="1">
+<li>In the top map toolbar, click <strong>Measure</strong> (ruler icon) → <strong>Distance</strong>.</li>
+<li>Click the centroid of a dark-red tract. Click the nearest visible pool or sprayground. Double-click to end the measurement. Note the straight-line distance and units.</li>
+<li>Record the distance and the two endpoints — you will report this in your deliverables.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Straight-line distance is not travel distance. A later lab uses <strong>Create Drive-Time Areas</strong> for realistic service areas. For now, this gives a rough proximity estimate.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-6-save-and-share" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-save-and-share">Part 6: Save and share</h2>
+<ol type="1">
+<li>Click <strong>Save</strong>.</li>
+<li>Click <strong>Share map</strong> → <strong>Your organization</strong>.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Do not choose <strong>Everyone (public)</strong> unless directed. Organization sharing is sufficient.</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Click <strong>Copy link</strong> and paste the URL into your deliverable.</li>
+<li>Navigate to each bookmark and use your OS screenshot tool (Win: <strong>Win + Shift + S</strong>; macOS: <strong>Cmd + Shift + 4</strong>) to capture each view. Save as <code>Map1_GSI_FloodZones.png</code>, <code>Map2_HeatVulnerability.png</code>, and <code>Map3_CoolingResources.png</code>.</li>
+</ol>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<ol type="1">
+<li><strong>Web map URL</strong> — shared with the organization; must include all six layers and both bookmarks.</li>
+<li><strong>Three screenshots</strong> — one per map view (filenames above).</li>
+<li><strong>Classification comparison (100 words max):</strong> Which scheme — Equal Interval or Quantile — did you choose and why? What does it emphasize and what does it obscure?</li>
+<li><strong>Measured distance:</strong> The straight-line distance from Part 5 and a brief description of the two endpoints.</li>
+<li><strong>AI-assisted explanation (labeled):</strong> The plain-language HVI explanation from Task A, labeled as AI-assisted with your edits noted.</li>
+</ol>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<section id="task-a-explain-the-concept" class="level3">
+<h3 class="anchored" data-anchor-id="task-a-explain-the-concept">Task A — Explain the concept</h3>
+<p>Open Claude (claude.ai) or ChatGPT and paste:</p>
+<blockquote class="blockquote">
+<p>“In one paragraph for a public health professional without a GIS background, explain what a heat vulnerability index is, how it is typically constructed, and two methodological limitations to keep in mind when interpreting it.”</p>
+</blockquote>
+<p>Edit for accuracy if needed. Label the result <strong>AI-assisted</strong> in your deliverable.</p>
+</section>
+<section id="task-b-compare-classification-schemes" class="level3">
+<h3 class="anchored" data-anchor-id="task-b-compare-classification-schemes">Task B — Compare classification schemes</h3>
+<p>Ask the AI:</p>
+<blockquote class="blockquote">
+<p>“I am making a choropleth web map of a heat vulnerability index for Philadelphia census tracts. Suggest two classification schemes and explain the trade-offs of each for communicating spatial health inequity.”</p>
+</blockquote>
+<p><strong>You</strong> decide which scheme to use and explain that choice in Deliverable 3. The AI explains trade-offs; it does not make analytic decisions.</p>
+<blockquote class="blockquote">
+<p><strong>Guardrail — required reading before using AI in this course:</strong> AI assists with: <strong>scaffolding</strong> (drafting text or structure), <strong>explaining</strong> (concepts and errors), and <strong>critiquing</strong> (your map or interpretation). AI does <strong>not</strong> select datasets, make analytic decisions, or interpret rare or small-area events. Never paste patient names, addresses, case IDs, or identifiable health information into a public AI tool. Label all AI-assisted output.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>ArcGIS Online (Map Viewer)</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Browse layers → My Organization</td>
+<td>Add Data → file browser</td>
+</tr>
+<tr class="even">
+<td>Styles → Counts and Amounts (Color)</td>
+<td>Symbology → Graduated Colors</td>
+</tr>
+<tr class="odd">
+<td>Styles → Types (Unique symbols)</td>
+<td>Symbology → Unique Values</td>
+</tr>
+<tr class="even">
+<td>Styles → Location (single symbol)</td>
+<td>Symbology → Single Symbol</td>
+</tr>
+<tr class="odd">
+<td>Bookmarks (saved views)</td>
+<td>Bookmarks + inset map frame in Layout</td>
+</tr>
+<tr class="even">
+<td>Share map → copy link</td>
+<td>Export Layout → PDF</td>
+</tr>
+<tr class="odd">
+<td>No inset map</td>
+<td>Insert → Map Frame (second map) in Layout</td>
+</tr>
+<tr class="even">
+<td>Measure (geodesic)</td>
+<td>Measure (Euclidean; depends on CRS)</td>
+</tr>
+<tr class="odd">
+<td>Projection automatic</td>
+<td>Manage CRS explicitly; reproject as needed</td>
+</tr>
+</tbody>
+</table>
+<p>ArcGIS Online reprojects layers to Web Mercator automatically and uses geodesic math for Analysis — no Project tool needed. ArcGIS Pro gives explicit CRS control but creates more risk of coordinate-mismatch errors. The matching desktop lab is <strong>Lab 1: Introduction to ArcGIS Pro</strong>.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li>You add a polygon layer in Map Viewer and it covers all other layers. What do you do to fix this without removing the layer?</li>
+<li>Why does ArcGIS Online not require you to reproject a layer before adding it, even though the map displays in Web Mercator?</li>
+<li>A colleague argues Equal Interval is always more honest; another says Quantile is always better. Who is right, and under what circumstances?</li>
+<li>You measure a straight-line distance of 1.4 miles from a high-vulnerability tract to the nearest pool. What does this tell you, and what does it <strong>not</strong> tell you about residents’ actual access?</li>
+<li>You need a polished map layout with a north arrow, scale bar, and legend for a report. Map Viewer cannot produce this directly. What tool would you use, and what does it produce?</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

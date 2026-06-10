@@ -1,1 +1,1 @@
-Sitemap: https://aquistberg.github.io/intro-gis-ph/sitemap.xml
+Sitemap: https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sitemap.xml

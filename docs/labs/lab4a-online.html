@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 4a: Drive-Time and Network Access to Care – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-add-data-to-the-map" id="toc-part-1-add-data-to-the-map" class="nav-link" data-scroll-target="#part-1-add-data-to-the-map">Part 1: Add data to the map</a></li>
+  <li><a href="#part-2-create-drive-time-areas" id="toc-part-2-create-drive-time-areas" class="nav-link" data-scroll-target="#part-2-create-drive-time-areas">Part 2: Create Drive-Time Areas</a></li>
+  <li><a href="#part-3-find-nearest-fqhc-from-residential-points" id="toc-part-3-find-nearest-fqhc-from-residential-points" class="nav-link" data-scroll-target="#part-3-find-nearest-fqhc-from-residential-points">Part 3: Find Nearest FQHC from residential points</a></li>
+  <li><a href="#part-4-estimate-covered-and-uncovered-population" id="toc-part-4-estimate-covered-and-uncovered-population" class="nav-link" data-scroll-target="#part-4-estimate-covered-and-uncovered-population">Part 4: Estimate covered and uncovered population</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4a: Drive-Time and Network Access to Care</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab04a_NetworkAccess_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab04a_NetworkAccess_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab04a_NetworkAnalysis_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab04a_NetworkAnalysis_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Federally Qualified Health Centers (FQHCs) are a primary safety-net resource for uninsured and underinsured Philadelphians. Proximity on a map does not equal access. If residents cannot reach an FQHC within a reasonable travel time, that center does not serve them in practice. This lab asks: what share of West Philadelphia residents live more than a 15-minute drive from the nearest FQHC?</p>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Add FQHC point data from a shared organizational item and ACS tract population from the Living Atlas</li>
+<li>Use <strong>Create Drive-Time Areas</strong> to generate 15-, 30-, and 45-minute catchment polygons</li>
+<li>Distinguish overlapping disks from dissolved rings and choose the right option for a coverage question</li>
+<li>Use <strong>Find Nearest</strong> to link residential points to their nearest FQHC with travel-time attributes</li>
+<li>Use <strong>Summarize Within</strong> to estimate covered vs.&nbsp;uncovered tract population</li>
+<li>Style catchment polygons and share a finished web map</li>
+</ul>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ul>
+<li>A saved, shared ArcGIS Online web map with three drive-time rings (15/30/45 min) around Philadelphia FQHCs, symbolized with a clear legend</li>
+<li>A <strong>Find Nearest</strong> result layer showing which FQHC each West Philadelphia sample point is routed to, with travel time in the pop-up</li>
+<li>A <strong>Summarize Within</strong> output with estimated tract population inside and outside the 15-minute catchment, plus a calculated percent uncovered</li>
+<li>A 150-word written interpretation answering the public health question</li>
+</ul>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FQHC locations</td>
+<td>Point locations of Philadelphia FQHCs</td>
+<td>Instructor-shared item (<code>phl_FQHC_points</code>) — search <strong>My Organization</strong></td>
+</tr>
+<tr class="even">
+<td>West Philadelphia sample points</td>
+<td>~50 residential address points in West Philadelphia</td>
+<td>Instructor-shared item (<code>westphilly_sample_pts</code>) — search <strong>My Organization</strong></td>
+</tr>
+<tr class="odd">
+<td>ACS Tract Population</td>
+<td>Census tract boundaries with ACS 5-year total population</td>
+<td><strong>Living Atlas</strong> — search <code>ACS Population Variables Tracts</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The FQHC and sample-point layers are pre-loaded in your organizational account by your instructor. The ACS tract layer comes from the Living Atlas; no file download is needed.</p>
+</blockquote>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites:</strong> Complete Labs 1–3. You should be able to add layers, apply a style, and run an Analysis tool.</p>
+<p><strong>Time estimate:</strong> 90–120 minutes.</p>
+<p><strong>Accounts, credits, and privileges:</strong> Running <strong>Create Drive-Time Areas</strong>, <strong>Find Nearest</strong>, and <strong>Summarize Within</strong> consumes <strong>credits</strong> and requires <strong>publisher or analysis privileges</strong>. A free ArcGIS public account cannot run these tools. Use the <strong>ArcGIS organizational account</strong> your course provides. Do not click <strong>Run</strong> more than once per step.</p>
+<p><strong>Setup:</strong> Go to <strong>arcgis.com</strong> and sign in. From the app launcher (grid icon, upper right), choose <strong>Map Viewer</strong>. Click <strong>New Map</strong>. Immediately <strong>Save</strong> with a title (<code>Lab04a_YourName</code>), tags, and a one-sentence summary.</p>
+<hr>
+</section>
+<section id="part-1-add-data-to-the-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-add-data-to-the-map">Part 1: Add data to the map</h2>
+<ol type="1">
+<li>In the <strong>Contents</strong> toolbar (left, dark), click <strong>Layers</strong> → <strong>Add</strong> → <strong>Browse layers</strong>.</li>
+<li>Switch scope to <strong>My Organization</strong>. Search for <code>phl_FQHC_points</code>. Click <strong>+</strong> to add it.</li>
+<li>Repeat to add <code>westphilly_sample_pts</code>.</li>
+<li>Switch scope to <strong>Living Atlas</strong>. Search for <code>ACS Population Variables Tracts</code>. Add the Esri layer containing total population at the tract level.</li>
+<li>In <strong>Styles</strong> (right toolbar), set the ACS tract layer to <strong>Location (single symbol)</strong> with a light-gray outline and no fill — it should serve as a reference boundary, not dominate the map.</li>
+<li><strong>Save</strong> the map.</li>
+</ol>
+<p><em>[Figure: Map Viewer showing FQHC points, West Philadelphia sample points, and gray tract outlines across Philadelphia]</em></p>
+<hr>
+</section>
+<section id="part-2-create-drive-time-areas" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-create-drive-time-areas">Part 2: Create Drive-Time Areas</h2>
+<p>A drive-time catchment polygon shows every location reachable within a given time from a facility, following actual street geometry. This is more informative than a straight-line buffer.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Create Drive-Time Areas</strong> is a routing tool that consumes credits. With a handful of FQHCs and three break values, the cost is small — but estimate credits before running and do not click <strong>Run</strong> more than once.</p>
+</blockquote>
+<ol type="1">
+<li>In the <strong>Contents</strong> toolbar, click <strong>Analysis</strong> (the hexagon icon).</li>
+<li>Search for <code>Create Drive-Time Areas</code>. Open the tool.</li>
+<li>Set parameters:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>phl_FQHC_points</code></td>
+</tr>
+<tr class="even">
+<td>Travel mode</td>
+<td>Driving Time</td>
+</tr>
+<tr class="odd">
+<td>Break values</td>
+<td><code>15 30 45</code></td>
+</tr>
+<tr class="even">
+<td>Break units</td>
+<td>Minutes</td>
+</tr>
+<tr class="odd">
+<td>Area type</td>
+<td><strong>Rings</strong></td>
+</tr>
+<tr class="even">
+<td>Output name</td>
+<td><code>FQHC_DriveTime_Rings</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note — Rings vs.&nbsp;Disks:</strong> <strong>Disks</strong> produce overlapping full polygons (0–15, 0–30, 0–45 min). <strong>Rings</strong> produce non-overlapping bands so each location appears in only one zone. Use <strong>Rings</strong> for this coverage question; use <strong>Disks</strong> if you need to count how many facilities overlap at a point.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>Click <strong>Estimate credits</strong>, then click <strong>Run</strong>. Wait 1–3 minutes.</li>
+</ol>
+<p><em>[Figure: Three nested drive-time rings (15, 30, 45 min) around FQHC points, with tract outlines visible underneath]</em></p>
+<ol start="5" type="1">
+<li>Select the <code>FQHC_DriveTime_Rings</code> layer. Open <strong>Styles</strong> → choose the break-value field (often <code>ToBreak</code>) → <strong>Types (Unique symbols)</strong>. Assign green / yellow / orange to the three rings at ~50% opacity. Edit <strong>Legend</strong> labels to read “0–15 min”, “15–30 min”, “30–45 min”.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> A straight-line buffer treats every direction as equally accessible. A network drive-time polygon follows real streets and respects barriers. West Philadelphia is bounded on the east by the Schuylkill River — notice whether the drive-time rings are constrained where a buffer would not be. More critically, drive-time overstates access for carless patients. Safety-net populations disproportionately rely on transit, walking, or paratransit; a 15-minute drive-time catchment likely covers a different population than a 15-minute transit catchment. Interpret these results as a first screen, not a complete access assessment.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-3-find-nearest-fqhc-from-residential-points" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-find-nearest-fqhc-from-residential-points">Part 3: Find Nearest FQHC from residential points</h2>
+<p><strong>Find Nearest</strong> identifies the closest facility to each origin and returns a travel-time attribute — a route-level answer for each residential location.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Find Nearest</strong> consumes credits proportional to the number of origin-destination pairs. With ~50 sample points and a handful of FQHCs, the cost is small. Do not run with a large origin set without first estimating credits.</p>
+</blockquote>
+<ol type="1">
+<li>In the <strong>Analysis</strong> pane, search for <code>Find Nearest</code>. Open the tool.</li>
+<li>Set parameters:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer (origins)</td>
+<td><code>westphilly_sample_pts</code></td>
+</tr>
+<tr class="even">
+<td>Near layer (destinations)</td>
+<td><code>phl_FQHC_points</code></td>
+</tr>
+<tr class="odd">
+<td>Measurement type</td>
+<td>Driving time</td>
+</tr>
+<tr class="even">
+<td>Maximum number of nearest</td>
+<td><code>1</code></td>
+</tr>
+<tr class="odd">
+<td>Output name</td>
+<td><code>WestPhilly_NearestFQHC</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Click <strong>Estimate credits</strong>, then click <strong>Run</strong>.</li>
+<li>Open the output layer’s <strong>Table</strong>. Find the travel-time field (often <code>Total_TravelTime</code> or <code>TravelTime_min</code>). Scan the values: are any sample points more than 15 minutes from their nearest FQHC?</li>
+</ol>
+<p><em>[Figure: Connector lines from West Philadelphia residential points to their nearest FQHC, labeled with travel times]</em></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <strong>Find Nearest</strong> returns connector lines (origin-to-destination) with network-computed travel times — not turn-by-turn route geometry. To visualize the actual routed path, use <strong>Plan Routes</strong> or <strong>Connect Origins to Destinations</strong> (both available under Analysis, both consume credits). For this lab, the travel-time attribute from <strong>Find Nearest</strong> is sufficient.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-4-estimate-covered-and-uncovered-population" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-estimate-covered-and-uncovered-population">Part 4: Estimate covered and uncovered population</h2>
+<p><strong>Summarize Within</strong> sums tract population fields for tracts that fall inside the 15-minute ring.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Summarize Within</strong> consumes credits. Set parameters carefully before running.</p>
+</blockquote>
+<ol type="1">
+<li>Apply a <strong>Filter</strong> to <code>FQHC_DriveTime_Rings</code> (right toolbar) so only the 15-minute ring is active: field <code>ToBreak</code> <strong>is</strong> <code>15</code>. Confirm the field name and value in the layer’s Table before filtering.</li>
+<li>In the <strong>Analysis</strong> pane, search for <code>Summarize Within</code>. Open the tool.</li>
+<li>Set parameters:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Area layer</td>
+<td><code>FQHC_DriveTime_Rings</code> (filtered to 15-min ring)</td>
+</tr>
+<tr class="even">
+<td>Input layer</td>
+<td>ACS tract layer</td>
+</tr>
+<tr class="odd">
+<td>Summary field</td>
+<td>Total population field (check name in Table — often <code>B01003_001E</code> or <code>TotalPop</code>)</td>
+</tr>
+<tr class="even">
+<td>Summary statistic</td>
+<td>Sum</td>
+</tr>
+<tr class="odd">
+<td>Output name</td>
+<td><code>Pop_Within_15min</code></td>
+</tr>
+</tbody>
+</table>
+<ol start="4" type="1">
+<li>Click <strong>Estimate credits</strong>, then click <strong>Run</strong>.</li>
+<li>Open the output Table. Record the <strong>Sum</strong> — this is the tract population covered within 15 minutes.</li>
+<li>For the total study area population, open the ACS tract layer’s Table and use column <strong>Statistics</strong> on the population field. Subtract covered from total to get uncovered. Calculate <code>uncovered / total × 100</code>. Record the percent uncovered.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Assigning an entire tract as covered or uncovered based on its polygon’s relationship to the ring misclassifies tracts that straddle the boundary. This is a known limitation of zone-based population estimation. Note it in your written interpretation.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> This estimate assumes all residents drive and that travel time is the only barrier. In practice, cost, insurance status, clinic hours, language, and patient load all constrain effective access. The drive-time catchment is a useful first screen, not a complete access assessment.</p>
+</blockquote>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<ol type="1">
+<li><strong>Shared web map URL:</strong> Save and share <code>Lab04a_YourName</code> with your organization. Submit the item URL. The map must show the three drive-time rings, the sample points, and the Find Nearest layer with a visible legend.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ArcGIS Online has no full print-layout tool equivalent to ArcGIS Pro’s Layout view. For a static image, use a browser screenshot or the <strong>Print</strong> widget. For a polished deliverable, embed the web map in an <strong>ArcGIS StoryMap</strong> or <strong>Instant App</strong>.</p>
+</blockquote>
+<ol start="2" type="1">
+<li><strong>Population summary table:</strong> Total Philadelphia tract population, covered within 15 min, not covered, and percent uncovered.</li>
+<li><strong>150-word written interpretation:</strong> Answer the public health question. Address: (a) the share of West Philadelphia residents appearing underserved; (b) at least one limitation of the drive-time method for a safety-net population; (c) one policy or programmatic implication.</li>
+<li><strong>Label any AI-assisted output</strong> with the prompt used and how you verified the result.</li>
+</ol>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p><strong>Suggested use — planning the workflow:</strong> Ask an AI assistant: <em>“I need to estimate the share of West Philadelphia residents who live more than 15 minutes by car from a Federally Qualified Health Center using ArcGIS Online. Translate that public health question into a step-by-step ArcGIS Online tool sequence, then verify each step against Esri’s documentation.”</em> Compare the response against this handout before proceeding.</p>
+<p><strong>Suggested use — troubleshooting output:</strong> If drive-time rings look wrong, ask: <em>“In ArcGIS Online Create Drive-Time Areas, why might a ring extend into an area with no road access?”</em> Use the explanation to guide troubleshooting.</p>
+<p><strong>Guardrails — required:</strong></p>
+<ul>
+<li>AI helps with scaffolding (draft steps, expressions, text), explaining (concepts, errors), and critiquing (map design, interpretation). That is all.</li>
+<li>AI does not choose datasets, make analytic decisions, or interpret results for your specific study area.</li>
+<li>Never paste patient addresses, identifiable health records, or any PHI into a public AI tool.</li>
+<li>Label all AI-assisted output in your submission with the prompt used and how you verified the result.</li>
+</ul>
+<hr>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Online tool</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Create Drive-Time Areas</strong></td>
+<td><strong>Network Analyst → Service Area</strong> (cutoffs 15/30/45; Output Geometry = Rings)</td>
+</tr>
+<tr class="even">
+<td><strong>Find Nearest</strong></td>
+<td><strong>Network Analyst → Closest Facility</strong> (Incidents = residential points; Facilities = FQHCs; Find = 1)</td>
+</tr>
+<tr class="odd">
+<td><strong>Plan Routes / Connect Origins to Destinations</strong></td>
+<td><strong>Network Analyst → Route</strong> (add stops in sequence)</td>
+</tr>
+<tr class="even">
+<td><strong>Summarize Within</strong></td>
+<td><strong>Select By Location</strong> (tracts within 15-min polygon) + <strong>Summary Statistics</strong> (SUM of <code>TOT_POP</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>The Pro version of this lab (Lab 4a: Network Analysis for Healthcare Access) covers all four tools with a local street network dataset. The key practical difference: ArcGIS Online uses Esri’s hosted routing service (no local dataset required, but credits consumed); Pro can use a local network dataset or the same hosted service. ArcGIS Online’s standard Analysis tools do not offer a transit travel mode — transit-based access analysis requires a third-party transit network such as OpenRouteService with GTFS data.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li>What is the difference between <strong>Rings</strong> and <strong>Disks</strong> in <strong>Create Drive-Time Areas</strong>? For a question about which residents fall outside the 15-minute catchment, which is more appropriate, and why?</li>
+<li>Why does <strong>Create Drive-Time Areas</strong> consume credits while adding a Living Atlas layer does not?</li>
+<li>A colleague proposes buffering the FQHC points by 1 mile as a proxy for 15-minute drive-time access. When would a buffer and a drive-time catchment give similar results? When would they diverge most — and why does that matter for West Philadelphia specifically?</li>
+<li>The lab uses driving time as the travel mode. For a safety-net patient population, what mode would be more appropriate? What additional data would a transit-time analysis require, and why is that not straightforward in ArcGIS Online?</li>
+<li>Your population estimate assigns each tract fully inside or outside the 15-minute ring. Name one alternative approach that would be more accurate, and describe the trade-off it involves.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

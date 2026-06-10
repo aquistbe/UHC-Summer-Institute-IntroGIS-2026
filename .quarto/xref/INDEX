@@ -28,5 +28,35 @@
   },
   "schedule.qmd": {
     "schedule.html": "7b100a33"
+  },
+  "labs/lab4c-online.qmd": {
+    "lab4c-online.html": "e2fcedf9"
+  },
+  "labs/lab2a-online.qmd": {
+    "lab2a-online.html": "bb513e66"
+  },
+  "labs/lab5b-online.qmd": {
+    "lab5b-online.html": "1d166fce"
+  },
+  "labs/lab4a-online.qmd": {
+    "lab4a-online.html": "e222b76b"
+  },
+  "labs/lab3b-online.qmd": {
+    "lab3b-online.html": "74017971"
+  },
+  "labs/lab4b-online.qmd": {
+    "lab4b-online.html": "948a5154"
+  },
+  "labs/lab3a-online.qmd": {
+    "lab3a-online.html": "544f615e"
+  },
+  "labs/lab2b-online.qmd": {
+    "lab2b-online.html": "40627464"
+  },
+  "labs/lab5a-online.qmd": {
+    "lab5a-online.html": "e69a3a0f"
+  },
+  "labs/lab1-online.qmd": {
+    "lab1-online.html": "d926b343"
   }
 }

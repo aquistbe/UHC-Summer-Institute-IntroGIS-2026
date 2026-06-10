@@ -1,0 +1,11 @@
+---
+title: "Lab 2b: Collecting and Digitizing Field Data"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 2"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab02b_Digitizing_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab02b_Digitizing_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab02b_Digitizing_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02b_Digitizing_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab2b-online.md >}}

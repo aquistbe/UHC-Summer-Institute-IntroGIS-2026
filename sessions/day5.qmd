@@ -75,6 +75,20 @@ The course concludes with real-world case studies showing how GIS has been appli
 
 ## Lab Exercises
 
+
+::: {.lab-tracks}
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+
+**Lab 5a — Interpolating an Exposure Surface** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab5a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab05a_Interpolation_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab05a_Interpolation_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab05a_Interpolation_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab05a_Interpolation_ArcGISPro_PH.docx"}
+
+
+**Lab 5b — Capstone: Composite Index &amp; StoryMap** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab5b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab05b_Capstone_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab05b_Capstone_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab05b_CartographicModeling_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab05b_CartographicModeling_ArcGISPro_PH.docx"}
+
+
+:::
+
 ::: {.lab-exercise}
 
 #### Lab 5a: Interpolation

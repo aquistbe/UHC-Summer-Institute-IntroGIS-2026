@@ -1,43 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/schedule.html</loc>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/schedule.html</loc>
     <lastmod>2026-06-09T03:55:59.168Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/setup.html</loc>
-    <lastmod>2026-06-09T04:01:05.612Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/setup.html</loc>
+    <lastmod>2026-06-09T12:31:18.969Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/sessions/day3.html</loc>
-    <lastmod>2026-06-09T03:57:52.656Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sessions/day3.html</loc>
+    <lastmod>2026-06-10T04:08:52.829Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/sessions/day5.html</loc>
-    <lastmod>2026-06-09T03:59:14.586Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sessions/day5.html</loc>
+    <lastmod>2026-06-10T04:08:52.840Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/index.html</loc>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/index.html</loc>
     <lastmod>2026-06-09T03:55:27.392Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/readings.html</loc>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab5a-online.html</loc>
+    <lastmod>2026-06-10T04:07:32.466Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab3a-online.html</loc>
+    <lastmod>2026-06-10T04:07:31.345Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab3b-online.html</loc>
+    <lastmod>2026-06-10T04:07:31.656Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab5b-online.html</loc>
+    <lastmod>2026-06-10T04:07:32.781Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab4c-online.html</loc>
+    <lastmod>2026-06-10T04:07:32.279Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/readings.html</loc>
     <lastmod>2026-06-09T03:59:44.041Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/sessions/day4.html</loc>
-    <lastmod>2026-06-09T03:58:31.768Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab2a-online.html</loc>
+    <lastmod>2026-06-10T04:07:30.883Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/sessions/day2.html</loc>
-    <lastmod>2026-06-09T03:57:11.675Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab4a-online.html</loc>
+    <lastmod>2026-06-10T04:07:31.842Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/sessions/day1.html</loc>
-    <lastmod>2026-06-09T03:56:40.823Z</lastmod>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab4b-online.html</loc>
+    <lastmod>2026-06-10T04:07:32.053Z</lastmod>
   </url>
   <url>
-    <loc>https://aquistberg.github.io/intro-gis-ph/resources.html</loc>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab2b-online.html</loc>
+    <lastmod>2026-06-10T04:07:31.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/labs/lab1-online.html</loc>
+    <lastmod>2026-06-10T04:07:30.694Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sessions/day4.html</loc>
+    <lastmod>2026-06-10T04:08:52.834Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sessions/day2.html</loc>
+    <lastmod>2026-06-10T04:08:52.823Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/sessions/day1.html</loc>
+    <lastmod>2026-06-10T04:08:52.818Z</lastmod>
+  </url>
+  <url>
+    <loc>https://aquistbe.github.io/UHC-Summer-Institute-IntroGIS-2026/resources.html</loc>
     <lastmod>2026-06-09T04:00:26.584Z</lastmod>
   </url>
 </urlset>

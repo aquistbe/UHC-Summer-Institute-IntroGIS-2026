@@ -58,6 +58,24 @@ Key operations:
 
 ## Lab Exercises
 
+
+::: {.lab-tracks}
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+
+**Lab 4a — Drive-Time &amp; Network Access** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab4a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab04a_NetworkAccess_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab04a_NetworkAccess_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab04a_NetworkAnalysis_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04a_NetworkAnalysis_ArcGISPro_PH.docx"}
+
+
+**Lab 4b — Geocoding with Privacy** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab4b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab04b_Geocoding_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab04b_Geocoding_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab04b_Geocoding_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04b_Geocoding_ArcGISPro_PH.docx"}
+
+
+**Lab 4c — Summarizing Heat Exposure** &nbsp;
+*ArcGIS Online:* [Full instructions](../labs/lab4c-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab04c_HeatExposure_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab04c_HeatExposure_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab04c_RasterZonal_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04c_RasterZonal_ArcGISPro_PH.docx"}
+
+
+:::
+
 ::: {.lab-exercise}
 
 #### Lab 4a: Network Analysis

@@ -1,0 +1,11 @@
+---
+title: "Lab 4b: Geocoding with Privacy"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 4"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab04b_Geocoding_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab04b_Geocoding_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab04b_Geocoding_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04b_Geocoding_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab4b-online.md >}}

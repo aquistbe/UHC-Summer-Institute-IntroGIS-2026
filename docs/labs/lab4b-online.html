@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 4b: Geocoding with Privacy – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-labs" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Labs</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-labs">    
+        <li>
+    <a class="dropdown-item" href="../labs/lab1-online.html">
+ <span class="dropdown-text">Lab 1: Introduction to ArcGIS Online (Day 1)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2a-online.html">
+ <span class="dropdown-text">Lab 2a: Measuring Distance &amp; Access (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab2b-online.html">
+ <span class="dropdown-text">Lab 2b: Collecting &amp; Digitizing Field Data (Day 2)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3a-online.html">
+ <span class="dropdown-text">Lab 3a: Joining &amp; Querying Surveillance Data (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab3b-online.html">
+ <span class="dropdown-text">Lab 3b: Buffer &amp; Overlay for EJ Screening (Day 3)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4a-online.html">
+ <span class="dropdown-text">Lab 4a: Drive-Time &amp; Network Access (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4b-online.html">
+ <span class="dropdown-text">Lab 4b: Geocoding with Privacy (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab4c-online.html">
+ <span class="dropdown-text">Lab 4c: Summarizing Heat Exposure (Day 4)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5a-online.html">
+ <span class="dropdown-text">Lab 5a: Interpolating an Exposure Surface (Day 5)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../labs/lab5b-online.html">
+ <span class="dropdown-text">Lab 5b: Capstone — Composite Index &amp; StoryMap (Day 5)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-inspect-and-clean-the-address-table" id="toc-part-1-inspect-and-clean-the-address-table" class="nav-link" data-scroll-target="#part-1-inspect-and-clean-the-address-table">Part 1: Inspect and Clean the Address Table</a></li>
+  <li><a href="#part-2-geocode-with-the-u.s.-census-geocoder" id="toc-part-2-geocode-with-the-u.s.-census-geocoder" class="nav-link" data-scroll-target="#part-2-geocode-with-the-u.s.-census-geocoder">Part 2: Geocode with the U.S. Census Geocoder</a></li>
+  <li><a href="#part-3-attempt-failed-addresses" id="toc-part-3-attempt-failed-addresses" class="nav-link" data-scroll-target="#part-3-attempt-failed-addresses">Part 3: Attempt Failed Addresses</a></li>
+  <li><a href="#part-4-add-geocoded-points-to-arcgis-online" id="toc-part-4-add-geocoded-points-to-arcgis-online" class="nav-link" data-scroll-target="#part-4-add-geocoded-points-to-arcgis-online">Part 4: Add Geocoded Points to ArcGIS Online</a></li>
+  <li><a href="#part-5-aggregate-cases-to-census-tracts" id="toc-part-5-aggregate-cases-to-census-tracts" class="nav-link" data-scroll-target="#part-5-aggregate-cases-to-census-tracts">Part 5: Aggregate Cases to Census Tracts</a></li>
+  <li><a href="#part-6-small-cell-suppression" id="toc-part-6-small-cell-suppression" class="nav-link" data-scroll-target="#part-6-small-cell-suppression">Part 6: Small-Cell Suppression</a></li>
+  <li><a href="#part-7-optional-kernel-density-surface" id="toc-part-7-optional-kernel-density-surface" class="nav-link" data-scroll-target="#part-7-optional-kernel-density-surface">Part 7 (Optional): Kernel Density Surface</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-pro-equivalent" id="toc-arcgis-pro-equivalent" class="nav-link" data-scroll-target="#arcgis-pro-equivalent">ArcGIS Pro equivalent</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4b: Geocoding with Privacy</h1>
+<p class="subtitle lead">Intro GIS for Public Health · ArcGIS Online track · Day 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab04b_Geocoding_ArcGISOnline_PH.docx" class="btn btn-primary btn-sm" download="Lab04b_Geocoding_ArcGISOnline_PH.docx">Download this lab (Word)</a> <a href="downloads/Lab04b_Geocoding_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab04b_Geocoding_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>A simulated salmonella outbreak has produced a line list of ~200 patient addresses in Philadelphia. Where are cases clustering, and how can we map them without exposing any individual patient’s location? Geocoding converts addresses to coordinates; privacy protection requires aggregating those points to a geography coarse enough that no single address can be inferred from the published map.</p>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Inspect and clean an address table before geocoding</li>
+<li>Contrast the ArcGIS Online World Geocoder (credits, cloud) with the Census Geocoder (free, privacy-safer)</li>
+<li>Add geocoded coordinates to ArcGIS Online as a CSV with X/Y fields</li>
+<li>Assess match results and match type (rooftop vs.&nbsp;interpolated)</li>
+<li>Aggregate case points to tracts with <strong>Aggregate Points</strong></li>
+<li>Apply small-cell suppression with <strong>Calculate</strong> (Arcade)</li>
+<li>Style a suppressed choropleth and share a web map</li>
+</ul>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A geocoded point layer of synthetic salmonella cases shared to your org account</li>
+<li>A match-rate summary table (exact, interpolated, unmatched; percent matched)</li>
+<li>A tract-level choropleth with counts &lt; 5 suppressed, saved and shared as a web map</li>
+<li>A ~100-word data-use rationale (why tracts, why suppress, what the analyst’s copy contains that the public map does not)</li>
+<li>(Optional) A coarse-cell kernel density map</li>
+</ol>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>outbreak_synthetic_addresses.csv</code></td>
+<td>~200 synthetic patient addresses (no real PHI); fields: <code>CASE_ID</code>, <code>STREET</code>, <code>CITY</code>, <code>STATE</code>, <code>ZIP</code>, <code>ONSET_DATE</code>, <code>AGE_GRP</code>, <code>SEX</code></td>
+<td>Instructor-shared item in your ArcGIS organizational account</td>
+</tr>
+<tr class="even">
+<td><code>geocode_results_coords.csv</code></td>
+<td>Census Geocoder output reformatted with <code>LONGITUDE</code> and <code>LATITUDE</code> columns; you produce this in Part 2</td>
+<td>Your own work product</td>
+</tr>
+<tr class="odd">
+<td>Philadelphia census tracts</td>
+<td>2020 TIGER/Line tract boundaries for Philadelphia County</td>
+<td>Instructor-shared feature layer in your ArcGIS organizational account</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Patient addresses are <strong>PHI</strong>. Do NOT upload real patient addresses to ArcGIS Online or the ArcGIS World Geocoding Service — transmitting PHI to a commercial cloud service may violate your IRB protocol and your organization’s BAA with Esri. The synthetic file here contains no real patient data. For real data, use the Census Geocoder path in Part 2 and confirm with your IRB first.</p>
+</blockquote>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites:</strong> Labs 1–4a. Be comfortable adding layers, running Analysis tools, and opening the attribute table in Map Viewer. <strong>Estimated time:</strong> 2.5–3 hours.</p>
+<p><strong>Account:</strong> Sign in to <strong>arcgis.com</strong> using the <strong>ArcGIS organizational account</strong> provided by the course. A free public account cannot run the Analysis tools used in this lab.</p>
+<blockquote class="blockquote">
+<p><strong>Note — Credits and privileges:</strong> <strong>Aggregate Points</strong> and <strong>Calculate Density</strong> consume credits. The ArcGIS World Geocoding Service costs roughly 40 credits per 1,000 addresses. This lab uses the free Census Geocoder for geocoding and only brings coordinates into ArcGIS Online, avoiding that charge. Credits are spent only for the aggregation and optional density steps.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-1-inspect-and-clean-the-address-table" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-inspect-and-clean-the-address-table">Part 1: Inspect and Clean the Address Table</h2>
+<p>Good geocoding starts with consistently formatted addresses. Do this work in a spreadsheet application before uploading anything.</p>
+<ol type="1">
+<li><p>Download <code>outbreak_synthetic_addresses.csv</code> from the instructor-shared item in your ArcGIS organizational account. Open it in Excel or a text editor.</p></li>
+<li><p>Confirm the columns: <code>CASE_ID</code>, <code>STREET</code>, <code>CITY</code>, <code>STATE</code>, <code>ZIP</code>. The Census Geocoder requires each address component in a separate field.</p></li>
+<li><p>Make a working copy named <code>addresses_clean.csv</code>. Edit this copy only — keep the original intact.</p></li>
+<li><p>Use Find &amp; Replace to standardize street type abbreviations: “Street” → “St”, “Avenue” → “Ave”, “Boulevard” → “Blvd”, “Drive” → “Dr”. Check each substitution — “Strathmore Avenue” must become “Strathmore Ave”, not damage the root word.</p></li>
+<li><p>For rows missing a ZIP, enter <code>19000</code> as a placeholder (Philadelphia ZIPs begin 190–191). A missing ZIP causes the geocoder to skip the row.</p></li>
+<li><p>Save as a plain UTF-8 CSV with the header row intact.</p></li>
+</ol>
+<p><em>[Figure: addresses_clean.csv open in Excel showing the five required columns with consistent street-type abbreviations and no blank ZIPs]</em></p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Address cleaning reduces cases that appear “missing” — a form of spatial selection bias. If unmatched addresses cluster in one neighborhood, your map undercounts cases there. Document your decisions.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-2-geocode-with-the-u.s.-census-geocoder" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-geocode-with-the-u.s.-census-geocoder">Part 2: Geocode with the U.S. Census Geocoder</h2>
+<p>The ArcGIS Online World Geocoding Service can geocode your CSV directly inside Map Viewer, but it transmits addresses to Esri’s servers — which many IRB protocols prohibit for patient-linked data. The <strong>Census Geocoder</strong> (<code>geocoding.geo.census.gov</code>) is free, US-only, and widely accepted as a privacy-safer alternative; submitted addresses are not retained. Use the Census path for real patient data, and confirm with your own IRB before using any external geocoder.</p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Any geocoding service receives addresses in cleartext. Confirm your IRB protocol and agency data governance policies before geocoding real patient data with any external service.</p>
+</blockquote>
+<ol type="1">
+<li><p>The Census Geocoder requires a four-column CSV with <strong>no header row</strong>: <code>Unique ID, Street Address, City, State, ZIP</code>. Remove the header row from <code>addresses_clean.csv</code> before upload.</p></li>
+<li><p>Go to <code>https://geocoding.geo.census.gov/geocoder/locations/addressbatch</code>. Keep the <strong>Address Batch</strong> tab selected.</p></li>
+<li><p>Click <strong>Choose File</strong>, upload your header-free CSV, select <strong>Benchmark: Public_AR_Current</strong>, and click <strong>Get Results</strong> (30–90 seconds for 200 rows).</p></li>
+<li><p>Save the result as <code>geocode_results.csv</code>.</p></li>
+</ol>
+<p><em>[Figure: Census Geocoder batch interface with file uploaded and Public_AR_Current benchmark selected]</em></p>
+<ol start="5" type="1">
+<li><p>Open <code>geocode_results.csv</code>. Key columns: Column 1 = <code>CASE_ID</code>; Column 3 = match status (<code>Match</code>, <code>No_Match</code>, <code>Tie</code>); Column 4 = match type (<code>Exact</code> or <code>Non_Exact</code>); Column 6 = longitude,latitude pair in WGS84.</p></li>
+<li><p>Split Column 6 into <code>LONGITUDE</code> and <code>LATITUDE</code>. In Excel: <strong>Data → Text to Columns</strong>, delimiter = comma. Join these columns back to <code>addresses_clean.csv</code> on <code>CASE_ID</code> and save as <code>geocode_results_coords.csv</code>.</p></li>
+<li><p>Tally your results (submit with deliverables):</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Count</th>
+<th>Percent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total submitted</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Matched — Exact</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Matched — Non_Exact (interpolated)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Tie</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>No_Match</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Total matched</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> <code>Non_Exact</code> (interpolated) means the geocoder estimated a position along a street segment from address ranges, not a rooftop. Positional error can reach 50–150 m in dense cities. Report match-type distribution in any methods section.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-3-attempt-failed-addresses" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-attempt-failed-addresses">Part 3: Attempt Failed Addresses</h2>
+<p>The Census Geocoder has no interactive rematch interface. Handle unmatched rows manually.</p>
+<ol type="1">
+<li><p>Filter <code>geocode_results.csv</code> to <code>No_Match</code> and <code>Tie</code> rows. Copy them (with <code>CASE_ID</code>) to <code>addresses_rematch.csv</code>.</p></li>
+<li><p>For each row: remove unit numbers from the street field; correct misspelled street names; fix wrong ZIPs.</p></li>
+<li><p>Re-upload to the Census Geocoder. Save as <code>geocode_rematch.csv</code>, merge newly matched rows into <code>geocode_results_coords.csv</code>, and update the match-rate table.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Record addresses that remain unmatched. Do not fabricate coordinates. Document persistent failures and exclude them from spatial analysis with a methods note.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-4-add-geocoded-points-to-arcgis-online" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-add-geocoded-points-to-arcgis-online">Part 4: Add Geocoded Points to ArcGIS Online</h2>
+<p>ArcGIS Online can read a CSV with latitude and longitude columns and place points on the map without consuming geocoding credits.</p>
+<ol type="1">
+<li><p>Sign in to <strong>arcgis.com</strong> with your organizational account. Open <strong>Map Viewer</strong> from the app launcher (grid icon). Create a new map and <strong>Save</strong> it as <code>Lab04b_Geocoding_[YourInitials]</code> with the tag <code>IntroGIS</code>.</p></li>
+<li><p>In the <strong>Layers</strong> pane (left toolbar), click <strong>Add</strong> → <strong>Add layer from file</strong>. Upload <code>geocode_results_coords.csv</code>.</p></li>
+<li><p>ArcGIS Online detects <code>LONGITUDE</code> and <code>LATITUDE</code>. Confirm <strong>Longitude field</strong> = <code>LONGITUDE</code>, <strong>Latitude field</strong> = <code>LATITUDE</code>, <strong>Coordinate system</strong> = <code>WGS84</code>. Click <strong>Next</strong> → <strong>Add to map</strong>.</p></li>
+</ol>
+<p><em>[Figure: ArcGIS Online “Add layer from file” dialog showing LONGITUDE and LATITUDE field assignments for geocode_results_coords.csv]</em></p>
+<ol start="4" type="1">
+<li>Open the layer’s <strong>Table</strong> and confirm <code>CASE_ID</code>, <code>STREET</code>, and <code>ONSET_DATE</code> are present. In <strong>Styles</strong> (right toolbar), set the drawing style to <strong>Location (Single Symbol)</strong> with a small high-contrast circle.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> You do not reproject in ArcGIS Online. Analysis tools compute geodesic distances, so aggregation to tracts is correct regardless of display projection — unlike ArcGIS Pro, where forgetting to reproject before a buffer introduces measurable error.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-5-aggregate-cases-to-census-tracts" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-aggregate-cases-to-census-tracts">Part 5: Aggregate Cases to Census Tracts</h2>
+<p>Mapping individual case points risks re-identifying patients. Aggregating to census tracts protects privacy while preserving the spatial pattern of the outbreak.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Aggregate Points</strong> consumes credits. Review the estimated cost in the tool pane before clicking <strong>Run</strong>. For ~200 points and ~380 Philadelphia tracts, the cost is typically under 5 credits.</p>
+</blockquote>
+<ol type="1">
+<li><p>Confirm both layers are loaded. If the tracts layer is missing, click <strong>Add</strong> → <strong>Browse layers</strong> → <strong>My Organization</strong> and search for the instructor-shared tracts item.</p></li>
+<li><p>Click <strong>Analysis</strong> → search for <strong>Aggregate Points</strong> and open the tool.</p></li>
+<li><p>Set parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Point layer</td>
+<td><code>geocode_results_coords</code></td>
+</tr>
+<tr class="even">
+<td>Polygon layer</td>
+<td>Philadelphia census tracts</td>
+</tr>
+<tr class="odd">
+<td>Result layer name</td>
+<td><code>tracts_cases_[YourInitials]</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. The output contains a field named <code>Point Count</code> with the case count per tract.</p></li>
+</ol>
+<p><em>[Figure: ArcGIS Online Analysis pane showing Aggregate Points tool with case points and tracts configured]</em></p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Census tracts contain roughly 2,500–8,000 residents, making individual addresses unidentifiable in the published map. Patients have not consented to public mapping of their home location.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-6-small-cell-suppression" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-small-cell-suppression">Part 6: Small-Cell Suppression</h2>
+<p>A choropleth showing “3 cases in Tract X” can expose individuals. Suppress cells with fewer than 5 cases before sharing outside the investigation team.</p>
+<ol type="1">
+<li><p>Open the <strong>Fields</strong> pane (right toolbar) for <code>tracts_cases</code>. Click <strong>Add field</strong>: name <code>CASES_SUPP</code>, type <code>String</code>. Click <strong>Save</strong>.</p></li>
+<li><p>Click <strong>Calculate</strong> on the <code>CASES_SUPP</code> field. Enter this Arcade expression (Arcade is ArcGIS Online’s built-in scripting language — no external script required):</p>
+<pre><code>if ($feature["Point Count"] &lt; 5) {
+  return "&lt;5"
+} else {
+  return Text($feature["Point Count"])
+}</code></pre>
+<p>Click <strong>Run</strong>. Tracts with 0–4 cases show <code>&lt;5</code>; others show the numeric count as text.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <code>Point Count</code> (with a space) is the default field name from <strong>Aggregate Points</strong>. Check the <strong>Fields</strong> tab to confirm.</p>
+</blockquote></li>
+<li><p>In <strong>Styles</strong>, choose <code>CASES_SUPP</code> and <strong>Types (Unique Symbols)</strong>. Assign light gray to <code>&lt;5</code>; apply a sequential yellow-to-red ramp to numeric values. Set the <code>&lt;5</code> legend label to “Suppressed (&lt; 5 cases)”.</p></li>
+</ol>
+<p><em>[Figure: Philadelphia tract choropleth with suppressed tracts in light gray and case counts 5+ in a yellow-to-red ramp]</em></p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Do not share any layer or map that exposes raw <code>Point Count</code> to external audiences. Use <code>CASES_SUPP</code> only. Set sharing to <strong>Organization</strong>, not <strong>Everyone</strong>, unless your supervisor explicitly approves public release.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-7-optional-kernel-density-surface" class="level2">
+<h2 class="anchored" data-anchor-id="part-7-optional-kernel-density-surface">Part 7 (Optional): Kernel Density Surface</h2>
+<p>A kernel density surface shows concentration as a smooth continuous surface. Use a large search radius so no individual address dominates the pattern.</p>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> <strong>Calculate Density</strong> consumes credits. Review the estimated cost before clicking <strong>Run</strong>.</p>
+</blockquote>
+<ol type="1">
+<li><p>Click <strong>Analysis</strong> → <strong>Calculate Density</strong>. Set <strong>Input layer</strong> to the case points, <strong>Cell size</strong> to <code>200</code> meters, <strong>Search radius</strong> to <code>1500</code> meters, and <strong>Output layer name</strong> to <code>kd_cases_[YourInitials]</code>. Click <strong>Run</strong>.</p></li>
+<li><p>Move the density layer beneath the tract choropleth in the <strong>Layers</strong> pane.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> A kernel density map can imply precision that does not exist. Include a methods note with the bandwidth and state that the surface must not be used to infer individual case locations.</p>
+</blockquote>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Submit the following by the end of Day 4:</p>
+<ol type="1">
+<li><strong>Shared web map URL:</strong> save and share <code>Lab04b_Geocoding_[YourInitials]</code> to your organization showing the suppressed choropleth. Copy the item URL from <strong>Share → Copy link</strong>.</li>
+<li><strong>Match-rate table:</strong> completed table from Part 2, Step 7, including post-rematch totals.</li>
+<li><strong>Exported map image:</strong> screenshot showing the suppressed choropleth with a visible legend and scale reference. For a more polished product, build a short <strong>ArcGIS StoryMap</strong> or <strong>Instant App</strong> — ArcGIS Online has no full print layout editor like ArcGIS Pro.</li>
+<li><strong>Data-use rationale</strong> (~100 words): why tracts rather than blocks; why suppress cells fewer than 5; what the analyst’s working copy contains that the published map does not; whether this synthetic workflow would apply to real patient data and under what conditions.</li>
+<li><strong>(Optional)</strong> Screenshot or web map showing the kernel density layer.</li>
+</ol>
+<p>Label any AI-assisted content in your deliverables.</p>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p>Use AI only with the synthetic data file — never with real patient addresses.</p>
+<p><strong>Task 1 — Address standardization regex.</strong> Ask Claude:</p>
+<blockquote class="blockquote">
+<p>“Write a Python regex using <code>pandas .str.replace()</code> that maps Street/St/St., Avenue/Ave, Boulevard/Blvd, and Drive/Dr to standard abbreviations. Include a test case that could fail — for example, a street name that contains ‘Avenue’ as part of its name.”</p>
+</blockquote>
+<p>Use the result to clean <code>addresses_clean.csv</code>. Review outputs before applying at scale — regex has edge cases.</p>
+<p><strong>Task 2 — Draft a geocoded-address handling SOP.</strong> Ask Claude:</p>
+<blockquote class="blockquote">
+<p>“Draft a one-page SOP for a local health department for geocoding patient addresses in outbreak investigations. Include: allowable geocoding services, data transmission requirements, storage and retention rules, and suppression rules before publication. Assume addresses are PHI.”</p>
+</blockquote>
+<p>Read the draft critically. Identify two claims that are vague, conflict with CDC’s <em>Summary of Notifiable Diseases</em> data-sharing guidance, or would not satisfy standard IRB language. Submit your annotated critique.</p>
+<blockquote class="blockquote">
+<p><strong>Warning — AI guardrails:</strong> Use AI only with <code>outbreak_synthetic_addresses.csv</code>. Never paste real patient names, addresses, or case IDs into a public AI tool. AI scaffolds and drafts; it does not choose geocoding services, evaluate match quality, or set suppression thresholds — those are your decisions. Label all AI-assisted content in deliverables.</p>
+</blockquote>
+<hr>
+</section>
+<section id="arcgis-pro-equivalent" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-pro-equivalent">ArcGIS Pro equivalent</h2>
+<p>The matching Pro lab (Lab 4b, ArcGIS Pro) is available for desktop users. Key tool equivalents:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>ArcGIS Online</th>
+<th>ArcGIS Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Add layer from file (CSV with X/Y fields)</td>
+<td><strong>XY Table To Point</strong></td>
+</tr>
+<tr class="even">
+<td>No reprojection needed; analysis is geodesic</td>
+<td><strong>Project</strong> tool to local CRS before distance analysis</td>
+</tr>
+<tr class="odd">
+<td><strong>Aggregate Points</strong></td>
+<td><strong>Spatial Join</strong> (target = tracts, one-to-one, count)</td>
+</tr>
+<tr class="even">
+<td><strong>Calculate</strong> with Arcade</td>
+<td><strong>Field Calculator</strong> (Python 3)</td>
+</tr>
+<tr class="odd">
+<td><strong>Calculate Density</strong></td>
+<td><strong>Kernel Density</strong> (Spatial Analyst)</td>
+</tr>
+<tr class="even">
+<td>Share web map; StoryMaps/Instant Apps for layout</td>
+<td><strong>Layout</strong> view; export to PDF</td>
+</tr>
+</tbody>
+</table>
+<p>The Census Geocoder workflow is browser-based and identical regardless of GIS platform.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li><p>A colleague says the ArcGIS World Geocoding Service is safe for real patient addresses because your organization has a license with Esri. What additional agreements or reviews would you confirm first, and where would you look for a definitive answer?</p></li>
+<li><p>Your batch geocode returns 78% Exact, 14% Non_Exact (interpolated), and 8% No_Match. A supervisor asks whether unmatched cases are randomly distributed or clustered in one neighborhood. How would you investigate this, and why does it matter for the validity of your outbreak map?</p></li>
+<li><p>You suppress a tract with 4 cases to <code>&lt;5</code>. A journalist files a public records request for the underlying count data. Describe the tension between public records law and patient privacy, and name one mechanism health departments use to navigate it.</p></li>
+<li><p>What is the practical difference between a rooftop (Exact) geocode and an interpolated (Non_Exact) geocode? Give one analysis where the distinction matters and one where it probably does not.</p></li>
+<li><p>ArcGIS Online Analysis tools compute geodesic distances regardless of display projection. Explain why this is an advantage over a desktop workflow where a user forgot to reproject before running a buffer, and describe the error that desktop map would contain.</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

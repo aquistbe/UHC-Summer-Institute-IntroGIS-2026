@@ -1,0 +1,11 @@
+---
+title: "Lab 4c: Summarizing Heat Exposure by Neighborhood"
+subtitle: "Intro GIS for Public Health · ArcGIS Online track · Day 4"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab04c_HeatExposure_ArcGISOnline_PH.docx){.btn .btn-primary .btn-sm download="Lab04c_HeatExposure_ArcGISOnline_PH.docx"}
+[ArcGIS Pro version (Word)](downloads/Lab04c_RasterZonal_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04c_RasterZonal_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab4c-online.md >}}
