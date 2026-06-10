@@ -3,6 +3,7 @@ project:
   output-dir: docs
   resources:
     - labs/downloads/
+    - robots.txt
 
 website:
   title: "Introduction to GIS for Public Health"
@@ -74,6 +75,7 @@ website:
 
 format:
   html:
+    include-in-header: noindex.html
     theme:
       light: [cosmo, styles.css]
     toc: true
