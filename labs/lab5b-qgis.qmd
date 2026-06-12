@@ -1,0 +1,12 @@
+---
+title: "Lab 5b: Capstone — Composite Index & Communication Map (QGIS)"
+subtitle: "Intro GIS for Public Health · QGIS track · Day 5"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab05b_Capstone_QGIS_PH.docx){.btn .btn-primary .btn-sm download="Lab05b_Capstone_QGIS_PH.docx"}
+[ArcGIS Online version](lab5b-online.qmd){.btn .btn-outline-primary .btn-sm}
+[ArcGIS Pro version (Word)](downloads/Lab05b_CartographicModeling_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab05b_CartographicModeling_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab5b-qgis.md >}}

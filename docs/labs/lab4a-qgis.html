@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 4a: Network Analysis for Healthcare Access (QGIS) – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../labs/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-explore-the-road-network-layer" id="toc-part-1-explore-the-road-network-layer" class="nav-link" data-scroll-target="#part-1-explore-the-road-network-layer">Part 1: Explore the road-network layer</a></li>
+  <li><a href="#part-2-service-area-from-layer-native-tool" id="toc-part-2-service-area-from-layer-native-tool" class="nav-link" data-scroll-target="#part-2-service-area-from-layer-native-tool">Part 2: Service area (from layer) — native tool</a>
+  <ul class="collapse">
+  <li><a href="#run-the-service-area" id="toc-run-the-service-area" class="nav-link" data-scroll-target="#run-the-service-area">Run the service area</a></li>
+  <li><a href="#run-for-multiple-cutoffs" id="toc-run-for-multiple-cutoffs" class="nav-link" data-scroll-target="#run-for-multiple-cutoffs">Run for multiple cutoffs</a></li>
+  </ul></li>
+  <li><a href="#part-3-build-catchment-polygons-and-estimate-coverage" id="toc-part-3-build-catchment-polygons-and-estimate-coverage" class="nav-link" data-scroll-target="#part-3-build-catchment-polygons-and-estimate-coverage">Part 3: Build catchment polygons and estimate coverage</a>
+  <ul class="collapse">
+  <li><a href="#create-catchment-polygons" id="toc-create-catchment-polygons" class="nav-link" data-scroll-target="#create-catchment-polygons">Create catchment polygons</a></li>
+  <li><a href="#symbolize-the-rings" id="toc-symbolize-the-rings" class="nav-link" data-scroll-target="#symbolize-the-rings">Symbolize the rings</a></li>
+  <li><a href="#estimate-uncovered-population" id="toc-estimate-uncovered-population" class="nav-link" data-scroll-target="#estimate-uncovered-population">Estimate uncovered population</a></li>
+  </ul></li>
+  <li><a href="#part-4-shortest-path-point-to-point-native-tool" id="toc-part-4-shortest-path-point-to-point-native-tool" class="nav-link" data-scroll-target="#part-4-shortest-path-point-to-point-native-tool">Part 4: Shortest path (point to point) — native tool</a></li>
+  <li><a href="#part-5-enhanced-ors-tools-drive-time-isochrones" id="toc-part-5-enhanced-ors-tools-drive-time-isochrones" class="nav-link" data-scroll-target="#part-5-enhanced-ors-tools-drive-time-isochrones">Part 5 (Enhanced): ORS Tools drive-time isochrones</a>
+  <ul class="collapse">
+  <li><a href="#set-up-the-plugin" id="toc-set-up-the-plugin" class="nav-link" data-scroll-target="#set-up-the-plugin">Set up the plugin</a></li>
+  <li><a href="#run-isochrones" id="toc-run-isochrones" class="nav-link" data-scroll-target="#run-isochrones">Run isochrones</a></li>
+  </ul></li>
+  <li><a href="#part-6-export-a-print-layout-map" id="toc-part-6-export-a-print-layout-map" class="nav-link" data-scroll-target="#part-6-export-a-print-layout-map">Part 6: Export a Print Layout map</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-equivalents" id="toc-arcgis-equivalents" class="nav-link" data-scroll-target="#arcgis-equivalents">ArcGIS equivalents</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4a: Network Analysis for Healthcare Access (QGIS)</h1>
+<p class="subtitle lead">Intro GIS for Public Health · QGIS track · Day 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab04a_NetworkAnalysis_QGIS_PH.docx" class="btn btn-primary btn-sm" download="Lab04a_NetworkAnalysis_QGIS_PH.docx">Download this lab (Word)</a> <a href="../labs/lab4a-online.html" class="btn btn-outline-primary btn-sm">ArcGIS Online version</a> <a href="downloads/Lab04a_NetworkAnalysis_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab04a_NetworkAnalysis_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Federally Qualified Health Centers (FQHCs) are a primary safety-net resource for uninsured and underinsured Philadelphians. But proximity on a map does not equal access. If residents cannot reach an FQHC within a reasonable travel time, that center does not serve them in practice. This lab asks: what share of West Philadelphia residents live more than a 15-minute trip from the nearest FQHC? And which residential areas fall entirely outside reasonable service reach?</p>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Use the native QGIS Processing <strong>Network analysis</strong> tools — <strong>Service area (from layer)</strong> and <strong>Shortest path (point to point)</strong> — on a road-network line layer</li>
+<li>Understand travel cost as distance (meters) or time (minutes) depending on whether a speed field is present</li>
+<li>Convert service-area output nodes into catchment polygons using <strong>Concave hull</strong> or <strong>Convex hull</strong></li>
+<li>Estimate covered and uncovered tract population with <strong>Join attributes by location (summary)</strong> and <strong>Select by location</strong></li>
+<li>Install and use the <strong>ORS Tools</strong> plugin for true drive-time isochrones as an enhanced option</li>
+<li>Produce a finished map in the QGIS <strong>Print Layout</strong> designer</li>
+</ul>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ul>
+<li>A map showing 15-, 30-, and 45-minute service-area catchments around Philadelphia FQHCs, symbolized by ring with a clear legend (native path or ORS Tools)</li>
+<li>A <strong>Shortest path</strong> result connecting one sample residential point to its nearest FQHC, with distance or travel-time cost in the attribute table</li>
+<li>A summary table showing estimated tract population falling outside the 15-minute catchment</li>
+<li>A 150-word written interpretation answering the public health question</li>
+<li>A QGIS project file (<code>Lab04a_NetworkAccess.qgz</code>) and a <strong>Print Layout</strong> export (PDF or PNG)</li>
+</ul>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>All files below are in the instructor-shared folder for Lab 4a. Substitute the actual path your instructor provides.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer name</th>
+<th>File name</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>FQHC locations</td>
+<td><code>phl_FQHC.gpkg</code></td>
+<td>Point locations of FQHCs in Philadelphia</td>
+<td>HRSA data.hrsa.gov — instructor-provided</td>
+</tr>
+<tr class="even">
+<td>Road network</td>
+<td><code>phl_roads_osm.gpkg</code></td>
+<td>Clipped OSM road-network line layer for Philadelphia</td>
+<td>OpenStreetMap via instructor — instructor-provided</td>
+</tr>
+<tr class="odd">
+<td>Tract population</td>
+<td><code>phl_tracts_pop.gpkg</code></td>
+<td>ACS 5-year tract boundaries with total population field <code>TOT_POP</code></td>
+<td>Census TIGER + ACS — instructor-provided</td>
+</tr>
+<tr class="even">
+<td>Sample resident points</td>
+<td><code>westphilly_sample_pts.gpkg</code></td>
+<td>Random sample of 50 residential address points in West Philadelphia</td>
+<td>Instructor-provided from PASDA address points</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> All files are provided as GeoPackages (<code>.gpkg</code>), QGIS’s preferred working format. If your instructor supplies shapefiles instead, the steps are identical — just substitute the <code>.shp</code> filenames.</p>
+</blockquote>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites:</strong> Complete Labs 1–3. You should be able to add layers, use the Processing Toolbox, reproject layers, and run Select by Location.</p>
+<p><strong>QGIS version:</strong> These steps target <strong>QGIS 3.34 LTR</strong>. QGIS is free and open-source — no credits, no organizational account, no licensing barriers.</p>
+<p><strong>Time estimate:</strong> 90–120 minutes for the native path; add 20 minutes if you complete the ORS Tools enhanced option.</p>
+<p><strong>Plugins to install (do this before starting):</strong></p>
+<ol type="1">
+<li>Open <strong>Plugins ▸ Manage and Install Plugins…</strong></li>
+<li>Search for <strong>ORS Tools</strong> and click <strong>Install Plugin</strong>. This plugin is needed for Part 4 (enhanced option) only. It requires a free API key from openrouteservice.org — register now if you plan to complete Part 4.</li>
+<li>Optionally install <strong>QuickMapServices</strong> for a background basemap.</li>
+</ol>
+<p><strong>CRS setup:</strong> Set your project CRS to <strong>NAD83 / Pennsylvania South (ftUS) — EPSG:2272</strong> via <strong>Project ▸ Properties ▸ CRS</strong>. The road-network layer and all analysis outputs should share this CRS for accurate distance calculations. Use <strong>Processing ▸ Reproject Layer</strong> (or right-click a layer ▸ <strong>Export ▸ Save Features As…</strong> with a target CRS) to align any layer that differs.</p>
+<p><strong>Create the project:</strong> Open QGIS. Choose <strong>Project ▸ New</strong>. Save immediately as <code>Lab04a_NetworkAccess.qgz</code> in your working folder. Add all four data layers using <strong>Layer ▸ Add Layer ▸ Add Vector Layer</strong> or by dragging from the <strong>Browser</strong> panel.</p>
+<hr>
+</section>
+<section id="part-1-explore-the-road-network-layer" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-explore-the-road-network-layer">Part 1: Explore the road-network layer</h2>
+<p>Before running any analysis, inspect the road network to understand its attributes. The native QGIS network tools use a line layer directly — no special network dataset build step is required.</p>
+<ol type="1">
+<li>Open the <strong>Attribute Table</strong> of <code>phl_roads_osm</code> (press <strong>F6</strong> or right-click the layer ▸ <strong>Open Attribute Table</strong>).</li>
+<li>Look for a speed or travel-time field (common OSM field names: <code>maxspeed</code>, <code>speed_kph</code>, <code>highway</code>). If a numeric speed field exists, the native tool can calculate travel time. If not, the tool will use distance as the cost.</li>
+<li>Close the table. In the <strong>Layers</strong> panel, note the layer CRS shown in the status bar at the bottom of the QGIS window. Confirm it matches your project CRS (EPSG:2272 or equivalent).</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Network distance and travel time are not the same thing, and neither equals perceived access for safety-net patients. A 15-minute drive time assumes a personal vehicle and a clear road. Many FQHC patients rely on transit, walk, or use paratransit. Drive-time service areas are a useful first screen and a common standard in health planning, but they overestimate access for car-free households. Note this limitation in your written interpretation.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-2-service-area-from-layer-native-tool" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-service-area-from-layer-native-tool">Part 2: Service area (from layer) — native tool</h2>
+<p>The <strong>Service area (from layer)</strong> tool computes all road segments reachable from each start point within a specified cost (distance or time). The output is a set of nodes and lines representing the extent of the reachable network, not a filled polygon — you will convert it to a catchment polygon in Part 3.</p>
+<section id="run-the-service-area" class="level3">
+<h3 class="anchored" data-anchor-id="run-the-service-area">Run the service area</h3>
+<ol type="1">
+<li>Open the <strong>Processing Toolbox</strong> (<strong>Processing ▸ Toolbox</strong>, or Ctrl+Alt+T).</li>
+<li>In the search box, type <code>service area</code>. Under <strong>Network analysis</strong>, double-click <strong>Service area (from layer)</strong>.</li>
+<li>Fill in the dialog with the following parameters:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vector layer representing network</td>
+<td><code>phl_roads_osm</code></td>
+</tr>
+<tr class="even">
+<td>Vector layer with start points</td>
+<td><code>phl_FQHC</code></td>
+</tr>
+<tr class="odd">
+<td>Path type to calculate</td>
+<td>Shortest (or Fastest if a speed field exists)</td>
+</tr>
+<tr class="even">
+<td>Travel cost (distance or time)</td>
+<td><code>1500</code> (meters, roughly 15 min walking) — see note below</td>
+</tr>
+<tr class="odd">
+<td>Output geometry type</td>
+<td>Both nodes and lines</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The native tool’s <strong>Travel cost</strong> is in the layer’s distance units (meters for EPSG:26918; feet for EPSG:2272) when using <strong>Shortest</strong> path type, or in hours when using <strong>Fastest</strong> with a speed field. If your road layer is in feet (EPSG:2272) and you want a ~15-minute walk, use approximately <code>6000</code> feet. If your layer has a speed field and you select <strong>Fastest</strong>, enter <code>0.25</code> for 15 minutes (0.25 hours). Confirm the units with your instructor before running.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>Leave <strong>Output</strong> (nodes) and <strong>Output lines</strong> as temporary layers for now. Click <strong>Run</strong>.</li>
+</ol>
+<p><em>[Figure: Service area dialog filled with phl_roads_osm and phl_FQHC, travel cost entered]</em></p>
+<ol start="5" type="1">
+<li>Two temporary layers appear: <strong>Service area (lines)</strong> and <strong>Service area (nodes)</strong>. The lines layer shows all road segments reachable from the FQHC points. Turn off the road network layer to see the result more clearly.</li>
+</ol>
+<p><em>[Figure: Service area lines radiating outward from FQHC locations across the Philadelphia street grid]</em></p>
+</section>
+<section id="run-for-multiple-cutoffs" class="level3">
+<h3 class="anchored" data-anchor-id="run-for-multiple-cutoffs">Run for multiple cutoffs</h3>
+<p>The native tool runs one cost at a time. To produce 15-, 30-, and 45-minute rings, run the tool three times with three travel-cost values. Name each output descriptively (e.g., <code>service_nodes_15</code>, <code>service_nodes_30</code>, <code>service_nodes_45</code>).</p>
+<ol start="6" type="1">
+<li>Re-open <strong>Service area (from layer)</strong>. Change the travel cost to the 30-minute equivalent and click <strong>Run</strong>. Repeat for 45 minutes. Save each output to your working folder: right-click the temporary layer ▸ <strong>Export ▸ Save Features As…</strong> ▸ format GeoPackage, file name <code>service_nodes_30.gpkg</code>.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-3-build-catchment-polygons-and-estimate-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-build-catchment-polygons-and-estimate-coverage">Part 3: Build catchment polygons and estimate coverage</h2>
+<p>The service-area tool outputs points (nodes) along the reachable network edge, not a filled polygon. You will convert these into a catchment polygon using <strong>Concave hull</strong>, then subtract the inner ring to produce non-overlapping bands.</p>
+<section id="create-catchment-polygons" class="level3">
+<h3 class="anchored" data-anchor-id="create-catchment-polygons">Create catchment polygons</h3>
+<ol type="1">
+<li>In the <strong>Processing Toolbox</strong>, search for <code>concave hull</code>. Open <strong>Concave hull (alpha shapes)</strong> under <strong>Vector geometry</strong>.</li>
+<li>Set <strong>Input layer</strong> to <code>service_nodes_15</code>. Set <strong>Alpha</strong> to <code>0.3</code> (lower values produce tighter hulls; adjust if the polygon has holes). Click <strong>Run</strong>.</li>
+</ol>
+<p><em>[Figure: Concave hull polygon covering the reachable road network from FQHC points]</em></p>
+<ol start="3" type="1">
+<li>Repeat for <code>service_nodes_30</code> and <code>service_nodes_45</code>.</li>
+<li>To produce non-overlapping rings (like the ArcGIS Pro “Rings” option), use <strong>Vector overlay ▸ Difference</strong>: subtract the 15-minute hull from the 30-minute hull to get the 15–30 ring; subtract the 30-minute hull from the 45-minute hull to get the 30–45 ring.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <strong>Convex hull</strong> (also in the Processing Toolbox) is faster but produces a simpler, more inflated shape. Use <strong>Concave hull</strong> for a more realistic catchment boundary. If the concave hull produces unexpected holes, increase the Alpha value slightly.</p>
+</blockquote>
+</section>
+<section id="symbolize-the-rings" class="level3">
+<h3 class="anchored" data-anchor-id="symbolize-the-rings">Symbolize the rings</h3>
+<ol start="5" type="1">
+<li>Open <strong>Properties ▸ Symbology</strong> for each ring layer. Assign distinct fill colors with ~50% transparency: green for 0–15, yellow for 15–30, orange for 30–45. Set the border color to match the fill.</li>
+<li>Order the layers in the <strong>Layers</strong> panel so the 0–15 ring is on top, followed by 15–30, then 30–45, with tract boundaries and the basemap below.</li>
+</ol>
+</section>
+<section id="estimate-uncovered-population" class="level3">
+<h3 class="anchored" data-anchor-id="estimate-uncovered-population">Estimate uncovered population</h3>
+<ol start="7" type="1">
+<li>In the <strong>Processing Toolbox</strong>, search for <code>select by location</code>. Open <strong>Select by location</strong> under <strong>Vector selection</strong>.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select features from</td>
+<td><code>phl_tracts_pop</code></td>
+</tr>
+<tr class="even">
+<td>Where the features</td>
+<td>have their centroid in</td>
+</tr>
+<tr class="odd">
+<td>By comparing to features from</td>
+<td><code>service_hull_15</code> (the 15-minute catchment polygon)</td>
+</tr>
+<tr class="even">
+<td>Modify current selection by</td>
+<td>Creating new selection</td>
+</tr>
+</tbody>
+</table>
+<ol start="8" type="1">
+<li>Click <strong>Run</strong>. The tracts whose centroids fall inside the 15-minute catchment are selected.</li>
+<li>Open the <strong>Attribute Table</strong> of <code>phl_tracts_pop</code> (F6). Click <strong>Show Selected Features</strong> at the bottom-left of the table. Note the values in the <code>TOT_POP</code> field. To sum them: in the <strong>Field Calculator</strong> (the abacus icon), use the expression <code>sum("TOT_POP")</code> in the preview box — or simply read the sum from the bottom status bar of the attribute table, which shows <strong>Sum</strong> for numeric fields when rows are selected.</li>
+<li>Record the covered population. Then on the <strong>Attribute Table</strong> toolbar, click <strong>Invert Selection</strong>. Record the uncovered population the same way.</li>
+<li>Calculate: <code>uncovered / (covered + uncovered) × 100</code>. Record this figure for your deliverables.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Using tract centroids to assign coverage oversimplifies. A large tract may have its centroid inside the catchment while a portion of its residents live outside it. Block-level population or areal interpolation would produce a more precise estimate — methods beyond this lab’s scope but worth noting in your interpretation.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> This population estimate is a rough upper bound on coverage. It assumes all residents drive or walk, that the road network is accessible at all times, and that travel time is the only barrier. In practice, insurance status, clinic hours, language access, and patient load all constrain effective access. A travel-time service area is a first screen, not a complete access assessment.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="part-4-shortest-path-point-to-point-native-tool" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-shortest-path-point-to-point-native-tool">Part 4: Shortest path (point to point) — native tool</h2>
+<p>The <strong>Shortest path (point to point)</strong> tool finds the least-cost route between one start and one end point. Use it to connect a single sample residential point to its nearest FQHC.</p>
+<ol type="1">
+<li>In the <strong>Processing Toolbox</strong>, search for <code>shortest path</code>. Open <strong>Shortest path (point to point)</strong> under <strong>Network analysis</strong>.</li>
+<li>Fill in the dialog:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vector layer representing network</td>
+<td><code>phl_roads_osm</code></td>
+</tr>
+<tr class="even">
+<td>Path type to calculate</td>
+<td>Shortest (or Fastest if speed field exists)</td>
+</tr>
+<tr class="odd">
+<td>Start point (x, y)</td>
+<td>Click the <code>…</code> button and pick one residential point from <code>westphilly_sample_pts</code> on the map</td>
+</tr>
+<tr class="even">
+<td>End point (x, y)</td>
+<td>Click the <code>…</code> button and pick the nearest FQHC point on the map</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Under <strong>Advanced parameters</strong>, if a speed field exists in <code>phl_roads_osm</code>, set <strong>Speed field</strong> to that field name. Otherwise set <strong>Default speed (km/h)</strong> to <code>40</code> (a rough urban driving average) to get a time-cost output.</li>
+<li>Click <strong>Run</strong>. A new line layer appears showing the route.</li>
+<li>Open the attribute table of the output layer. It contains the start coordinates, end coordinates, and a <strong>cost</strong> field. If you used <strong>Fastest</strong> path type, the cost is in hours (multiply by 60 for minutes). If you used <strong>Shortest</strong>, the cost is in distance units.</li>
+<li>In the <strong>Field Calculator</strong>, add a new field <code>cost_min</code> (decimal) with the expression <code>"cost" * 60</code> to convert hours to minutes if needed.</li>
+</ol>
+<p><em>[Figure: Single shortest-path route from a West Philadelphia residential point to its nearest FQHC]</em></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The native <strong>Shortest path</strong> tool handles one origin-destination pair at a time. To find the nearest FQHC for many residential points simultaneously, use the enhanced ORS Tools approach in Part 5, or iterate through points using the QGIS <strong>Batch</strong> processing option (the gear icon in the tool dialog).</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-5-enhanced-ors-tools-drive-time-isochrones" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-enhanced-ors-tools-drive-time-isochrones">Part 5 (Enhanced): ORS Tools drive-time isochrones</h2>
+<p>The <strong>ORS Tools</strong> plugin connects QGIS to the OpenRouteService API and produces true drive-time isochrones — polygons that account for road speed, turn restrictions, and one-way streets. Results are more realistic than distance-buffered catchments from the native tool.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> ORS Tools sends the FQHC coordinate points to the OpenRouteService servers to compute isochrones. This is appropriate for facility locations (public data). Do not use this workflow with patient addresses, home locations, or any PHI. The free ORS tier allows sufficient requests for a class exercise (up to 500 isochrone requests per day).</p>
+</blockquote>
+<section id="set-up-the-plugin" class="level3">
+<h3 class="anchored" data-anchor-id="set-up-the-plugin">Set up the plugin</h3>
+<ol type="1">
+<li>In the QGIS menu, go to <strong>Web ▸ ORS Tools ▸ Provider Settings</strong>.</li>
+<li>Paste your free ORS API key (obtained from openrouteservice.org) into the <strong>API Key</strong> field. Click <strong>OK</strong>.</li>
+</ol>
+<p><em>[Figure: ORS Tools provider settings dialog with API key field]</em></p>
+</section>
+<section id="run-isochrones" class="level3">
+<h3 class="anchored" data-anchor-id="run-isochrones">Run isochrones</h3>
+<ol start="3" type="1">
+<li>Go to <strong>Web ▸ ORS Tools ▸ Isochrones ▸ Isochrones From Layer</strong>.</li>
+<li>Fill in the dialog:</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input Point Layer</td>
+<td><code>phl_FQHC</code></td>
+</tr>
+<tr class="even">
+<td>Travel Mode</td>
+<td><code>driving-car</code></td>
+</tr>
+<tr class="odd">
+<td>Dimension</td>
+<td><code>time</code></td>
+</tr>
+<tr class="even">
+<td>Isochrone Ranges (comma-separated, seconds)</td>
+<td><code>900,1800,2700</code> (= 15, 30, 45 min)</td>
+</tr>
+</tbody>
+</table>
+<ol start="5" type="1">
+<li>Click <strong>Run</strong>. A polygon layer appears with one feature per FQHC per time band, with attributes including the range value and the facility ID.</li>
+</ol>
+<p><em>[Figure: ORS Tools isochrones — three concentric drive-time rings around each FQHC in Philadelphia]</em></p>
+<ol start="6" type="1">
+<li>To produce city-wide coverage polygons rather than individual per-facility polygons, use <strong>Processing ▸ Toolbox ▸ Dissolve</strong>. Set <strong>Dissolve field</strong> to the range/value attribute to merge all 15-minute polygons into one shape, all 30-minute polygons into another, and so on.</li>
+<li>Repeat the population coverage estimate from Part 3 (steps 7–11) using the ORS 15-minute dissolved polygon instead of the native hull.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-6-export-a-print-layout-map" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-export-a-print-layout-map">Part 6: Export a Print Layout map</h2>
+<ol type="1">
+<li>Go to <strong>Project ▸ New Print Layout</strong>. Name it <code>Lab04a_Map</code>.</li>
+<li>In the layout, click <strong>Add Item ▸ Add Map</strong>. Draw a map frame over most of the page.</li>
+<li>In the <strong>Item Properties</strong> panel (right side), click <strong>Set Map Extent to Map Canvas</strong> to match the current view.</li>
+<li>Add supporting items: <strong>Add Item ▸ Add Legend</strong>, <strong>Add Item ▸ Add Scale Bar</strong>, <strong>Add Item ▸ Add North Arrow</strong>, <strong>Add Item ▸ Add Label</strong> (for title, your name, and date).</li>
+<li>In the Legend item properties, uncheck <strong>Auto update</strong> and remove layers not needed in the legend (road network, raw service nodes). Keep only the service-area rings, FQHC points, and tract boundaries.</li>
+<li>Export: <strong>Layout ▸ Export as PDF</strong> (or <strong>Export as Image</strong> for PNG). Save to your working folder as <code>Lab04a_Map.pdf</code>.</li>
+</ol>
+<p><em>[Figure: Completed Print Layout showing service-area rings, FQHC points, tract boundaries, legend, scale bar, and north arrow]</em></p>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Submit the following to your instructor:</p>
+<ol type="1">
+<li><strong>QGIS project file:</strong> <code>Lab04a_NetworkAccess.qgz</code> with all layers saved (not temporary).</li>
+<li><strong>Layout export (PDF or PNG):</strong> A single-page map showing the three service-area catchment rings (15, 30, 45 min) around Philadelphia FQHCs, with tract boundaries and at least one shortest-path route. Include a title, legend, north arrow, and scale bar. Label the map with your name and the date.</li>
+<li><strong>Summary table:</strong> A small table (typed in your write-up) with: total Philadelphia tract population, population in tracts covered within 15 minutes, population in tracts not covered, and percent uncovered.</li>
+<li><strong>150-word written interpretation:</strong> Answer the public health question in plain language. Address: (a) what share of West Philadelphia residents appear underserved by travel-time access, (b) at least one limitation of the travel-time method for a safety-net population, and (c) one policy or programmatic implication of your finding.</li>
+<li><strong>Label any AI-assisted output</strong> with the prompt you used and a note on how you verified the result (see Using AI in this lab).</li>
+</ol>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p><strong>Suggested use — translating the access question into a workflow:</strong> Before starting, you may ask an LLM: <em>“I want to estimate the share of residents more than 15 minutes from an FQHC using QGIS 3.34 native network analysis tools. Give me a step-by-step tool sequence.”</em> Use the response to orient yourself, then follow this handout’s steps — which have been verified against QGIS 3.34 documentation — rather than the AI output directly.</p>
+<p><strong>Suggested use — writing QGIS expressions:</strong> If you need to calculate travel time in minutes from a cost field in hours, you may ask: <em>“Write a QGIS Field Calculator expression to convert a field called <code>cost</code> from hours to minutes.”</em> Paste the expression into the Field Calculator, verify it produces the expected values in a few rows, then run it.</p>
+<p><strong>Suggested use — troubleshooting:</strong> If your concave hull polygon has unexpected holes or your service area looks wrong (e.g., extends across the river), ask: <em>“In QGIS 3.34, why might my service area (from layer) result extend into areas with no road segments?”</em> Use the explanation to guide your troubleshooting.</p>
+<p><strong>Guardrails — required:</strong></p>
+<ul>
+<li>AI helps with three things only: scaffolding (draft steps, expressions, text), explaining (concepts, errors), and critiquing (your map, your interpretation).</li>
+<li>AI does not choose your datasets, make analytic decisions, or interpret results for your specific study area.</li>
+<li>Never paste patient addresses, identifiable health records, or any PHI into a public LLM. ORS Tools coordinates should only be facility locations, never patient locations.</li>
+<li>Any map, table, or text produced with AI assistance must be labeled as such in your submission, along with the prompt used and how you verified the output.</li>
+</ul>
+<hr>
+</section>
+<section id="arcgis-equivalents" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-equivalents">ArcGIS equivalents</h2>
+<p>The QGIS Pro version of this lab (<code>Lab04a_NetworkAnalysis_PH.md</code>) and an ArcGIS Online version also exist for those platforms.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>QGIS (this lab)</th>
+<th>ArcGIS Pro equivalent</th>
+<th>ArcGIS Online equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Processing ▸ <strong>Service area (from layer)</strong></td>
+<td>Network Analyst ▸ <strong>Service Area</strong> solve layer</td>
+<td>Network Analysis ▸ <strong>Generate Service Areas</strong> tool</td>
+</tr>
+<tr class="even">
+<td>Processing ▸ <strong>Shortest path (point to point)</strong></td>
+<td>Network Analyst ▸ <strong>Route</strong> solve layer</td>
+<td>Network Analysis ▸ <strong>Find Routes</strong> tool</td>
+</tr>
+<tr class="odd">
+<td><strong>ORS Tools</strong> isochrones (drive-time)</td>
+<td>Network Analyst Service Area, Driving Time mode</td>
+<td>Ready-to-Use <strong>Generate Travel Areas</strong> (uses credits)</td>
+</tr>
+<tr class="even">
+<td><strong>Concave/Convex hull</strong> on service nodes</td>
+<td>Built into Service Area output as polygons</td>
+<td>Built into output</td>
+</tr>
+<tr class="odd">
+<td><strong>Select by location</strong> + attribute table sum</td>
+<td><strong>Select By Location</strong> + <strong>Summary Statistics</strong></td>
+<td>Query widget + statistics</td>
+</tr>
+<tr class="even">
+<td><strong>Join attributes by location (summary)</strong></td>
+<td><strong>Spatial Join</strong> tool</td>
+<td><strong>Join Features</strong> tool</td>
+</tr>
+<tr class="odd">
+<td><strong>Print Layout</strong> PDF export</td>
+<td>ArcGIS Pro <strong>Layout</strong> view PDF export</td>
+<td>ArcGIS Online <strong>Print</strong> widget or Map Viewer export</td>
+</tr>
+<tr class="even">
+<td>Free, no account needed</td>
+<td>Requires ArcGIS Pro license + Network Analyst extension</td>
+<td>Requires ArcGIS Online account; credits consumed for routing</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li>The native QGIS <strong>Service area (from layer)</strong> tool outputs nodes and lines, not filled polygons. Why is this, and what processing step converts those outputs into a usable catchment polygon?</li>
+<li>A colleague says: “I just buffered the FQHCs by half a mile — that’s basically the same as a 15-minute catchment.” Under what conditions would a straight-line buffer and a network service area give similar results? When would they diverge most in West Philadelphia?</li>
+<li>The <strong>Travel cost</strong> parameter in the native tool is in different units depending on the <strong>Path type</strong> selected. Explain what units you would enter for a 15-minute catchment if using <strong>Shortest</strong> (distance) path type on a layer in EPSG:2272 (feet), versus <strong>Fastest</strong> (time) path type with a speed field.</li>
+<li>ORS Tools sends coordinates to external servers. Explain why this is acceptable for FQHC locations but would be inappropriate if you substituted patient home addresses.</li>
+<li>Your population estimate used tract centroids to assign coverage. Name one alternative approach that would produce a more accurate estimate of the uncovered population, and describe the trade-off it involves.</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

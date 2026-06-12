@@ -51,14 +51,16 @@ Key concepts:
 
 
 ::: {.lab-tracks}
-**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online and QGIS web page (each with a Word download) and as an ArcGIS Pro Word document. The overview below applies to all three.
 
-**Lab 2a — Measuring Distance &amp; Access** &nbsp;
-*ArcGIS Online:* [Full instructions](../labs/lab2a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab02a_DistanceAccess_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab02a_DistanceAccess_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab02a_Projections_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02a_Projections_ArcGISPro_PH.docx"}
+**Lab 2a — Measuring Distance &amp; Access**
+
+*ArcGIS Online:* [Instructions](../labs/lab2a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab02a_DistanceAccess_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab02a_DistanceAccess_ArcGISOnline_PH.docx"} &nbsp; *QGIS:* [Instructions](../labs/lab2a-qgis.qmd){.btn .btn-success .btn-sm} [Word](../labs/downloads/Lab02a_Projections_QGIS_PH.docx){.btn .btn-outline-success .btn-sm download="Lab02a_Projections_QGIS_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab02a_Projections_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02a_Projections_ArcGISPro_PH.docx"}
 
 
-**Lab 2b — Collecting &amp; Digitizing Field Data** &nbsp;
-*ArcGIS Online:* [Full instructions](../labs/lab2b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab02b_Digitizing_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab02b_Digitizing_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab02b_Digitizing_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02b_Digitizing_ArcGISPro_PH.docx"}
+**Lab 2b — Collecting &amp; Digitizing Field Data**
+
+*ArcGIS Online:* [Instructions](../labs/lab2b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab02b_Digitizing_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab02b_Digitizing_ArcGISOnline_PH.docx"} &nbsp; *QGIS:* [Instructions](../labs/lab2b-qgis.qmd){.btn .btn-success .btn-sm} [Word](../labs/downloads/Lab02b_Digitizing_QGIS_PH.docx){.btn .btn-outline-success .btn-sm download="Lab02b_Digitizing_QGIS_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab02b_Digitizing_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02b_Digitizing_ArcGISPro_PH.docx"}
 
 
 :::

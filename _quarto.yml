@@ -35,27 +35,7 @@ website:
           - text: "Day 5: Spatial Estimation & Map Design"
             href: sessions/day5.qmd
       - text: "Labs"
-        menu:
-          - text: "Lab 1: Introduction to ArcGIS Online (Day 1)"
-            href: labs/lab1-online.qmd
-          - text: "Lab 2a: Measuring Distance & Access (Day 2)"
-            href: labs/lab2a-online.qmd
-          - text: "Lab 2b: Collecting & Digitizing Field Data (Day 2)"
-            href: labs/lab2b-online.qmd
-          - text: "Lab 3a: Joining & Querying Surveillance Data (Day 3)"
-            href: labs/lab3a-online.qmd
-          - text: "Lab 3b: Buffer & Overlay for EJ Screening (Day 3)"
-            href: labs/lab3b-online.qmd
-          - text: "Lab 4a: Drive-Time & Network Access (Day 4)"
-            href: labs/lab4a-online.qmd
-          - text: "Lab 4b: Geocoding with Privacy (Day 4)"
-            href: labs/lab4b-online.qmd
-          - text: "Lab 4c: Summarizing Heat Exposure (Day 4)"
-            href: labs/lab4c-online.qmd
-          - text: "Lab 5a: Interpolating an Exposure Surface (Day 5)"
-            href: labs/lab5a-online.qmd
-          - text: "Lab 5b: Capstone — Composite Index & StoryMap (Day 5)"
-            href: labs/lab5b-online.qmd
+        href: labs/index.qmd
       - text: "Readings"
         href: readings.qmd
       - text: "Resources"

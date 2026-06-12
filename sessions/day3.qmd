@@ -63,14 +63,16 @@ The **Modifiable Areal Unit Problem (MAUP)** occurs when the same data produces 
 
 
 ::: {.lab-tracks}
-**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online and QGIS web page (each with a Word download) and as an ArcGIS Pro Word document. The overview below applies to all three.
 
-**Lab 3a — Joining &amp; Querying Surveillance Data** &nbsp;
-*ArcGIS Online:* [Full instructions](../labs/lab3a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03a_JoinsQueries_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03a_JoinsQueries_ArcGISPro_PH.docx"}
+**Lab 3a — Joining &amp; Querying Surveillance Data**
+
+*ArcGIS Online:* [Instructions](../labs/lab3a-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03a_JoinsQueries_ArcGISOnline_PH.docx"} &nbsp; *QGIS:* [Instructions](../labs/lab3a-qgis.qmd){.btn .btn-success .btn-sm} [Word](../labs/downloads/Lab03a_JoinsQueries_QGIS_PH.docx){.btn .btn-outline-success .btn-sm download="Lab03a_JoinsQueries_QGIS_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03a_JoinsQueries_ArcGISPro_PH.docx"}
 
 
-**Lab 3b — Buffer &amp; Overlay for EJ Screening** &nbsp;
-*ArcGIS Online:* [Full instructions](../labs/lab3b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03b_BufferOverlay_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03b_BufferOverlay_ArcGISPro_PH.docx"}
+**Lab 3b — Buffer &amp; Overlay for EJ Screening**
+
+*ArcGIS Online:* [Instructions](../labs/lab3b-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab03b_BufferOverlay_ArcGISOnline_PH.docx"} &nbsp; *QGIS:* [Instructions](../labs/lab3b-qgis.qmd){.btn .btn-success .btn-sm} [Word](../labs/downloads/Lab03b_BufferOverlay_QGIS_PH.docx){.btn .btn-outline-success .btn-sm download="Lab03b_BufferOverlay_QGIS_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab03b_BufferOverlay_ArcGISPro_PH.docx"}
 
 
 :::

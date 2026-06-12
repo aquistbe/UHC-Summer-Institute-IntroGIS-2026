@@ -1,0 +1,12 @@
+---
+title: "Lab 1: Introduction to QGIS"
+subtitle: "Intro GIS for Public Health · QGIS track · Day 1"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab01_Intro_QGIS_PH.docx){.btn .btn-primary .btn-sm download="Lab01_Intro_QGIS_PH.docx"}
+[ArcGIS Online version](lab1-online.qmd){.btn .btn-outline-primary .btn-sm}
+[ArcGIS Pro version (Word)](downloads/Lab01_Intro_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab01_Intro_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab1-qgis.md >}}

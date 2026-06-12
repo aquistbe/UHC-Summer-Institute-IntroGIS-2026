@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 4c: Raster Zonal Statistics for Heat Vulnerability (QGIS) – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../labs/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-add-and-inspect-the-lst-raster" id="toc-part-1-add-and-inspect-the-lst-raster" class="nav-link" data-scroll-target="#part-1-add-and-inspect-the-lst-raster">Part 1: Add and Inspect the LST Raster</a>
+  <ul class="collapse">
+  <li><a href="#symbolize-with-a-heat-ramp" id="toc-symbolize-with-a-heat-ramp" class="nav-link" data-scroll-target="#symbolize-with-a-heat-ramp">Symbolize with a heat ramp</a></li>
+  </ul></li>
+  <li><a href="#part-2-reclassify-lst-into-temperature-classes" id="toc-part-2-reclassify-lst-into-temperature-classes" class="nav-link" data-scroll-target="#part-2-reclassify-lst-into-temperature-classes">Part 2: Reclassify LST into Temperature Classes</a></li>
+  <li><a href="#part-3-optional-raster-calculator-unit-conversion" id="toc-part-3-optional-raster-calculator-unit-conversion" class="nav-link" data-scroll-target="#part-3-optional-raster-calculator-unit-conversion">Part 3: (Optional) Raster Calculator — Unit Conversion</a></li>
+  <li><a href="#part-4-zonal-statistics" id="toc-part-4-zonal-statistics" class="nav-link" data-scroll-target="#part-4-zonal-statistics">Part 4: Zonal Statistics</a>
+  <ul class="collapse">
+  <li><a href="#symbolize-tracts-by-mean-lst" id="toc-symbolize-tracts-by-mean-lst" class="nav-link" data-scroll-target="#symbolize-tracts-by-mean-lst">Symbolize tracts by mean LST</a></li>
+  </ul></li>
+  <li><a href="#part-5-classify-svi-and-build-the-comparison-display" id="toc-part-5-classify-svi-and-build-the-comparison-display" class="nav-link" data-scroll-target="#part-5-classify-svi-and-build-the-comparison-display">Part 5: Classify SVI and Build the Comparison Display</a>
+  <ul class="collapse">
+  <li><a href="#bonus-bivariate-display" id="toc-bonus-bivariate-display" class="nav-link" data-scroll-target="#bonus-bivariate-display">(Bonus) Bivariate display</a></li>
+  </ul></li>
+  <li><a href="#part-6-print-layout" id="toc-part-6-print-layout" class="nav-link" data-scroll-target="#part-6-print-layout">Part 6: Print Layout</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a>
+  <ul class="collapse">
+  <li><a href="#suggested-task-interpret-the-comparison-map" id="toc-suggested-task-interpret-the-comparison-map" class="nav-link" data-scroll-target="#suggested-task-interpret-the-comparison-map">Suggested task: interpret the comparison map</a></li>
+  <li><a href="#ai-guardrails-always-apply" id="toc-ai-guardrails-always-apply" class="nav-link" data-scroll-target="#ai-guardrails-always-apply">AI guardrails (always apply)</a></li>
+  </ul></li>
+  <li><a href="#arcgis-equivalents" id="toc-arcgis-equivalents" class="nav-link" data-scroll-target="#arcgis-equivalents">ArcGIS equivalents</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 4c: Raster Zonal Statistics for Heat Vulnerability (QGIS)</h1>
+<p class="subtitle lead">Intro GIS for Public Health · QGIS track · Day 4</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab04c_RasterZonal_QGIS_PH.docx" class="btn btn-primary btn-sm" download="Lab04c_RasterZonal_QGIS_PH.docx">Download this lab (Word)</a> <a href="../labs/lab4c-online.html" class="btn btn-outline-primary btn-sm">ArcGIS Online version</a> <a href="downloads/Lab04c_RasterZonal_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab04c_RasterZonal_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Summer heat is the leading weather-related cause of death in the United States, but the burden falls unevenly across neighborhoods. Which Philadelphia census tracts have the highest land-surface temperatures during summer, and do those tracts also carry the highest social vulnerability? Identifying that overlap is an early step in targeting heat-health interventions — cooling centers, tree-planting programs, and outreach to isolated elderly residents.</p>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Add and inspect a single-band GeoTIFF raster in QGIS</li>
+<li>Symbolize a raster with <strong>Singleband pseudocolor</strong> and a sequential heat ramp</li>
+<li>Use <strong>Raster ▸ Raster Calculator</strong> to convert units or build a simple index</li>
+<li>Reclassify a continuous raster into discrete categories with <strong>Reclassify by table</strong> (Processing Toolbox)</li>
+<li>Run <strong>Zonal statistics</strong> (Processing) to compute mean LST per census tract — QGIS writes results directly to the polygon layer, with no separate join step needed</li>
+<li>Symbolize tract polygons by a numeric field using <strong>Graduated</strong> colors</li>
+<li>Compare LST and SVI layers to identify doubly-burdened tracts</li>
+<li>Export a finished map from the <strong>Print Layout</strong> designer</li>
+</ul>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A choropleth map of Philadelphia census tracts symbolized by zonal mean LST, exported as a PDF from Print Layout</li>
+<li>A side-by-side or inset comparison with SVI quartile symbology</li>
+<li><em>(Bonus)</em> A bivariate display combining LST class and SVI quartile</li>
+<li>A short written interpretation (~100 words) on the spatial pattern and the limits of the analysis</li>
+<li>The saved QGIS project file (<code>.qgz</code>)</li>
+</ol>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>All files are instructor-provided. Save them to your working folder for this lab.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer name</th>
+<th>File</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Summer LST raster</td>
+<td><code>phl_LST_summer.tif</code></td>
+<td>Single-band Landsat 8/9 summer land-surface temperature, Philadelphia extent, values in °C</td>
+<td>Instructor-provided (USGS Landsat / NOAA HEAT.gov)</td>
+</tr>
+<tr class="even">
+<td>Tracts with SVI</td>
+<td><code>phl_tracts_SVI.gpkg</code></td>
+<td>2020 TIGER census tract boundaries with CDC/ATSDR SVI 2022 overall percentile field (<code>RPL_THEMES</code>) pre-joined</td>
+<td>Instructor-provided (CDC/ATSDR SVI 2022)</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Both layers are in <strong>NAD83 PA State Plane South (EPSG:2272, US feet)</strong>. Set your project CRS: <strong>Project ▸ Properties ▸ CRS</strong>, search <code>2272</code>, click <strong>OK</strong>.</p>
+</blockquote>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>QGIS version:</strong> This lab targets <strong>QGIS 3.34 LTR</strong>. QGIS is free and open-source — no license, no extension, and no credits are required. All tools are built into the default installation. This contrasts with the ArcGIS Pro version of this lab, which requires the Spatial Analyst extension, and the ArcGIS Online version, which consumes raster-analysis credits.</p>
+<p><strong>Prerequisites:</strong> Comfortable adding data, using the <strong>Layers</strong> panel, and opening tools from the <strong>Processing Toolbox</strong>. No prior raster experience required.</p>
+<p><strong>Plugins needed:</strong> None.</p>
+<p><strong>Time estimate:</strong> 90–110 minutes.</p>
+<hr>
+</section>
+<section id="part-1-add-and-inspect-the-lst-raster" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-add-and-inspect-the-lst-raster">Part 1: Add and Inspect the LST Raster</h2>
+<ol type="1">
+<li><strong>Layer ▸ Add Layer ▸ Add Raster Layer</strong>. Browse to <code>phl_LST_summer.tif</code> and click <strong>Add</strong>.</li>
+<li><strong>Layer ▸ Add Layer ▸ Add Vector Layer</strong>. Browse to <code>phl_tracts_SVI.gpkg</code> and click <strong>Add</strong>. In the <strong>Layers</strong> panel, drag <code>phl_tracts_SVI</code> above the raster.</li>
+<li>Right-click <code>phl_LST_summer.tif</code> ▸ <strong>Properties ▸ Information</strong>. Note the pixel size and value range. Close the dialog.</li>
+<li>Click the <strong>Identify Features</strong> tool and click a pixel on the raster to see its °C value.</li>
+</ol>
+<section id="symbolize-with-a-heat-ramp" class="level3">
+<h3 class="anchored" data-anchor-id="symbolize-with-a-heat-ramp">Symbolize with a heat ramp</h3>
+<ol start="5" type="1">
+<li>Double-click <code>phl_LST_summer.tif</code> to open <strong>Properties ▸ Symbology</strong>. Change render type to <strong>Singleband pseudocolor</strong>.</li>
+<li>Click the <strong>Color ramp</strong> dropdown ▸ <strong>Create New Color Ramp ▸ Catalog: cpt-city</strong>. Choose a light-to-dark sequential ramp such as <strong>YlOrRd</strong>. Click <strong>OK</strong>.</li>
+<li>Set <strong>Interpolation</strong> to <strong>Linear</strong>, <strong>Mode</strong> to <strong>Continuous</strong>. Click <strong>Classify</strong>, then <strong>Apply</strong> and <strong>OK</strong>.</li>
+</ol>
+<p><em>[Figure: Symbology tab showing Singleband pseudocolor with YlOrRd ramp applied to the LST raster over Philadelphia]</em></p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> LST measured by satellite is a surface thermal emission, not air temperature and not personal heat exposure. High values reflect impervious surfaces, dark rooftops, and sparse tree cover — the urban heat island effect. LST is a useful spatial proxy for prioritization, not a measure of what residents experience.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="part-2-reclassify-lst-into-temperature-classes" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-reclassify-lst-into-temperature-classes">Part 2: Reclassify LST into Temperature Classes</h2>
+<p>Reclassification converts the continuous temperature raster into discrete integer categories for cleaner thematic mapping.</p>
+<ol type="1">
+<li><p>Open the <strong>Processing Toolbox</strong> (<strong>Processing ▸ Toolbox</strong> or Ctrl+Alt+T). Search <code>reclassify</code>. Open <strong>Raster analysis ▸ Reclassify by table</strong>.</p></li>
+<li><p>Set parameters:</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Raster layer</td>
+<td><code>phl_LST_summer.tif</code></td>
+</tr>
+<tr class="even">
+<td>Band number</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Range boundaries</td>
+<td><code>min &lt;= value &lt; max</code></td>
+</tr>
+<tr class="even">
+<td>Output raster</td>
+<td><code>lst_reclass.tif</code> in your working folder</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><p>Click the ellipsis next to <strong>Reclassification table</strong>. Add five rows using break values from your raster statistics. Assign integer values 1 (coolest) through 5 (hottest). Click <strong>OK</strong>, then <strong>Run</strong>.</p></li>
+<li><p>Open the output layer’s <strong>Symbology</strong>, set render type to <strong>Paletted/Unique values</strong>, click <strong>Classify</strong>, and assign a light-to-dark sequential ramp matching the raw raster.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> The reclassified raster stores class codes 1–5, not degrees Celsius. Keep <code>phl_LST_summer.tif</code> for the zonal statistics step — that tool needs continuous values.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-3-optional-raster-calculator-unit-conversion" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-optional-raster-calculator-unit-conversion">Part 3: (Optional) Raster Calculator — Unit Conversion</h2>
+<ol type="1">
+<li><p>Open <strong>Raster ▸ Raster Calculator</strong>.</p></li>
+<li><p>In the <strong>Raster Bands</strong> list, double-click <code>phl_LST_summer.tif@1</code> to insert it. Build the expression:</p>
+<p><code>"phl_LST_summer.tif@1" * 9 / 5 + 32</code></p></li>
+<li><p>Set the output to <code>lst_fahrenheit.tif</code>. Click <strong>OK</strong>. Verify values are ~32–50 °F higher than the Celsius raster.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> Layer names in the Raster Calculator must match the <strong>Raster Bands</strong> list exactly, including the <code>@1</code> band suffix. Use the list to insert names rather than typing them manually.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-4-zonal-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-zonal-statistics">Part 4: Zonal Statistics</h2>
+<p><strong>Zonal statistics</strong> summarizes raster pixel values within each polygon zone. Here the zones are census tracts and the raster is LST. QGIS writes mean LST directly back to the tract layer as a new field — no separate join step is required.</p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Zonal statistics is the most useful raster operation for public health spatial analysis. The same workflow applies to any continuous environmental raster: PM2.5 by census tract, NDVI (tree canopy) by neighborhood, impervious surface by block group. Learn this once and apply it to dozens of environmental justice questions.</p>
+</blockquote>
+<ol type="1">
+<li><p>In the <strong>Processing Toolbox</strong>, search <code>zonal statistics</code>. Open <strong>Raster analysis ▸ Zonal statistics</strong>.</p></li>
+<li><p>Set parameters:</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>phl_tracts_SVI</code></td>
+</tr>
+<tr class="even">
+<td>Raster layer</td>
+<td><code>phl_LST_summer.tif</code></td>
+</tr>
+<tr class="odd">
+<td>Raster band</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Output column prefix</td>
+<td><code>lst_</code></td>
+</tr>
+<tr class="odd">
+<td>Statistics to calculate</td>
+<td><strong>Mean</strong> (optionally also Min, Max)</td>
+</tr>
+<tr class="even">
+<td>Output layer</td>
+<td><code>phl_tracts_SVI_zonal.gpkg</code> in your working folder</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li>Click <strong>Run</strong>. Open the <strong>Attribute Table</strong> (F6) of the output layer. Scroll right to find <code>lst_mean</code>. Confirm one row per tract with plausible °C values.</li>
+</ol>
+<p><em>[Figure: Attribute Table showing the lst_mean field populated with temperature values per census tract]</em></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> QGIS Zonal Statistics appends results directly to the output polygon layer. The ArcGIS Pro equivalent (<strong>Zonal Statistics as Table</strong>) creates a separate table requiring a subsequent join step.</p>
+</blockquote>
+<section id="symbolize-tracts-by-mean-lst" class="level3">
+<h3 class="anchored" data-anchor-id="symbolize-tracts-by-mean-lst">Symbolize tracts by mean LST</h3>
+<ol start="4" type="1">
+<li>Open <strong>Properties ▸ Symbology</strong> for <code>phl_tracts_SVI_zonal</code>. Set render type to <strong>Graduated</strong>, <strong>Value</strong> to <code>lst_mean</code>, <strong>Mode</strong> to <strong>Natural Breaks (Jenks)</strong>, <strong>Classes</strong> to <strong>5</strong>. Choose the same yellow-to-red ramp from Part 1. Click <strong>Classify</strong>, then <strong>Apply</strong> and <strong>OK</strong>.</li>
+</ol>
+<p><em>[Figure: Philadelphia census tract map with graduated-color symbology by lst_mean; hottest tracts in dark red]</em></p>
+<hr>
+</section>
+</section>
+<section id="part-5-classify-svi-and-build-the-comparison-display" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-classify-svi-and-build-the-comparison-display">Part 5: Classify SVI and Build the Comparison Display</h2>
+<p>The SVI overall percentile field <code>RPL_THEMES</code> runs 0–1, where values near 1 indicate highest social vulnerability. Quartile classification divides tracts into four equal groups.</p>
+<ol type="1">
+<li>Duplicate the output layer: right-click <code>phl_tracts_SVI_zonal</code> ▸ <strong>Duplicate Layer</strong>. Rename the duplicate <code>tracts_SVI_symbology</code>.</li>
+<li>Open <strong>Properties ▸ Symbology</strong> on the duplicate. Set render type to <strong>Graduated</strong>, <strong>Value</strong> to <code>RPL_THEMES</code>, <strong>Mode</strong> to <strong>Quantile (Equal Count)</strong>, <strong>Classes</strong> to <strong>4</strong>. Choose a light-to-dark purple ramp (e.g., <strong>Purples</strong>). The darkest shade = Q4, most vulnerable. Click <strong>Classify</strong>, then <strong>Apply</strong> and <strong>OK</strong>.</li>
+</ol>
+<p><em>[Figure: Census tract map symbolized by SVI quartile; darkest purple = Q4 (highest vulnerability)]</em></p>
+<ol start="3" type="1">
+<li>Toggle layer visibility to compare the LST and SVI layers. Identify tracts that are in the hottest LST class <strong>and</strong> SVI Q4 — these are doubly-burdened tracts. Use <strong>Identify Features</strong> to record their <code>GEOID</code>, <code>lst_mean</code>, and <code>RPL_THEMES</code>.</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Spatial co-occurrence of high LST and high SVI is not evidence of worse health outcomes. LST is a surface proxy, not air temperature, personal exposure, or illness. A full heat vulnerability assessment would add emergency department visit data for heat illness, air-conditioning access, cooling center proximity, and age structure. This map is a prioritization tool, not a conclusion.</p>
+</blockquote>
+<section id="bonus-bivariate-display" class="level3">
+<h3 class="anchored" data-anchor-id="bonus-bivariate-display">(Bonus) Bivariate display</h3>
+<ol start="4" type="1">
+<li>Open the <strong>Field Calculator</strong> on <code>phl_tracts_SVI_zonal</code>. Create a new text field <code>bvclass</code>. Write an expression combining the LST class and SVI quartile — for example, assigning <code>'5Q4'</code> to a tract with the highest LST and highest SVI. Your instructor will supply break values. Symbolize by <strong>Categorized</strong> on <code>bvclass</code>, assigning a bivariate color grid with the darkest, most alarming color at <code>5Q4</code>.</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="part-6-print-layout" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-print-layout">Part 6: Print Layout</h2>
+<ol type="1">
+<li><strong>Project ▸ New Print Layout</strong>. Name it <code>Lab04c_LST</code>.</li>
+<li><strong>Add Item ▸ Add Map</strong>. Draw a rectangle; set extent to match Philadelphia.</li>
+<li>Add <strong>Legend</strong> (edit to show only relevant layers and rename class labels), <strong>Scale Bar</strong>, <strong>North Arrow</strong>, and a <strong>Label</strong> for the title and data sources.</li>
+<li><strong>Layout ▸ Export as PDF</strong>. Repeat for the SVI quartile map.</li>
+</ol>
+<p><em>[Figure: Print Layout designer with map frame, legend, scale bar, north arrow, and title]</em></p>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<ol type="1">
+<li><strong>Map 1 — Zonal Mean LST by Census Tract.</strong> Print Layout PDF: title, legend, north arrow, scale bar, data sources, your name. Graduated color by <code>lst_mean</code>, 5 Natural Breaks classes, yellow-to-red ramp.</li>
+<li><strong>Map 2 — SVI Quartile by Census Tract.</strong> Same extent. Graduated by <code>RPL_THEMES</code>, 4 quantile classes, light-to-dark purple.</li>
+<li><strong>Written interpretation (~100 words).</strong> Identify 2–3 doubly-burdened tracts by GEOID or neighborhood. Describe the pattern. State explicitly that LST is a surface proxy, not health outcome data.</li>
+<li><em>(Bonus)</em> <strong>Map 3 — Bivariate Display.</strong> Same layout requirements; include a bivariate legend.</li>
+<li><strong>Saved project</strong> <code>Lab04c.qgz</code>.</li>
+</ol>
+<p>Label any AI-assisted output clearly.</p>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<section id="suggested-task-interpret-the-comparison-map" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-task-interpret-the-comparison-map">Suggested task: interpret the comparison map</h3>
+<p>After completing Maps 1 and 2, paste this prompt into Claude (claude.ai) or another AI assistant. Do not include PHI or identifiable data.</p>
+<blockquote class="blockquote">
+<p>“I have created two maps of Philadelphia census tracts: one showing summer land-surface temperature (LST) as a heat proxy, the other showing CDC/ATSDR Social Vulnerability Index (SVI) quartiles. High-LST, high-SVI tracts appear concentrated in [describe your observed pattern]. Draft a 200-word equity-framed summary suitable for a neighborhood advisory board presentation.”</p>
+</blockquote>
+<p><strong>Critical review task.</strong> Read the AI draft and flag every sentence where the AI describes LST as heat <em>exposure</em>, implies a health outcome absent from this dataset, or makes a causal claim the data do not support. Revise to correct those overstatements. Include two sentences in your deliverable explaining what you changed and why.</p>
+<p><strong>QGIS expression tip.</strong> If you need help with the <code>bvclass</code> Field Calculator expression, ask the AI: “Write a QGIS Field Calculator expression that combines an LST class (1–5 based on these breaks: …) and SVI quartile (Q1–Q4 based on RPL_THEMES).” Test the result before using it.</p>
+</section>
+<section id="ai-guardrails-always-apply" class="level3">
+<h3 class="anchored" data-anchor-id="ai-guardrails-always-apply">AI guardrails (always apply)</h3>
+<ul>
+<li>AI assists with scaffolding, explaining tool mechanics, and critiquing — not with analytic decisions, dataset selection, or interpreting maps it cannot see.</li>
+<li>Never paste PHI or identifiable data into a public AI system.</li>
+<li>Label all AI-assisted output: “AI-assisted draft, revised by [your name].”</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="arcgis-equivalents" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-equivalents">ArcGIS equivalents</h2>
+<p>The same lab exists as <strong>Lab 4c (ArcGIS Pro)</strong> and <strong>Lab 4c (ArcGIS Online)</strong>. The table below maps QGIS tools to their Pro counterparts.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>QGIS operation</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>No extension needed</td>
+<td>Enable <strong>Spatial Analyst</strong> extension (licensed)</td>
+</tr>
+<tr class="even">
+<td><strong>Properties ▸ Symbology ▸ Singleband pseudocolor</strong></td>
+<td><strong>Symbology pane ▸ Classify</strong>, color ramp</td>
+</tr>
+<tr class="odd">
+<td><strong>Reclassify by table</strong> (Processing Toolbox)</td>
+<td><strong>Spatial Analyst ▸ Reclass ▸ Reclassify</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Raster ▸ Raster Calculator</strong></td>
+<td><strong>Spatial Analyst ▸ Map Algebra ▸ Raster Calculator</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>Zonal statistics</strong> — appends fields to polygon layer directly</td>
+<td><strong>Zonal Statistics as Table</strong> — creates a separate table; requires <strong>Add Join</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Project ▸ New Print Layout</strong></td>
+<td><strong>Insert ▸ New Layout</strong></td>
+</tr>
+<tr class="odd">
+<td>Free; no credits</td>
+<td>License required; ArcGIS Online raster ops consume credits</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li><p>QGIS <strong>Zonal statistics</strong> writes mean LST directly to the tract layer. The ArcGIS Pro equivalent creates a separate table requiring a join. What field would you use as the join key, and why does its uniqueness matter?</p></li>
+<li><p>You classified LST using Natural Breaks (Jenks). A classmate used Equal Interval with the same five classes. Would the same tracts appear in the “hottest” class under both methods? Explain.</p></li>
+<li><p>A colleague argues that tracts with the highest <code>lst_mean</code> values are the most dangerous for heat-related illness. What is wrong with this claim? Name two additional data sources needed to assess actual heat-health risk.</p></li>
+<li><p>In the Raster Calculator, why must you include the <code>@1</code> band suffix when referencing <code>phl_LST_summer.tif</code>?</p></li>
+<li><p>Why is zonal mean LST per tract more useful for public health decision-making than simply displaying the raw raster with a graduated color ramp?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

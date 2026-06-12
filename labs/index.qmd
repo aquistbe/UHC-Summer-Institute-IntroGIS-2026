@@ -1,0 +1,49 @@
+---
+title: "Labs"
+subtitle: "Public-health GIS labs — choose ArcGIS Online, QGIS, or ArcGIS Pro"
+---
+
+Every lab covers the same public-health question and datasets. Pick the software that fits your setting:
+
+- **ArcGIS Online** — browser-based, no install; needs an organizational account (some analysis tools use credits).
+- **QGIS** — free and open-source desktop software; install required.
+- **ArcGIS Pro** — desktop (Windows); full-featured, license required. Provided as a Word document.
+
+Web pages open in your browser; Word links download an editable copy.
+
+
+## Day 1
+
+| Lab | ArcGIS Online | QGIS | ArcGIS Pro |
+|-----|---------------|------|------------|
+| Lab 1: Introduction | [Web](lab1-online.qmd) · [Word](downloads/Lab01_Intro_ArcGISOnline_PH.docx) | [Web](lab1-qgis.qmd) · [Word](downloads/Lab01_Intro_QGIS_PH.docx) | [Word](downloads/Lab01_Intro_ArcGISPro_PH.docx) |
+
+## Day 2
+
+| Lab | ArcGIS Online | QGIS | ArcGIS Pro |
+|-----|---------------|------|------------|
+| Lab 2a: Measuring Distance & Access | [Web](lab2a-online.qmd) · [Word](downloads/Lab02a_DistanceAccess_ArcGISOnline_PH.docx) | [Web](lab2a-qgis.qmd) · [Word](downloads/Lab02a_Projections_QGIS_PH.docx) | [Word](downloads/Lab02a_Projections_ArcGISPro_PH.docx) |
+| Lab 2b: Collecting & Digitizing Field Data | [Web](lab2b-online.qmd) · [Word](downloads/Lab02b_Digitizing_ArcGISOnline_PH.docx) | [Web](lab2b-qgis.qmd) · [Word](downloads/Lab02b_Digitizing_QGIS_PH.docx) | [Word](downloads/Lab02b_Digitizing_ArcGISPro_PH.docx) |
+
+## Day 3
+
+| Lab | ArcGIS Online | QGIS | ArcGIS Pro |
+|-----|---------------|------|------------|
+| Lab 3a: Joining & Querying Surveillance Data | [Web](lab3a-online.qmd) · [Word](downloads/Lab03a_JoinsQueries_ArcGISOnline_PH.docx) | [Web](lab3a-qgis.qmd) · [Word](downloads/Lab03a_JoinsQueries_QGIS_PH.docx) | [Word](downloads/Lab03a_JoinsQueries_ArcGISPro_PH.docx) |
+| Lab 3b: Buffer & Overlay for EJ Screening | [Web](lab3b-online.qmd) · [Word](downloads/Lab03b_BufferOverlay_ArcGISOnline_PH.docx) | [Web](lab3b-qgis.qmd) · [Word](downloads/Lab03b_BufferOverlay_QGIS_PH.docx) | [Word](downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx) |
+
+## Day 4
+
+| Lab | ArcGIS Online | QGIS | ArcGIS Pro |
+|-----|---------------|------|------------|
+| Lab 4a: Network / Drive-Time Access | [Web](lab4a-online.qmd) · [Word](downloads/Lab04a_NetworkAccess_ArcGISOnline_PH.docx) | [Web](lab4a-qgis.qmd) · [Word](downloads/Lab04a_NetworkAnalysis_QGIS_PH.docx) | [Word](downloads/Lab04a_NetworkAnalysis_ArcGISPro_PH.docx) |
+| Lab 4b: Geocoding with Privacy | [Web](lab4b-online.qmd) · [Word](downloads/Lab04b_Geocoding_ArcGISOnline_PH.docx) | [Web](lab4b-qgis.qmd) · [Word](downloads/Lab04b_Geocoding_QGIS_PH.docx) | [Word](downloads/Lab04b_Geocoding_ArcGISPro_PH.docx) |
+| Lab 4c: Heat Exposure (Raster / Zonal) | [Web](lab4c-online.qmd) · [Word](downloads/Lab04c_HeatExposure_ArcGISOnline_PH.docx) | [Web](lab4c-qgis.qmd) · [Word](downloads/Lab04c_RasterZonal_QGIS_PH.docx) | [Word](downloads/Lab04c_RasterZonal_ArcGISPro_PH.docx) |
+
+## Day 5
+
+| Lab | ArcGIS Online | QGIS | ArcGIS Pro |
+|-----|---------------|------|------------|
+| Lab 5a: Interpolating an Exposure Surface | [Web](lab5a-online.qmd) · [Word](downloads/Lab05a_Interpolation_ArcGISOnline_PH.docx) | [Web](lab5a-qgis.qmd) · [Word](downloads/Lab05a_Interpolation_QGIS_PH.docx) | [Word](downloads/Lab05a_Interpolation_ArcGISPro_PH.docx) |
+| Lab 5b: Capstone — Composite Index | [Web](lab5b-online.qmd) · [Word](downloads/Lab05b_Capstone_ArcGISOnline_PH.docx) | [Web](lab5b-qgis.qmd) · [Word](downloads/Lab05b_Capstone_QGIS_PH.docx) | [Word](downloads/Lab05b_CartographicModeling_ArcGISPro_PH.docx) |
+

@@ -1,0 +1,12 @@
+---
+title: "Lab 4a: Network Analysis for Healthcare Access (QGIS)"
+subtitle: "Intro GIS for Public Health · QGIS track · Day 4"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab04a_NetworkAnalysis_QGIS_PH.docx){.btn .btn-primary .btn-sm download="Lab04a_NetworkAnalysis_QGIS_PH.docx"}
+[ArcGIS Online version](lab4a-online.qmd){.btn .btn-outline-primary .btn-sm}
+[ArcGIS Pro version (Word)](downloads/Lab04a_NetworkAnalysis_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab04a_NetworkAnalysis_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab4a-qgis.md >}}

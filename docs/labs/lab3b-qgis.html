@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lab 3b: Buffer &amp; Overlay for EJ Screening (QGIS) – Introduction to GIS for Public Health</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32274054a8f542ea3c2f2c25644db23c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Intro GIS for Public Health</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-sessions" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Sessions</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-sessions">    
+        <li>
+    <a class="dropdown-item" href="../sessions/day1.html">
+ <span class="dropdown-text">Day 1: Introduction to GIS</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day2.html">
+ <span class="dropdown-text">Day 2: Projections &amp; Data Entry</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day3.html">
+ <span class="dropdown-text">Day 3: Data Management &amp; Spatial Analysis</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day4.html">
+ <span class="dropdown-text">Day 4: Network Analysis, Geocoding &amp; Raster</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../sessions/day5.html">
+ <span class="dropdown-text">Day 5: Spatial Estimation &amp; Map Design</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../labs/index.html"> 
+<span class="menu-text">Labs</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../readings.html"> 
+<span class="menu-text">Readings</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../setup.html"> 
+<span class="menu-text">Setup</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#public-health-question" id="toc-public-health-question" class="nav-link active" data-scroll-target="#public-health-question">Public health question</a></li>
+  <li><a href="#what-you-will-learn" id="toc-what-you-will-learn" class="nav-link" data-scroll-target="#what-you-will-learn">What you will learn</a></li>
+  <li><a href="#what-you-will-produce" id="toc-what-you-will-produce" class="nav-link" data-scroll-target="#what-you-will-produce">What you will produce</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#before-you-begin" id="toc-before-you-begin" class="nav-link" data-scroll-target="#before-you-begin">Before you begin</a></li>
+  <li><a href="#part-1-confirm-the-crs-and-load-data" id="toc-part-1-confirm-the-crs-and-load-data" class="nav-link" data-scroll-target="#part-1-confirm-the-crs-and-load-data">Part 1: Confirm the CRS and load data</a></li>
+  <li><a href="#part-2-create-multi-distance-buffer-rings" id="toc-part-2-create-multi-distance-buffer-rings" class="nav-link" data-scroll-target="#part-2-create-multi-distance-buffer-rings">Part 2: Create multi-distance buffer rings</a></li>
+  <li><a href="#part-3-intersect-buffer-rings-with-block-groups" id="toc-part-3-intersect-buffer-rings-with-block-groups" class="nav-link" data-scroll-target="#part-3-intersect-buffer-rings-with-block-groups">Part 3: Intersect buffer rings with block groups</a></li>
+  <li><a href="#part-4-areal-weighting-apportion-population-to-each-ring-fragment" id="toc-part-4-areal-weighting-apportion-population-to-each-ring-fragment" class="nav-link" data-scroll-target="#part-4-areal-weighting-apportion-population-to-each-ring-fragment">Part 4: Areal weighting — apportion population to each ring fragment</a></li>
+  <li><a href="#part-5-select-block-groups-within-1-km-the-inside-set" id="toc-part-5-select-block-groups-within-1-km-the-inside-set" class="nav-link" data-scroll-target="#part-5-select-block-groups-within-1-km-the-inside-set">Part 5: Select block groups within 1 km — the “inside” set</a></li>
+  <li><a href="#part-6-create-the-outside-1-km-set-using-difference" id="toc-part-6-create-the-outside-1-km-set-using-difference" class="nav-link" data-scroll-target="#part-6-create-the-outside-1-km-set-using-difference">Part 6: Create the “outside 1 km” set using Difference</a></li>
+  <li><a href="#part-7-compare-demographics-inside-versus-outside-1-km" id="toc-part-7-compare-demographics-inside-versus-outside-1-km" class="nav-link" data-scroll-target="#part-7-compare-demographics-inside-versus-outside-1-km">Part 7: Compare demographics inside versus outside 1 km</a></li>
+  <li><a href="#part-8-symbolize-and-map-the-buffer-rings" id="toc-part-8-symbolize-and-map-the-buffer-rings" class="nav-link" data-scroll-target="#part-8-symbolize-and-map-the-buffer-rings">Part 8: Symbolize and map the buffer rings</a></li>
+  <li><a href="#deliverables" id="toc-deliverables" class="nav-link" data-scroll-target="#deliverables">Deliverables</a></li>
+  <li><a href="#using-ai-in-this-lab" id="toc-using-ai-in-this-lab" class="nav-link" data-scroll-target="#using-ai-in-this-lab">Using AI in this lab</a></li>
+  <li><a href="#arcgis-equivalents" id="toc-arcgis-equivalents" class="nav-link" data-scroll-target="#arcgis-equivalents">ArcGIS equivalents</a></li>
+  <li><a href="#check-your-understanding" id="toc-check-your-understanding" class="nav-link" data-scroll-target="#check-your-understanding">Check your understanding</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3b: Buffer &amp; Overlay for EJ Screening (QGIS)</h1>
+<p class="subtitle lead">Intro GIS for Public Health · QGIS track · Day 3</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="lab-download">
+<p><a href="downloads/Lab03b_BufferOverlay_QGIS_PH.docx" class="btn btn-primary btn-sm" download="Lab03b_BufferOverlay_QGIS_PH.docx">Download this lab (Word)</a> <a href="../labs/lab3b-online.html" class="btn btn-outline-primary btn-sm">ArcGIS Online version</a> <a href="downloads/Lab03b_BufferOverlay_ArcGISPro_PH.docx" class="btn btn-outline-secondary btn-sm" download="Lab03b_BufferOverlay_ArcGISPro_PH.docx">ArcGIS Pro version (Word)</a></p>
+</div>
+<section id="public-health-question" class="level2">
+<h2 class="anchored" data-anchor-id="public-health-question">Public health question</h2>
+<p>Philadelphia hosts dozens of facilities that report toxic chemical releases to the EPA’s Toxic Release Inventory (TRI). Residents living near these facilities may face elevated exposure risk — but who lives nearby, and are those populations disproportionately composed of people of color? This lab uses buffer zones and overlay to estimate the population within 0–500 m, 500 m–1 km, and 1–2 km of TRI facilities and compares the racial/ethnic composition of that population to the rest of the city.</p>
+<hr>
+</section>
+<section id="what-you-will-learn" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-learn">What you will learn</h2>
+<ul>
+<li>Confirm a layer’s CRS is projected in meters before running distance operations</li>
+<li>Create multi-distance buffer rings using <strong>Multi-ring buffer (constant distance)</strong></li>
+<li>Overlay buffer rings with census block groups using <strong>Intersection</strong></li>
+<li>Calculate fragment area and apportion block-group population using the <strong>Field Calculator</strong></li>
+<li>Select block groups within 1 km using <strong>Extract/Select by location</strong></li>
+<li>Isolate the “outside 1 km” set using <strong>Difference</strong></li>
+<li>Compare demographic composition inside versus outside 1 km using <strong>Join attributes by location (summary)</strong> or <strong>Basic statistics for fields</strong></li>
+<li>Symbolize buffer rings and export a print layout in QGIS</li>
+</ul>
+<hr>
+</section>
+<section id="what-you-will-produce" class="level2">
+<h2 class="anchored" data-anchor-id="what-you-will-produce">What you will produce</h2>
+<ol type="1">
+<li>A QGIS project file (<code>Lab03b_TRI_Buffer.qgz</code>) containing all layers and symbology.</li>
+<li>A Print Layout PDF (<code>Lab03b_TRI_map.pdf</code>): three concentric buffer rings (0–500 m, 500 m–1 km, 1–2 km) over block groups symbolized by percent non-White population, with TRI facility points, legend, scale bar, north arrow, and data credits.</li>
+<li>A completed comparison table (inside vs.&nbsp;outside 1 km) with percent calculations, pasted into a Word document or submitted as a screenshot.</li>
+<li>A 100-word written interpretation of the comparison table noting at least two analytic limitations.</li>
+<li>An AI-corrected Methods paragraph (see “Using AI in this lab”).</li>
+</ol>
+<hr>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Layer</th>
+<th>Description</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>phl_TRI_facilities.gpkg</code></td>
+<td>EPA Toxic Release Inventory facilities, Philadelphia subset</td>
+<td>Instructor-provided; original data from EPA TRI Explorer (epa.gov/tri)</td>
+</tr>
+<tr class="even">
+<td><code>phl_blockgroups_acs.gpkg</code></td>
+<td>ACS 2019–2023 5-year block groups with race/ethnicity table B03002</td>
+<td>Instructor-provided; original data from Census Bureau / NHGIS</td>
+</tr>
+</tbody>
+</table>
+<p>Both files are GeoPackage format (<code>.gpkg</code>) and are pre-projected to <strong>NAD83 UTM Zone 18N (EPSG:26918)</strong>, map units in meters. Files are in the course shared folder your instructor directed you to. You will confirm the CRS in Part 1 before running any distance operations.</p>
+<hr>
+</section>
+<section id="before-you-begin" class="level2">
+<h2 class="anchored" data-anchor-id="before-you-begin">Before you begin</h2>
+<p><strong>Prerequisites:</strong> Completion of Labs 1, 2a, and 3a. You should know how to add data, open the Processing Toolbox, run tools, open attribute tables, and use the Field Calculator.</p>
+<p><strong>Software:</strong> QGIS 3.34 LTR. QGIS is free and open-source — no licenses, credits, or account required. Download from qgis.org if not already installed.</p>
+<p><strong>No plugins required for this lab.</strong> All tools used are native to QGIS 3.34.</p>
+<p><strong>Estimated time:</strong> 2.5–3 hours.</p>
+<p>Open QGIS and create a new project: <strong>Project ▸ New</strong>. Immediately save it: <strong>Project ▸ Save As…</strong>, name it <code>Lab03b_TRI_Buffer.qgz</code>, and save to your working folder.</p>
+<hr>
+</section>
+<section id="part-1-confirm-the-crs-and-load-data" class="level2">
+<h2 class="anchored" data-anchor-id="part-1-confirm-the-crs-and-load-data">Part 1: Confirm the CRS and load data</h2>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Distance-based operations — buffers, proximity analysis — require a projected CRS with linear units in meters. Running a buffer in a geographic CRS (degrees) will produce incorrect distances. Always confirm before proceeding.</p>
+</blockquote>
+<ol type="1">
+<li><p>Add the data. Use <strong>Layer ▸ Add Layer ▸ Add Vector Layer</strong>, or press <strong>Ctrl+L</strong> to open the Data Source Manager. Navigate to your course data folder and add <code>phl_TRI_facilities.gpkg</code> and <code>phl_blockgroups_acs.gpkg</code>. Both layers will appear in the <strong>Layers</strong> panel.</p></li>
+<li><p>Check the CRS of <code>phl_TRI_facilities</code>. Right-click the layer in the <strong>Layers</strong> panel and choose <strong>Properties</strong>. Click the <strong>Information</strong> tab. Under <strong>Coordinate Reference System</strong>, confirm it reads <strong>NAD83 / UTM zone 18N</strong> and that the units are <strong>meters</strong>. Click <strong>OK</strong>.</p></li>
+<li><p>Repeat step 2 for <code>phl_blockgroups_acs</code>. Both layers must show meters.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Warning:</strong> If either layer shows a geographic CRS — such as WGS 84 (EPSG:4326) with units in degrees — do not proceed with buffering. Reproject the layer first: right-click the layer → <strong>Export ▸ Save Features As…</strong>, set the CRS to <strong>EPSG:26918</strong>, save the output, and use that reprojected file going forward. Buffers run in a geographic CRS appear to complete successfully but the distances are wrong — QGIS measures in degrees, not meters.</p>
+</blockquote>
+<ol start="4" type="1">
+<li><p>Check the project CRS: look at the bottom-right of the QGIS window. It should show <strong>EPSG:26918</strong>. If it shows something else, click that button and set the project CRS to EPSG:26918 (<strong>Project ▸ Properties ▸ CRS</strong>, search <code>26918</code>, select <strong>NAD83 / UTM zone 18N</strong>, click <strong>OK</strong>).</p></li>
+<li><p>Zoom to the data extent: right-click <code>phl_blockgroups_acs</code> in the <strong>Layers</strong> panel → <strong>Zoom to Layer</strong>.</p></li>
+</ol>
+<p><em>[Figure: Map canvas showing TRI facility points over Philadelphia block group polygons; CRS indicator in the status bar reads EPSG:26918]</em></p>
+<ol start="6" type="1">
+<li><p>Open the attribute table for <code>phl_blockgroups_acs</code>: press <strong>F6</strong> or right-click the layer → <strong>Open Attribute Table</strong>. Identify these fields:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>GEOID</code></td>
+<td>Block group FIPS code (unique identifier)</td>
+</tr>
+<tr class="even">
+<td><code>TOTPOP</code></td>
+<td>Total population (ACS B03002_001E)</td>
+</tr>
+<tr class="odd">
+<td><code>NH_WHITE</code></td>
+<td>Non-Hispanic White alone (B03002_003E)</td>
+</tr>
+<tr class="even">
+<td><code>NH_BLACK</code></td>
+<td>Non-Hispanic Black or African American alone (B03002_004E)</td>
+</tr>
+<tr class="odd">
+<td><code>HISPANIC</code></td>
+<td>Hispanic or Latino of any race (B03002_012E)</td>
+</tr>
+<tr class="even">
+<td><code>NH_OTHER</code></td>
+<td>All other non-Hispanic groups combined</td>
+</tr>
+<tr class="odd">
+<td><code>AREASQM</code></td>
+<td>Block group area in square meters (pre-calculated)</td>
+</tr>
+</tbody>
+</table>
+<p>Close the attribute table.</p></li>
+</ol>
+<hr>
+</section>
+<section id="part-2-create-multi-distance-buffer-rings" class="level2">
+<h2 class="anchored" data-anchor-id="part-2-create-multi-distance-buffer-rings">Part 2: Create multi-distance buffer rings</h2>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> Proximity to a TRI facility is a crude exposure proxy. People closer to a facility may face higher potential exposure, but wind direction, facility operating hours, chemical properties, and individual behavior all affect actual exposure. This analysis screens for potential inequity — it does not measure dose or establish causation.</p>
+</blockquote>
+<ol type="1">
+<li><p>Open the Processing Toolbox: <strong>Processing ▸ Toolbox</strong> (or <strong>Ctrl+Alt+T</strong>).</p></li>
+<li><p>In the search box, type <code>multi-ring</code> and double-click <strong>Multi-ring buffer (constant distance)</strong> (under <strong>Vector geometry</strong>).</p></li>
+<li><p>Set parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>phl_TRI_facilities</code></td>
+</tr>
+<tr class="even">
+<td>Number of rings</td>
+<td><code>3</code></td>
+</tr>
+<tr class="odd">
+<td>Distance between rings</td>
+<td><code>500</code> (meters)</td>
+</tr>
+<tr class="even">
+<td>Output</td>
+<td>Save to your working folder as <code>TRI_rings_3.gpkg</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. Three concentric rings appear: 0–500 m, 500–1000 m, and 1000–2000 m around the combined extent of all TRI facilities. Each ring is a separate feature with a <code>ringId</code> field (values 1, 2, 3).</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> <strong>Multi-ring buffer (constant distance)</strong> creates nested rings where ring 1 spans 0–500 m, ring 2 spans 0–1000 m, and ring 3 spans 0–2000 m. The rings overlap — each outer ring includes the area of all inner rings. This is intentional: the <strong>Intersection</strong> step in Part 3 will clip each ring against block groups separately, and the <code>ringId</code> field will identify which ring each fragment belongs to.</p>
+</blockquote></li>
+<li><p>Open the attribute table for <code>TRI_rings_3</code>. Confirm three rows with <code>ringId</code> values of 1, 2, and 3.</p></li>
+</ol>
+<p><em>[Figure: Three concentric buffer rings over the Philadelphia basemap, with the Layers panel showing TRI_rings_3 and its three ring features]</em></p>
+<hr>
+</section>
+<section id="part-3-intersect-buffer-rings-with-block-groups" class="level2">
+<h2 class="anchored" data-anchor-id="part-3-intersect-buffer-rings-with-block-groups">Part 3: Intersect buffer rings with block groups</h2>
+<p>The <strong>Intersection</strong> overlay clips block groups to each ring and retains both layers’ attributes, including the <code>ringId</code> field that identifies which ring a fragment belongs to.</p>
+<ol type="1">
+<li><p>In the Processing Toolbox, search <code>intersection</code> and double-click <strong>Intersection</strong> (under <strong>Vector overlay</strong>).</p></li>
+<li><p>Set parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>TRI_rings_3</code></td>
+</tr>
+<tr class="even">
+<td>Overlay layer</td>
+<td><code>phl_blockgroups_acs</code></td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Save as <code>BG_intersect_rings.gpkg</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. The output is a polygon layer where each feature is the portion of one block group that falls inside one buffer ring.</p></li>
+</ol>
+<p><em>[Figure: Block group fragments clipped to the three buffer rings; attribute table open alongside, showing ringId, GEOID, TOTPOP, and AREASQM columns]</em></p>
+<ol start="4" type="1">
+<li>Open the attribute table for <code>BG_intersect_rings</code>. Confirm that <code>ringId</code>, <code>GEOID</code>, <code>TOTPOP</code>, <code>NH_WHITE</code>, <code>NH_BLACK</code>, <code>HISPANIC</code>, and <code>AREASQM</code> are all present.</li>
+</ol>
+<hr>
+</section>
+<section id="part-4-areal-weighting-apportion-population-to-each-ring-fragment" class="level2">
+<h2 class="anchored" data-anchor-id="part-4-areal-weighting-apportion-population-to-each-ring-fragment">Part 4: Areal weighting — apportion population to each ring fragment</h2>
+<p>Block groups cross ring boundaries. You cannot assign an entire block group’s population to a ring that only covers part of it. <strong>Areal weighting</strong> assumes population is distributed uniformly within each block group and apportions population in proportion to the share of the block group’s area that fell inside the ring.</p>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> The areal-weighting assumption — that population is evenly distributed within a block group — is almost never literally true. A park occupying half a block group carries no residents but receives half the weight. This is one expression of the <strong>Modifiable Areal Unit Problem (MAUP)</strong>: results depend on how zone boundaries are drawn and on the granularity of the source zones. Use block groups rather than tracts when possible (smaller zones reduce error), and treat apportioned totals as estimates, not census counts.</p>
+</blockquote>
+<p><strong>Step A — Calculate fragment area</strong></p>
+<p>The intersection operation retains the original <code>AREASQM</code> value from the source block group, not the fragment’s actual area. You need the fragment area.</p>
+<ol type="1">
+<li><p>Open the attribute table for <code>BG_intersect_rings</code>. Click the <strong>Field Calculator</strong> button (the abacus icon, or <strong>Ctrl+I</strong>).</p></li>
+<li><p>Check <strong>Create a new field</strong>. Set:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Output field name</td>
+<td><code>FRAG_SQMT</code></td>
+</tr>
+<tr class="even">
+<td>Output field type</td>
+<td>Decimal number (double)</td>
+</tr>
+<tr class="odd">
+<td>Expression</td>
+<td><code>$area</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>OK</strong>. Each row now holds the area of the ring fragment in square meters, calculated in the layer’s CRS (EPSG:26918, units meters).</p></li>
+</ol>
+<p><strong>Step B — Calculate the area fraction</strong></p>
+<ol start="3" type="1">
+<li><p>Open the Field Calculator again. Create a new field:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Output field name</td>
+<td><code>AREA_FRAC</code></td>
+</tr>
+<tr class="even">
+<td>Output field type</td>
+<td>Decimal number (double)</td>
+</tr>
+<tr class="odd">
+<td>Expression</td>
+<td><code>"FRAG_SQMT" / "AREASQM"</code></td>
+</tr>
+</tbody>
+</table>
+<p>Click <strong>OK</strong>. Values should be between 0 and 1. If any values exceed 1.0, the source <code>AREASQM</code> field may be in different units — recalculate <code>AREASQM</code> on the original <code>phl_blockgroups_acs</code> layer using <code>$area</code> in the Field Calculator, re-run the Intersection, and redo Steps A–B.</p></li>
+</ol>
+<p><strong>Step C — Apportion population fields</strong></p>
+<ol start="4" type="1">
+<li><p>Use the Field Calculator to create four new Decimal (double) fields using the expressions below:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>New field</th>
+<th>Expression</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>EST_TOTPOP</code></td>
+<td><code>"TOTPOP" * "AREA_FRAC"</code></td>
+</tr>
+<tr class="even">
+<td><code>EST_WHITE</code></td>
+<td><code>"NH_WHITE" * "AREA_FRAC"</code></td>
+</tr>
+<tr class="odd">
+<td><code>EST_BLACK</code></td>
+<td><code>"NH_BLACK" * "AREA_FRAC"</code></td>
+</tr>
+<tr class="even">
+<td><code>EST_HISP</code></td>
+<td><code>"HISPANIC" * "AREA_FRAC"</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Toggle editing off: click the pencil icon at the top of the attribute table and choose <strong>Save</strong>.</p></li>
+</ol>
+<p><em>[Figure: Attribute table of BG_intersect_rings showing AREA_FRAC column with values between 0 and 1, and the four EST_ columns with decimal population estimates]</em></p>
+<hr>
+</section>
+<section id="part-5-select-block-groups-within-1-km-the-inside-set" class="level2">
+<h2 class="anchored" data-anchor-id="part-5-select-block-groups-within-1-km-the-inside-set">Part 5: Select block groups within 1 km — the “inside” set</h2>
+<p>For the demographic comparison you need two groups: block groups that intersect the 0–1 km zone, and those entirely outside it. You will use <strong>Extract/Select by location</strong> to identify the inside set.</p>
+<ol type="1">
+<li><p>First, select only the 0–1 km rings from <code>TRI_rings_3</code>. Open its attribute table and click <strong>Select features using an expression</strong> (the yellow epsilon icon). Enter the expression:</p>
+<pre><code>"ringId" &lt;= 2</code></pre>
+<p>Click <strong>Select Features</strong>. Rings 1 and 2 (covering 0–500 m and 0–1000 m) are now highlighted. Close the table.</p></li>
+<li><p>In the Processing Toolbox, search <code>select by location</code> and double-click <strong>Select by location</strong> (under <strong>Vector selection</strong>).</p></li>
+<li><p>Set parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Select features from</td>
+<td><code>phl_blockgroups_acs</code></td>
+</tr>
+<tr class="even">
+<td>Where the features</td>
+<td>intersect</td>
+</tr>
+<tr class="odd">
+<td>By comparing to the features from</td>
+<td><code>TRI_rings_3</code></td>
+</tr>
+<tr class="even">
+<td>Only selected features</td>
+<td>Checked</td>
+</tr>
+<tr class="odd">
+<td>Modify current selection by</td>
+<td>creating new selection</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. Block groups that intersect the 0–1 km zone are now selected (highlighted in yellow on the map).</p></li>
+<li><p>Right-click <code>phl_blockgroups_acs</code> in the <strong>Layers</strong> panel → <strong>Export ▸ Save Selected Features As…</strong>. Save as <code>BG_inside_1km.gpkg</code>. Make sure <strong>Save only selected features</strong> is checked.</p></li>
+<li><p>Clear the selection on both layers: <strong>Edit ▸ Select ▸ Deselect Features from All Layers</strong> (or click the deselect button on the attribute toolbar).</p></li>
+</ol>
+<hr>
+</section>
+<section id="part-6-create-the-outside-1-km-set-using-difference" class="level2">
+<h2 class="anchored" data-anchor-id="part-6-create-the-outside-1-km-set-using-difference">Part 6: Create the “outside 1 km” set using Difference</h2>
+<p><strong>Difference</strong> in QGIS is the exact equivalent of Erase in ArcGIS Pro: it subtracts the overlay layer’s geometry from the input, returning only what is left over.</p>
+<ol type="1">
+<li><p>In the Processing Toolbox, search <code>difference</code> and double-click <strong>Difference</strong> (under <strong>Vector overlay</strong>).</p></li>
+<li><p>Set parameters:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>phl_blockgroups_acs</code></td>
+</tr>
+<tr class="even">
+<td>Overlay layer</td>
+<td><code>BG_inside_1km</code></td>
+</tr>
+<tr class="odd">
+<td>Output</td>
+<td>Save as <code>BG_outside_1km.gpkg</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Click <strong>Run</strong>. The output contains the block groups that had no intersection with the 0–1 km zone.</p></li>
+</ol>
+<p><em>[Figure: Philadelphia block groups with BG_inside_1km shown in blue and BG_outside_1km shown in gray, with the buffer rings overlaid]</em></p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> Difference removes full block-group polygons, not ring-clipped fragments. For the comparison table this is intentional — you want full demographic totals for each category, not areal-weighted portions.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-7-compare-demographics-inside-versus-outside-1-km" class="level2">
+<h2 class="anchored" data-anchor-id="part-7-compare-demographics-inside-versus-outside-1-km">Part 7: Compare demographics inside versus outside 1 km</h2>
+<p>You will sum the population fields for each group using <strong>Join attributes by location (summary)</strong>. Alternatively, you can use <strong>Basic statistics for fields</strong> twice (once per layer) and record the results manually.</p>
+<p><strong>Option A — Join attributes by location (summary)</strong></p>
+<ol type="1">
+<li><p>In the Processing Toolbox, search <code>join attributes by location summary</code> and open the tool.</p></li>
+<li><p>Run once for the inside set:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Base layer</td>
+<td>(create a single-feature layer, or use any reference polygon — see Note below)</td>
+</tr>
+<tr class="even">
+<td>Join layer</td>
+<td><code>BG_inside_1km</code></td>
+</tr>
+<tr class="odd">
+<td>Geometric predicate</td>
+<td>intersects</td>
+</tr>
+<tr class="even">
+<td>Fields to summarize</td>
+<td><code>TOTPOP</code>, <code>NH_WHITE</code>, <code>NH_BLACK</code>, <code>HISPANIC</code></td>
+</tr>
+<tr class="odd">
+<td>Summaries to calculate</td>
+<td>sum</td>
+</tr>
+<tr class="even">
+<td>Output</td>
+<td><code>Stats_inside_1km.gpkg</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> For a city-wide sum without a spatial predicate, use <strong>Basic statistics for fields</strong> (Option B) — it is simpler here.</p>
+</blockquote></li>
+</ol>
+<p><strong>Option B — Basic statistics for fields (recommended)</strong></p>
+<ol type="1">
+<li><p>In the Processing Toolbox, search <code>basic statistics</code> and open <strong>Basic statistics for fields</strong>.</p></li>
+<li><p>Run for the inside set:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Input layer</td>
+<td><code>BG_inside_1km</code></td>
+</tr>
+<tr class="even">
+<td>Field to calculate statistics on</td>
+<td><code>TOTPOP</code> (repeat for <code>NH_WHITE</code>, <code>NH_BLACK</code>, <code>HISPANIC</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Record the <strong>Sum</strong> value from the results panel for each field. Repeat with <code>BG_outside_1km</code>.</p></li>
+<li><p>From the sums you recorded, calculate percentages and complete this table in your Word document:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Group</th>
+<th>Inside 1 km (n)</th>
+<th>Inside 1 km (%)</th>
+<th>Outside 1 km (n)</th>
+<th>Outside 1 km (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total population</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Non-Hispanic White</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Non-Hispanic Black</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Hispanic</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>All other NH</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Calculate “All other NH” as Total minus the three named groups. Calculate each percentage as (group n / Total n) × 100.</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Public health note:</strong> A higher share of non-White or Hispanic residents near TRI facilities compared to the rest of the city would be consistent with environmental justice research documenting disproportionate facility siting in communities of color. However, this cross-sectional proximity analysis cannot establish causation, cannot confirm actual chemical exposure, and does not account for historical patterns, zoning, or housing markets. The MAUP also applies: using census tracts instead of block groups would give different numbers.</p>
+</blockquote>
+<hr>
+</section>
+<section id="part-8-symbolize-and-map-the-buffer-rings" class="level2">
+<h2 class="anchored" data-anchor-id="part-8-symbolize-and-map-the-buffer-rings">Part 8: Symbolize and map the buffer rings</h2>
+<ol type="1">
+<li><p>In the <strong>Layers</strong> panel, arrange layers in this order from top to bottom: <code>phl_TRI_facilities</code>, <code>TRI_rings_3</code>, <code>phl_blockgroups_acs</code>.</p></li>
+<li><p>Symbolize <code>TRI_rings_3</code>: right-click → <strong>Properties ▸ Symbology</strong>. Change the render type to <strong>Categorized</strong>, set the column to <code>ringId</code>, and click <strong>Classify</strong>. Assign distinct fill colors — for example, dark red for ring 1 (0–500 m), orange for ring 2 (500–1000 m), yellow for ring 3 (1000–2000 m). Set each fill opacity to 40% so block groups show through. Click <strong>OK</strong>.</p></li>
+<li><p>Add a percent non-White field to <code>phl_blockgroups_acs</code>. Open its attribute table, click the <strong>Field Calculator</strong>, and create a new Decimal field:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Output field name</td>
+<td><code>PCT_NONWHITE</code></td>
+</tr>
+<tr class="even">
+<td>Expression</td>
+<td><code>("TOTPOP" - "NH_WHITE") / "TOTPOP" * 100</code></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Symbolize <code>phl_blockgroups_acs</code>: <strong>Properties ▸ Symbology</strong> → render type <strong>Graduated</strong>, column <code>PCT_NONWHITE</code>, color ramp <strong>Blues</strong> (light to dark), 5 classes, mode <strong>Natural Breaks (Jenks)</strong>. Click <strong>Classify</strong>, then <strong>OK</strong>.</p></li>
+<li><p>Symbolize <code>phl_TRI_facilities</code>: <strong>Properties ▸ Symbology</strong> → <strong>Single Symbol</strong> → marker size 6, color black. Click <strong>OK</strong>.</p></li>
+<li><p>Open the Print Layout: <strong>Project ▸ New Print Layout</strong>. Name it <code>Lab03b_map</code>.</p></li>
+<li><p>In the layout, add: <strong>Add Item ▸ Add Map</strong> (drag to fill the page). Then add: <strong>Add Item ▸ Add Legend</strong>, <strong>Add Scale Bar</strong>, <strong>Add North Arrow</strong>, and <strong>Add Label</strong> (for a title and a data credit line crediting EPA TRI and ACS 2019–2023).</p></li>
+</ol>
+<p><em>[Figure: Print Layout showing the completed map with block groups shaded by percent non-White, three concentric TRI buffer rings, facility points, legend, scale bar, and north arrow]</em></p>
+<ol start="8" type="1">
+<li>Export the layout: <strong>Layout ▸ Export as PDF…</strong>. Name the file <code>Lab03b_TRI_map.pdf</code>.</li>
+</ol>
+<hr>
+</section>
+<section id="deliverables" class="level2">
+<h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
+<p>Submit the following:</p>
+<ol type="1">
+<li><strong>Map PDF</strong> (<code>Lab03b_TRI_map.pdf</code>): the buffer ring map from Part 8.</li>
+<li><strong>QGIS project file</strong> (<code>Lab03b_TRI_Buffer.qgz</code>): your saved project with all layers and symbology intact.</li>
+<li><strong>Comparison table</strong>: the completed inside/outside 1 km demographic table from Part 7, pasted into a Word document or submitted as a screenshot.</li>
+<li><strong>Written interpretation (100 words)</strong>: describe what the comparison table shows. Address at least two of the following: (a) direction and magnitude of any racial/ethnic difference; (b) the areal-weighting assumption and why it matters; (c) why proximity does not equal exposure; (d) one alternative analysis that would strengthen the inference.</li>
+<li><strong>AI-corrected Methods paragraph</strong> (see “Using AI in this lab”): the AI draft plus your tracked-changes corrections.</li>
+</ol>
+<p>Label any AI-assisted output with the notation <code>[AI-assisted, reviewed by &lt;your name&gt;]</code>.</p>
+<hr>
+</section>
+<section id="using-ai-in-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="using-ai-in-this-lab">Using AI in this lab</h2>
+<p><strong>Bounded task — draft a Methods paragraph, then fix it.</strong></p>
+<p>After completing Part 7 and filling in your comparison table, paste the table values into Claude (claude.ai) or another AI assistant with this prompt:</p>
+<blockquote class="blockquote">
+<p>“I ran a buffer-and-overlay analysis in QGIS to compare racial/ethnic composition inside versus outside 1 km of EPA Toxic Release Inventory facilities in Philadelphia. I used multi-ring buffers, intersection with census block groups, areal weighting to apportion population by fragment area, and Basic statistics for fields to sum each group. Here are my summary counts: [paste your table]. Write a 150-word Methods paragraph suitable for a community health report, describing what I did and what the numbers show.”</p>
+</blockquote>
+<p>Read the AI draft carefully. It will likely make one or more of the following errors:</p>
+<ul>
+<li>Describe the areal-weighting step as if it produces exact population counts rather than estimates</li>
+<li>Omit or minimize the MAUP limitation</li>
+<li>Imply that living near a TRI facility means residents are exposed to toxic chemicals</li>
+<li>Overstate the strength of the comparison or imply a causal relationship</li>
+</ul>
+<p><strong>Your task:</strong> Paste the AI draft into a Word document, then use <strong>Track Changes</strong> to correct every error you can identify. Write a one-sentence note after each correction explaining why it was wrong.</p>
+<p><strong>Guardrail — AI does not make analytic decisions in this lab.</strong> The AI helped you draft a narrative. It did not choose the buffer distances, select the datasets, decide which demographic groups to compare, or interpret any statistical difference. Those decisions belong to you as the analyst. Never paste identifiable health data or patient addresses into a public AI tool.</p>
+<hr>
+</section>
+<section id="arcgis-equivalents" class="level2">
+<h2 class="anchored" data-anchor-id="arcgis-equivalents">ArcGIS equivalents</h2>
+<p>The ArcGIS Pro and ArcGIS Online versions of this lab cover the same public health question and produce the same deliverables on the Esri platform.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>QGIS tool / step</th>
+<th>ArcGIS Pro equivalent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Multi-ring buffer (constant distance)</strong></td>
+<td><strong>Multiple Ring Buffer</strong> (Analysis Tools → Proximity)</td>
+</tr>
+<tr class="even">
+<td><strong>Intersection</strong></td>
+<td><strong>Intersect</strong> (Analysis Tools → Overlay)</td>
+</tr>
+<tr class="odd">
+<td><strong>Select by location</strong></td>
+<td><strong>Select By Location</strong> (Map tab → Selection group)</td>
+</tr>
+<tr class="even">
+<td><strong>Difference</strong></td>
+<td><strong>Erase</strong> (Analysis Tools → Overlay)</td>
+</tr>
+<tr class="odd">
+<td><strong>Basic statistics for fields</strong></td>
+<td><strong>Summary Statistics</strong> (Analysis Tools → Statistics)</td>
+</tr>
+<tr class="even">
+<td>Field Calculator, <code>$area</code> expression</td>
+<td><strong>Calculate Geometry</strong> → Area (Square Meters)</td>
+</tr>
+<tr class="odd">
+<td>Field Calculator, <code>"field"</code> syntax</td>
+<td>Field Calculator, <code>!field!</code> Python syntax</td>
+</tr>
+<tr class="even">
+<td><strong>Properties ▸ Symbology ▸ Graduated</strong></td>
+<td><strong>Symbology</strong> pane → Graduated Colors</td>
+</tr>
+<tr class="odd">
+<td><strong>Project ▸ New Print Layout</strong></td>
+<td><strong>Insert ▸ New Layout</strong> (Insert tab)</td>
+</tr>
+</tbody>
+</table>
+<p>QGIS performs all the same operations and produces equivalent results. The <strong>Difference</strong> tool in QGIS is the exact equivalent of <strong>Erase</strong> in ArcGIS Pro. Print layouts in QGIS are fully featured and comparable to ArcGIS Pro layouts.</p>
+<hr>
+</section>
+<section id="check-your-understanding" class="level2">
+<h2 class="anchored" data-anchor-id="check-your-understanding">Check your understanding</h2>
+<ol type="1">
+<li><p>You open <code>phl_TRI_facilities.gpkg</code> and the CRS shows WGS 84 (EPSG:4326). You run <strong>Multi-ring buffer (constant distance)</strong> with a ring distance of 500 and produce three rings. What is wrong with the result, and what must you do before re-running the buffer?</p></li>
+<li><p>After running <strong>Intersection</strong> between the buffer rings and the block groups, a classmate says: “Great — now we just sum <code>TOTPOP</code> for all fragments inside ring 1 to get the total population within 500 m.” What is wrong with this approach, and what should you do instead?</p></li>
+<li><p>The areal-weighting method assumes population is uniformly distributed within each block group. Describe one real-world situation in Philadelphia where this assumption would lead to a large overestimate of population within the 0–500 m ring.</p></li>
+<li><p>A classmate argues: “Our table shows that 60% of people within 1 km of TRI facilities are non-White, but only 38% of people outside 1 km are non-White. This proves those facilities cause harm to communities of color.” Identify two specific methodological problems with this causal claim.</p></li>
+<li><p>In Part 6, you used <strong>Difference</strong> to create the “outside 1 km” set from full block-group polygons, not areal-weighted fragments. How would your summary results change if you had instead summed areal-weighted populations from <code>BG_intersect_rings</code> for fragments outside all rings? Which approach is more appropriate for the comparison table, and why?</p></li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aquistbe\.github\.io\/UHC-Summer-Institute-IntroGIS-2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Introduction to GIS for Public Health | Urban Health Summer Institute</p>
+</div>   
+    <div class="nav-footer-center">
+<p>Drexel University Dornsife School of Public Health</p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/aquistbe/UHC-Summer-Institute-IntroGIS-2026/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>© 2026 Alex Quistberg</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

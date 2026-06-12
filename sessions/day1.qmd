@@ -57,10 +57,11 @@ Public health data exists at many geographic scales. Understanding the hierarchy
 
 
 ::: {.lab-tracks}
-**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online web page (with a Word download) and as an ArcGIS Pro Word document. The overview below applies to both.
+**Full lab instructions — choose your software.** Each lab is available as a step-by-step ArcGIS Online and QGIS web page (each with a Word download) and as an ArcGIS Pro Word document. The overview below applies to all three.
 
-**Lab 1 — Introduction to ArcGIS Online/Pro** &nbsp;
-*ArcGIS Online:* [Full instructions](../labs/lab1-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab01_Intro_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab01_Intro_ArcGISOnline_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab01_Intro_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab01_Intro_ArcGISPro_PH.docx"}
+**Lab 1 — Introduction**
+
+*ArcGIS Online:* [Instructions](../labs/lab1-online.qmd){.btn .btn-primary .btn-sm} [Word](../labs/downloads/Lab01_Intro_ArcGISOnline_PH.docx){.btn .btn-outline-primary .btn-sm download="Lab01_Intro_ArcGISOnline_PH.docx"} &nbsp; *QGIS:* [Instructions](../labs/lab1-qgis.qmd){.btn .btn-success .btn-sm} [Word](../labs/downloads/Lab01_Intro_QGIS_PH.docx){.btn .btn-outline-success .btn-sm download="Lab01_Intro_QGIS_PH.docx"} &nbsp; *ArcGIS Pro:* [Word](../labs/downloads/Lab01_Intro_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab01_Intro_ArcGISPro_PH.docx"}
 
 
 :::

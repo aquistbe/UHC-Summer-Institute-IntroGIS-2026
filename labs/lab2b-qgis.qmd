@@ -1,0 +1,12 @@
+---
+title: "Lab 2b: Digitizing Field Data (QGIS)"
+subtitle: "Intro GIS for Public Health · QGIS track · Day 2"
+---
+
+::: {.lab-download}
+[Download this lab (Word)](downloads/Lab02b_Digitizing_QGIS_PH.docx){.btn .btn-primary .btn-sm download="Lab02b_Digitizing_QGIS_PH.docx"}
+[ArcGIS Online version](lab2b-online.qmd){.btn .btn-outline-primary .btn-sm}
+[ArcGIS Pro version (Word)](downloads/Lab02b_Digitizing_ArcGISPro_PH.docx){.btn .btn-outline-secondary .btn-sm download="Lab02b_Digitizing_ArcGISPro_PH.docx"}
+:::
+
+{{< include _lab2b-qgis.md >}}

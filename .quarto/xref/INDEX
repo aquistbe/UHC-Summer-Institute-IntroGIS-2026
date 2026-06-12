@@ -58,5 +58,38 @@
   },
   "labs/lab1-online.qmd": {
     "lab1-online.html": "d926b343"
+  },
+  "labs/lab2b-qgis.qmd": {
+    "lab2b-qgis.html": "044149ff"
+  },
+  "labs/lab4b-qgis.qmd": {
+    "lab4b-qgis.html": "d658daa2"
+  },
+  "labs/lab4c-qgis.qmd": {
+    "lab4c-qgis.html": "0d33afef"
+  },
+  "labs/lab3b-qgis.qmd": {
+    "lab3b-qgis.html": "45d1546c"
+  },
+  "labs/index.qmd": {
+    "index.html": "f05a4917"
+  },
+  "labs/lab5b-qgis.qmd": {
+    "lab5b-qgis.html": "ca79ca08"
+  },
+  "labs/lab4a-qgis.qmd": {
+    "lab4a-qgis.html": "398538aa"
+  },
+  "labs/lab2a-qgis.qmd": {
+    "lab2a-qgis.html": "5e14ffd5"
+  },
+  "labs/lab5a-qgis.qmd": {
+    "lab5a-qgis.html": "5f4ab3e1"
+  },
+  "labs/lab1-qgis.qmd": {
+    "lab1-qgis.html": "574dc0f2"
+  },
+  "labs/lab3a-qgis.qmd": {
+    "lab3a-qgis.html": "69e6ddb8"
   }
 }
